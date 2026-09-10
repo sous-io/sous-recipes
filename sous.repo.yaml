@@ -1,0 +1,44 @@
+# The official public sous recipe repository: github.com/sous-io/sous-recipes
+#
+# Namespaces are drawn from the canonical skill category list, plus `core`.
+# Subscribers to THIS repository are expected to subscribe per recipe; `core`
+# is the exception, auto-subscribed as a whole namespace with opt-out-only
+# semantics. Namespace subscriptions remain a first-class feature for other
+# repositories, where a namespace is a coherent collection.
+formatVersion: 1
+
+name: sous-recipes
+
+description: >-
+  The official sous recipe repository. It publishes the core skills that teach
+  agents about sous itself, plus the workflow, communication and tool-usage
+  recipes that sous develops and dogfoods.
+
+contribute: https://github.com/sous-io/sous-recipes/blob/main/CONTRIBUTING.md
+
+namespaces:
+  core:
+    description: >-
+      Skills that teach an agent about sous itself: what sous manages, how its
+      configuration works, how templates render, and how skills are written.
+      Auto-subscribed in every project, with opt-out-only semantics.
+  workflow:
+    description: >-
+      Task tracking, branch conventions and issue-board practice: the recipes
+      that shape how a unit of work starts, is recorded, and finishes.
+  communication:
+    description: >-
+      Generic interaction patterns between a person and an agent, and between an
+      orchestrating agent and its sub-agents.
+  tool-usage:
+    description: >-
+      Recipes that teach an agent to drive an external tool, together with the
+      scripts and references that tool needs.
+
+recipes:
+  - recipes/core/sous-skills
+  - recipes/communication/control-flow
+  - recipes/workflow/sub-agent-delegation
+  - recipes/workflow/task-files
+  - recipes/workflow/github-projects
+  - recipes/tool-usage/automated-browser-tasks

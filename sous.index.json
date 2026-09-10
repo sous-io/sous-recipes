@@ -1,0 +1,21 @@
+{
+  "formatVersion": 1,
+  "generatedAt": "2026-09-10T06:00:21.142Z",
+  "generator": "0.1.1",
+  "name": "sous-recipes",
+  "namespaces": {
+    "communication": {
+      "description": "Generic interaction patterns between a person and an agent, and between an orchestrating agent and its sub-agents."
+    },
+    "core": {
+      "description": "Skills that teach an agent about sous itself: what sous manages, how its configuration works, how templates render, and how skills are written. Auto-subscribed in every project, with opt-out-only semantics."
+    },
+    "tool-usage": {
+      "description": "Recipes that teach an agent to drive an external tool, together with the scripts and references that tool needs."
+    },
+    "workflow": {
+      "description": "Task tracking, branch conventions and issue-board practice: the recipes that shape how a unit of work starts, is recorded, and finishes."
+    }
+  },
+  "recipes": {}
+}

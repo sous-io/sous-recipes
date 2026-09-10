@@ -1,0 +1,27 @@
+# communication/control-flow
+#
+# From shared-prompts/skills/control-flow/. Four generic interaction skills:
+# approve, opine, repeat, research. No project-specific variables; the only
+# template substitution any of them makes is the auto-var sousTemplatePath.
+formatVersion: 1
+
+namespace: communication
+name: control-flow
+version: 1.0.0
+
+description: >-
+  Generic interaction skills for steering a session: approve a plan and proceed,
+  ask for an opinion without acting, repeat the last instruction, and run a
+  research task across background sub-agents.
+
+# The sub-agent delegation recipe is a build dependency, not a co-subscription:
+# it becomes addressable from this recipe's own files, and its memory file lands
+# in a project only when that project subscribes to it directly. The skills below
+# therefore name the pattern rather than pointing at a file path.
+depends:
+  - workflow/sub-agent-delegation@^1.0.0
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*

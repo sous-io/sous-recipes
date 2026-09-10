@@ -1,0 +1,26 @@
+# workflow/sub-agent-delegation
+#
+# NEW recipe, extracted from shared-prompts/_partials/sub-agent-delegation.md.
+# That partial is cited from skills in every other recipe, so it needs a home of
+# its own rather than being duplicated four times. It carries no skills and no
+# variables: one memory file, and nothing else.
+#
+# The other four recipes declare this one under 'depends', which makes its files
+# addressable from their templates without pushing the memory into every
+# subscriber's output. A project that wants the memory in its own agent context
+# subscribes to workflow/sub-agent-delegation directly.
+formatVersion: 1
+
+namespace: workflow
+name: sub-agent-delegation
+version: 1.0.0
+
+description: >-
+  The orchestrator-and-sub-agent working pattern that the other recipes cite: the
+  main session reasons, decides and talks to the user, and delegates execution to
+  background sub-agents.
+
+contents:
+  - kind: memories
+    include:
+      - memories/*.md

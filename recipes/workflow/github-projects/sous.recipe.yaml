@@ -1,0 +1,163 @@
+# workflow/github-projects
+#
+# From shared-prompts/skills/github-projects/: about-github-projects (with its
+# five reference pages) plus create-issue, pick-issue and techdebt.
+#
+# The board, field and option identifiers are opaque GraphQL node IDs. They are
+# discovered once with `gh project view --format json` and `gh project
+# field-list`, so every one of them is answered rather than guessed; none has a
+# default.
+formatVersion: 1
+
+namespace: workflow
+name: github-projects
+version: 1.0.0
+
+description: >-
+  The GitHub Issues and Projects v2 workflow: how issues are written, picked up,
+  moved across a board's Status column, and closed, with action skills for
+  creating an issue, picking one to work on, and filing tech debt.
+
+# The sub-agent delegation recipe is a build dependency, not a co-subscription:
+# it becomes addressable from this recipe's own files, and its memory file lands
+# in a project only when that project subscribes to it directly. The skills below
+# therefore name the pattern rather than pointing at a file path.
+depends:
+  - workflow/sub-agent-delegation@^1.0.0
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*
+
+variables:
+  - name: githubRepo
+    type: string
+    prompt: Which GitHub repository do this project's issues live in?
+    description: The owner and repository name joined by a slash, as `gh` accepts it.
+    required: true
+    scope: shared
+    validate:
+      pattern: "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$"
+
+  - name: githubProjectOwner
+    type: string
+    prompt: Which organization or user owns the Projects v2 board?
+    description: >-
+      The owner passed to `gh project` commands. For an organization board this
+      is the organization login.
+    required: true
+    scope: shared
+    validate:
+      pattern: "^[A-Za-z0-9-]+$"
+
+  - name: githubProjectNumber
+    type: number
+    prompt: What is the Projects v2 board's number?
+    description: >-
+      The number in the board's URL, for example 1 in
+      https://github.com/orgs/acme/projects/1.
+    required: true
+    scope: shared
+    validate:
+      min: 1
+
+  - name: githubProjectId
+    type: string
+    prompt: What is the Projects v2 board's GraphQL node ID?
+    description: Read it with `gh project view <number> --owner <owner> --format json`.
+    required: true
+    scope: shared
+    validate:
+      pattern: "^PVT_[A-Za-z0-9_-]+$"
+
+  - name: githubStatusFieldId
+    type: string
+    prompt: What is the node ID of the board's Status field?
+    description: Read it with `gh project field-list <number> --owner <owner>`.
+    required: true
+    scope: shared
+    validate:
+      pattern: "^PVTSSF_[A-Za-z0-9_-]+$"
+
+  - name: githubStatusBacklogId
+    type: string
+    prompt: What is the option ID of the Status value "Backlog"?
+    description: >-
+      One of the Status field's single-select option IDs, listed by
+      `gh project field-list <number> --owner <owner>`.
+    required: true
+    scope: shared
+    validate:
+      pattern: "^[0-9a-f]{8}$"
+
+  - name: githubStatusReadyId
+    type: string
+    prompt: What is the option ID of the Status value "Ready"?
+    description: One of the Status field's single-select option IDs.
+    required: true
+    scope: shared
+    validate:
+      pattern: "^[0-9a-f]{8}$"
+
+  - name: githubStatusInProgressId
+    type: string
+    prompt: What is the option ID of the Status value "In Progress"?
+    description: One of the Status field's single-select option IDs.
+    required: true
+    scope: shared
+    validate:
+      pattern: "^[0-9a-f]{8}$"
+
+  - name: githubStatusInReviewId
+    type: string
+    prompt: What is the option ID of the Status value "In Review"?
+    description: One of the Status field's single-select option IDs.
+    required: true
+    scope: shared
+    validate:
+      pattern: "^[0-9a-f]{8}$"
+
+  - name: githubStatusDoneId
+    type: string
+    prompt: What is the option ID of the Status value "Done"?
+    description: One of the Status field's single-select option IDs.
+    required: true
+    scope: shared
+    validate:
+      pattern: "^[0-9a-f]{8}$"
+
+  - name: githubUserLogin
+    type: string
+    prompt: What is your GitHub login?
+    description: >-
+      Used to assign issues to you and to filter the board down to your own
+      work. Each person on the team answers this differently, so it is stored in
+      the gitignored local env file.
+    required: true
+    scope: local
+    validate:
+      pattern: "^[A-Za-z0-9-]+$"
+
+  - name: userFullName
+    type: string
+    prompt: What is your full name, as it should appear in issue text?
+    description: >-
+      Your display name, written into issues and board updates. Personal to each
+      team member, so it is stored in the gitignored local env file.
+    required: true
+    scope: local
+    validate:
+      minLength: 1
+
+  - name: ticketPrefix
+    env: SOUS_VAR_TICKET_PREFIX
+    type: string
+    prompt: What prefix goes in front of a ticket number when you compose a branch name?
+    description: >-
+      Joined to a bare issue number to build a ticket ID, so issue 47 becomes
+      gh-47 when the prefix is 'gh-'. Include any trailing separator. The
+      task-files recipe asks the same question, so a single answer serves both.
+    default: gh-
+    required: false
+    scope: shared

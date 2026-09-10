@@ -1,0 +1,68 @@
+# tool-usage/automated-browser-tasks
+#
+# From shared-prompts/skills/automated-browser-tasks/ plus
+# shared-prompts/memories/automated-browser-tasks/INDEX.tpl.md, which becomes
+# memories/automated-browser-tasks.tpl.md here so it cannot collide with another
+# recipe's memory file in a subscriber's memory directory.
+#
+# This recipe ships runnable code (the runner, the harness, the Chrome cookie
+# and keyring readers) and it works only on Linux, with Node 22 or newer and
+# three npm packages installed at the subscribing project's root: playwright,
+# better-sqlite3 and dbus-next. The manifest format has no field for a platform
+# limit, a runtime version or an external package dependency, so those live in
+# the x- keys below and in the skill's own installation reference.
+formatVersion: 1
+
+namespace: tool-usage
+name: automated-browser-tasks
+version: 1.0.0
+
+description: >-
+  Headless browser automation driven from the user's own Chrome session: the ctx
+  API, the auth and cookie model, the scriptwriting conventions, and skills for
+  writing, updating and running a browser task.
+
+# The sub-agent delegation recipe is a build dependency, not a co-subscription:
+# it becomes addressable from this recipe's own files, and its memory file lands
+# in a project only when that project subscribes to it directly. The skills below
+# therefore name the pattern rather than pointing at a file path.
+depends:
+  - workflow/sub-agent-delegation@^1.0.0
+
+x-platforms: [linux]
+x-requires-node: ">=22"
+x-requires-npm-packages: [playwright, better-sqlite3, dbus-next]
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*
+  - kind: memories
+    include:
+      - memories/*.md
+
+variables:
+  - name: browserAutomationScriptsDir
+    type: path
+    prompt: Which directory holds this project's browser task scripts?
+    description: >-
+      An absolute path. The runner reads task scripts from here, and the task
+      manifest memory lists every script it finds there. The path is specific to
+      one machine, so it is stored in the gitignored local env file.
+    required: true
+    scope: local
+    validate:
+      minLength: 1
+
+  - name: chromeProfile
+    type: string
+    prompt: Which Chrome profile should browser tasks use?
+    description: >-
+      The profile directory name as Chrome writes it, such as 'Default' or
+      'Profile 1'. Leave the default unless you keep your working session in a
+      secondary profile.
+    default: Default
+    required: false
+    scope: local
+    validate:
+      minLength: 1

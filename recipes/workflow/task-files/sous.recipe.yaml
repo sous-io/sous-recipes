@@ -1,0 +1,76 @@
+# workflow/task-files
+#
+# From shared-prompts/skills/task-files/, plus the two partials that only these
+# skills include: _partials/resume-task.md and _partials/update-task-file.md.
+# Those partials move INTO this recipe rather than becoming a shared dependency,
+# because nothing outside this recipe includes them.
+formatVersion: 1
+
+namespace: workflow
+name: task-files
+version: 1.0.0
+
+description: >-
+  Per-branch task files: one working-notes file per git branch, with skills for
+  starting a task, resuming one, updating it before a session ends, and carrying
+  remaining work into a follow-up branch.
+
+# The sub-agent delegation recipe is a build dependency, not a co-subscription:
+# it becomes addressable from this recipe's own files, and its memory file lands
+# in a project only when that project subscribes to it directly. The skills below
+# therefore name the pattern rather than pointing at a file path.
+depends:
+  - workflow/sub-agent-delegation@^1.0.0
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*
+
+variables:
+  - name: taskFileRoot
+    type: path
+    prompt: Where should per-branch task files be written?
+    description: >-
+      One markdown file per git branch is written here. Most projects keep these
+      as local working notes and gitignore the directory.
+    default: .sous/tasks
+    required: true
+    scope: shared
+    validate:
+      minLength: 1
+
+  - name: ticketIdExample
+    type: string
+    prompt: What does one of your ticket IDs look like?
+    description: >-
+      A sample ticket ID from your tracker. It appears in skill trigger phrases
+      and in example branch and file names, so agents recognise the real thing.
+    default: PROJ-1234
+    required: true
+    scope: shared
+    validate:
+      minLength: 1
+
+  - name: ticketPrefix
+    env: SOUS_VAR_TICKET_PREFIX
+    type: string
+    prompt: What prefix goes in front of a ticket number when you compose a branch name?
+    description: >-
+      Joined to a bare ticket number to build a branch name, so ticket 1234
+      becomes PROJ-1234 when the prefix is 'PROJ-'. Include any trailing
+      separator. The github-projects recipe answers the same question, so a
+      single answer serves both.
+    default: PROJ-
+    required: false
+    scope: shared
+
+  - name: featureBranchPrefix
+    type: string
+    prompt: What prefix should new feature branches start with?
+    description: >-
+      Prepended to every new branch name, usually your initials or username with
+      a trailing slash. Leave it empty for no prefix.
+    default: ""
+    required: false
+    scope: local
