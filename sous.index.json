@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-10T06:00:21.142Z",
+  "generatedAt": "2026-09-10T06:00:43.361Z",
   "generator": "0.1.1",
   "name": "sous-recipes",
   "namespaces": {
@@ -17,5 +17,78 @@
       "description": "Task tracking, branch conventions and issue-board practice: the recipes that shape how a unit of work starts, is recorded, and finishes."
     }
   },
-  "recipes": {}
+  "recipes": {
+    "communication/control-flow": {
+      "description": "Generic interaction skills for steering a session: approve a plan and proceed, ask for an opinion without acting, repeat the last instruction, and run a research task across background sub-agents.",
+      "path": "recipes/communication/control-flow",
+      "versions": {
+        "1.0.0": {
+          "hash": "sha256-7f036e8789ba950f9dbb31b1ef1f3d4383ee8329038c5696618707864e3b83e3",
+          "prerelease": false,
+          "releasedAt": "2026-09-10T06:00:38.000Z",
+          "tag": "communication/control-flow@1.0.0"
+        }
+      }
+    },
+    "core/sous-skills": {
+      "description": "The skills that teach an agent what sous is and how it works: which files sous owns and must never be hand-edited, how a sous configuration is written and debugged, the .tpl. template convention and LiquidJS syntax, what an agent skill is, and how to create one.",
+      "path": "recipes/core/sous-skills",
+      "versions": {
+        "0.1.1": {
+          "hash": "sha256-48a01305f8f887f0176723c7814fa266be1886a37bda3d4d001ec2bb28745e19",
+          "prerelease": false,
+          "releasedAt": "2026-09-10T06:00:38.000Z",
+          "tag": "core/sous-skills@0.1.1"
+        }
+      }
+    },
+    "tool-usage/automated-browser-tasks": {
+      "description": "Headless browser automation driven from the user's own Chrome session: the ctx API, the auth and cookie model, the scriptwriting conventions, and skills for writing, updating and running a browser task.",
+      "path": "recipes/tool-usage/automated-browser-tasks",
+      "versions": {
+        "1.0.0": {
+          "hash": "sha256-55a61be3811f6c7ff924812b87163ef2581b1a6ec9d7dd6da67f5daf5c3d5497",
+          "prerelease": false,
+          "releasedAt": "2026-09-10T06:00:38.000Z",
+          "tag": "tool-usage/automated-browser-tasks@1.0.0"
+        }
+      }
+    },
+    "workflow/github-projects": {
+      "description": "The GitHub Issues and Projects v2 workflow: how issues are written, picked up, moved across a board's Status column, and closed, with action skills for creating an issue, picking one to work on, and filing tech debt.",
+      "path": "recipes/workflow/github-projects",
+      "versions": {
+        "1.0.0": {
+          "hash": "sha256-a658405ab7b1ac54cb0344648a7334ce4b43ac917fd60a1d576f237c48fd5931",
+          "prerelease": false,
+          "releasedAt": "2026-09-10T06:00:38.000Z",
+          "tag": "workflow/github-projects@1.0.0"
+        }
+      }
+    },
+    "workflow/sub-agent-delegation": {
+      "description": "The orchestrator-and-sub-agent working pattern that the other recipes cite: the main session reasons, decides and talks to the user, and delegates execution to background sub-agents.",
+      "path": "recipes/workflow/sub-agent-delegation",
+      "versions": {
+        "1.0.0": {
+          "hash": "sha256-6841b6f61a9a62d84152bc0fcfe246af35b7f75001527d6addf55e51068f8387",
+          "prerelease": false,
+          "releasedAt": "2026-09-10T06:00:38.000Z",
+          "tag": "workflow/sub-agent-delegation@1.0.0"
+        }
+      }
+    },
+    "workflow/task-files": {
+      "description": "Per-branch task files: one working-notes file per git branch, with skills for starting a task, resuming one, updating it before a session ends, and carrying remaining work into a follow-up branch.",
+      "path": "recipes/workflow/task-files",
+      "versions": {
+        "1.0.0": {
+          "hash": "sha256-b22d870884cfbb62e1b145903d4d8e59e039b3a6460d228171f3a8badf9bb897",
+          "prerelease": false,
+          "releasedAt": "2026-09-10T06:00:38.000Z",
+          "tag": "workflow/task-files@1.0.0"
+        }
+      }
+    }
+  }
 }
