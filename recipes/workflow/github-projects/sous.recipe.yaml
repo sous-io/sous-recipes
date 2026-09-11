@@ -11,7 +11,7 @@ formatVersion: 1
 
 namespace: workflow
 name: github-projects
-version: 1.0.0
+version: 1.0.1
 
 description: >-
   The GitHub Issues and Projects v2 workflow: how issues are written, picked up,
@@ -36,11 +36,11 @@ variables:
     prompt: Which GitHub repository do this project's issues live in?
     description: >-
       Every issue this recipe's skills read, create or close belongs to one
-      repository, and this setting names it as the owner and repository joined by
-      a slash, exactly as the `gh` command line accepts it. There is no default,
-      because no other project's repository would be a safe guess. The owner may
-      be an organization or a personal account, and the repository does not have
-      to be the one this project's code lives in.
+      repository, and this setting names it as the owner and repository joined
+      by a slash, exactly as the `gh` command line accepts it. There is no
+      default, because no other project's repository would be a safe guess. The
+      owner may be an organization or a personal account, and the repository
+      does not have to be the one this project's code lives in.
     example: acme/widget-api
     required: true
     scope: shared
@@ -52,10 +52,10 @@ variables:
     prompt: Which organization or user owns the Projects v2 board?
     description: >-
       Projects v2 boards hang off an organization or a personal account rather
-      than off a repository, and this owner is what the `gh project` commands are
-      given. There is no default. For an organization board this is the
-      organization login; for a personal board it is your own GitHub login, which
-      may differ from the owner half of the repository setting.
+      than off a repository, and this owner is what the `gh project` commands
+      are given. There is no default. For an organization board this is the
+      organization login; for a personal board it is your own GitHub login,
+      which may differ from the owner half of the repository setting.
     example: acme
     required: true
     scope: shared
@@ -82,8 +82,8 @@ variables:
     prompt: What is the Projects v2 board's GraphQL node ID?
     description: >-
       Moving an issue between board columns goes through the GraphQL API, which
-      addresses the board by an opaque node ID rather than by its number. Read it
-      once with `gh project view <number> --owner <owner> --format json` and
+      addresses the board by an opaque node ID rather than by its number. Read
+      it once with `gh project view <number> --owner <owner> --format json` and
       paste it here. There is no default, and the value is not something you can
       compose by hand; every board's ID begins with `PVT_`.
     example: PVT_kwDOABcDeF4AbCdE
@@ -113,9 +113,10 @@ variables:
     description: >-
       Each value of the Status field has its own option ID, and this one names
       the column where unstarted work waits. Read it with `gh project field-list
-      <number> --owner <owner>`, which lists every option alongside its ID. There
-      is no default. An option ID is eight hexadecimal characters, and it is tied
-      to the column's identity rather than to its label, so it survives a rename.
+      <number> --owner <owner>`, which lists every option alongside its ID.
+      There is no default. An option ID is eight hexadecimal characters, and it
+      is tied to the column's identity rather than to its label, so it survives
+      a rename.
     example: f75ad846
     required: true
     scope: shared
@@ -128,9 +129,10 @@ variables:
     description: >-
       The option ID of the column holding work that is specified and ready to be
       picked up; agents move an issue here once it is well enough described to
-      start. Read it with `gh project field-list <number> --owner <owner>`. There
-      is no default, and the value is eight hexadecimal characters. Point it at
-      whichever of your columns plays this part if yours carries another name.
+      start. Read it with `gh project field-list <number> --owner <owner>`.
+      There is no default, and the value is eight hexadecimal characters. Point
+      it at whichever of your columns plays this part if yours carries another
+      name.
     example: 61e4505c
     required: true
     scope: shared
@@ -158,9 +160,10 @@ variables:
     description: >-
       The option ID of the column an issue moves to once its change is open for
       review and the work is out of the author's hands. Read it with `gh project
-      field-list <number> --owner <owner>`. There is no default, and the value is
-      eight hexadecimal characters. Boards without a review column can point this
-      at the column that best matches, and the workflow still reads correctly.
+      field-list <number> --owner <owner>`. There is no default, and the value
+      is eight hexadecimal characters. Boards without a review column can point
+      this at the column that best matches, and the workflow still reads
+      correctly.
     example: df73e18b
     required: true
     scope: shared
@@ -215,7 +218,8 @@ variables:
   - name: ticketPrefix
     env: SOUS_VAR_TICKET_PREFIX
     type: string
-    prompt: What prefix goes in front of a ticket number when you compose a branch name?
+    prompt: What prefix goes in front of a ticket number when you compose a branch
+      name?
     description: >-
       Agents join this prefix to a bare issue number to build a ticket ID, so
       issue 47 becomes gh-47 when the prefix is 'gh-'. Include any trailing

@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-10T06:00:43.361Z",
+  "generatedAt": "2026-09-11T06:13:08.849Z",
   "generator": "0.1.1",
   "name": "sous-recipes",
   "namespaces": {
@@ -23,6 +23,11 @@
       "path": "recipes/communication/control-flow",
       "versions": {
         "1.0.0": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "version": "1.0.0"
+            }
+          },
           "hash": "sha256-7f036e8789ba950f9dbb31b1ef1f3d4383ee8329038c5696618707864e3b83e3",
           "prerelease": false,
           "releasedAt": "2026-09-10T06:00:38.000Z",
@@ -33,7 +38,14 @@
     "core/sous-skills": {
       "description": "The skills that teach an agent what sous is and how it works: which files sous owns and must never be hand-edited, how a sous configuration is written and debugged, the .tpl. template convention and LiquidJS syntax, what an agent skill is, and how to create one.",
       "path": "recipes/core/sous-skills",
-      "versions": {}
+      "versions": {
+        "0.1.1": {
+          "hash": "sha256-ec4b67b0a6fef452e3b69fa13c17688e7019930b2bbbba36e9c8e772f21c7d05",
+          "prerelease": false,
+          "releasedAt": "2026-09-11T06:09:07.000Z",
+          "tag": "core/sous-skills@0.1.1"
+        }
+      }
     },
     "tool-usage/automated-browser-tasks": {
       "description": "Headless browser automation driven from the user's own Chrome session: the ctx API, the auth and cookie model, the scriptwriting conventions, and skills for writing, updating and running a browser task.",
@@ -44,6 +56,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-10T06:00:38.000Z",
           "tag": "tool-usage/automated-browser-tasks@1.0.0"
+        },
+        "1.0.1": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-0b04777988f0fee06572fe36c1d435fbbe2c601b1ff9092cca0087c7137b5071",
+          "prerelease": false,
+          "releasedAt": "2026-09-11T06:13:08.849Z",
+          "tag": "tool-usage/automated-browser-tasks@1.0.1"
         }
       }
     },
@@ -56,6 +79,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-10T06:00:38.000Z",
           "tag": "workflow/github-projects@1.0.0"
+        },
+        "1.0.1": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-2bf24c9d3c64ab6a761dab7d07616dad50e909d76bc193eed432ad461302c525",
+          "prerelease": false,
+          "releasedAt": "2026-09-11T06:13:08.849Z",
+          "tag": "workflow/github-projects@1.0.1"
         }
       }
     },
@@ -80,6 +114,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-10T06:00:38.000Z",
           "tag": "workflow/task-files@1.0.0"
+        },
+        "1.0.1": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-1240ce2e3404e22aca2f41f5a04ad5cecb1e3884621a5e3d07a5c62ac64891b3",
+          "prerelease": false,
+          "releasedAt": "2026-09-11T06:13:08.849Z",
+          "tag": "workflow/task-files@1.0.1"
         }
       }
     }

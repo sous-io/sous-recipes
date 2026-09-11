@@ -15,7 +15,7 @@ formatVersion: 1
 
 namespace: tool-usage
 name: automated-browser-tasks
-version: 1.0.0
+version: 1.0.1
 
 description: >-
   Headless browser automation driven from the user's own Chrome session: the ctx
@@ -29,9 +29,9 @@ description: >-
 depends:
   - workflow/sub-agent-delegation@^1.0.0
 
-x-platforms: [linux]
+x-platforms: [ linux ]
 x-requires-node: ">=22"
-x-requires-npm-packages: [playwright, better-sqlite3, dbus-next]
+x-requires-npm-packages: [ playwright, better-sqlite3, dbus-next ]
 
 contents:
   - kind: skills
