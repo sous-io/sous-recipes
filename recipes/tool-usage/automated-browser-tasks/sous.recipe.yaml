@@ -48,7 +48,10 @@ variables:
     description: >-
       An absolute path. The runner reads task scripts from here, and the task
       manifest memory lists every script it finds there. The path is specific to
-      one machine, so it is stored in the gitignored local env file.
+      one machine, so it is stored in the gitignored local env file. There is no
+      default; any directory you can write to is acceptable, and a project that
+      keeps its scripts inside the repository still names them absolutely here.
+    example: /home/ada/projects/widget-api/browser-tasks
     required: true
     scope: local
     validate:
@@ -59,8 +62,10 @@ variables:
     prompt: Which Chrome profile should browser tasks use?
     description: >-
       The profile directory name as Chrome writes it, such as 'Default' or
-      'Profile 1'. Leave the default unless you keep your working session in a
-      secondary profile.
+      'Profile 1'. The default is the profile Chrome creates for a new
+      installation, which is the right answer for most people; change it only if
+      you keep the session these tasks need in a secondary profile.
+    example: Profile 1
     default: Default
     required: false
     scope: local

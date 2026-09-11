@@ -34,7 +34,14 @@ variables:
   - name: githubRepo
     type: string
     prompt: Which GitHub repository do this project's issues live in?
-    description: The owner and repository name joined by a slash, as `gh` accepts it.
+    description: >-
+      Every issue this recipe's skills read, create or close belongs to one
+      repository, and this setting names it as the owner and repository joined by
+      a slash, exactly as the `gh` command line accepts it. There is no default,
+      because no other project's repository would be a safe guess. The owner may
+      be an organization or a personal account, and the repository does not have
+      to be the one this project's code lives in.
+    example: acme/widget-api
     required: true
     scope: shared
     validate:
@@ -44,8 +51,12 @@ variables:
     type: string
     prompt: Which organization or user owns the Projects v2 board?
     description: >-
-      The owner passed to `gh project` commands. For an organization board this
-      is the organization login.
+      Projects v2 boards hang off an organization or a personal account rather
+      than off a repository, and this owner is what the `gh project` commands are
+      given. There is no default. For an organization board this is the
+      organization login; for a personal board it is your own GitHub login, which
+      may differ from the owner half of the repository setting.
+    example: acme
     required: true
     scope: shared
     validate:
@@ -55,8 +66,12 @@ variables:
     type: number
     prompt: What is the Projects v2 board's number?
     description: >-
-      The number in the board's URL, for example 1 in
-      https://github.com/orgs/acme/projects/1.
+      Each board carries a small number that identifies it to the `gh project`
+      commands, and it is the last segment of the board's URL, so board
+      https://github.com/orgs/acme/projects/1 is number 1. There is no default.
+      Any positive whole number is acceptable; it is the board's number, not its
+      position in any list you see.
+    example: 1
     required: true
     scope: shared
     validate:
@@ -65,7 +80,13 @@ variables:
   - name: githubProjectId
     type: string
     prompt: What is the Projects v2 board's GraphQL node ID?
-    description: Read it with `gh project view <number> --owner <owner> --format json`.
+    description: >-
+      Moving an issue between board columns goes through the GraphQL API, which
+      addresses the board by an opaque node ID rather than by its number. Read it
+      once with `gh project view <number> --owner <owner> --format json` and
+      paste it here. There is no default, and the value is not something you can
+      compose by hand; every board's ID begins with `PVT_`.
+    example: PVT_kwDOABcDeF4AbCdE
     required: true
     scope: shared
     validate:
@@ -74,7 +95,13 @@ variables:
   - name: githubStatusFieldId
     type: string
     prompt: What is the node ID of the board's Status field?
-    description: Read it with `gh project field-list <number> --owner <owner>`.
+    description: >-
+      The workflow in this recipe moves work by setting one single-select field,
+      Status, and the GraphQL API addresses that field by its own node ID. Read
+      it with `gh project field-list <number> --owner <owner>`. There is no
+      default. If your board renames the column field, this is still the field
+      that holds the workflow states; every such ID begins with `PVTSSF_`.
+    example: PVTSSF_lADOABcDeF4AbCdEzgWxYz12
     required: true
     scope: shared
     validate:
@@ -84,8 +111,12 @@ variables:
     type: string
     prompt: What is the option ID of the Status value "Backlog"?
     description: >-
-      One of the Status field's single-select option IDs, listed by
-      `gh project field-list <number> --owner <owner>`.
+      Each value of the Status field has its own option ID, and this one names
+      the column where unstarted work waits. Read it with `gh project field-list
+      <number> --owner <owner>`, which lists every option alongside its ID. There
+      is no default. An option ID is eight hexadecimal characters, and it is tied
+      to the column's identity rather than to its label, so it survives a rename.
+    example: f75ad846
     required: true
     scope: shared
     validate:
@@ -94,7 +125,13 @@ variables:
   - name: githubStatusReadyId
     type: string
     prompt: What is the option ID of the Status value "Ready"?
-    description: One of the Status field's single-select option IDs.
+    description: >-
+      The option ID of the column holding work that is specified and ready to be
+      picked up; agents move an issue here once it is well enough described to
+      start. Read it with `gh project field-list <number> --owner <owner>`. There
+      is no default, and the value is eight hexadecimal characters. Point it at
+      whichever of your columns plays this part if yours carries another name.
+    example: 61e4505c
     required: true
     scope: shared
     validate:
@@ -103,7 +140,13 @@ variables:
   - name: githubStatusInProgressId
     type: string
     prompt: What is the option ID of the Status value "In Progress"?
-    description: One of the Status field's single-select option IDs.
+    description: >-
+      The option ID of the column an issue moves to when work on it actually
+      begins. Read it with `gh project field-list <number> --owner <owner>`.
+      There is no default, and the value is eight hexadecimal characters. Point
+      it at whichever of your columns means active work if yours carries another
+      name.
+    example: 47fc9ee4
     required: true
     scope: shared
     validate:
@@ -112,7 +155,13 @@ variables:
   - name: githubStatusInReviewId
     type: string
     prompt: What is the option ID of the Status value "In Review"?
-    description: One of the Status field's single-select option IDs.
+    description: >-
+      The option ID of the column an issue moves to once its change is open for
+      review and the work is out of the author's hands. Read it with `gh project
+      field-list <number> --owner <owner>`. There is no default, and the value is
+      eight hexadecimal characters. Boards without a review column can point this
+      at the column that best matches, and the workflow still reads correctly.
+    example: df73e18b
     required: true
     scope: shared
     validate:
@@ -121,7 +170,13 @@ variables:
   - name: githubStatusDoneId
     type: string
     prompt: What is the option ID of the Status value "Done"?
-    description: One of the Status field's single-select option IDs.
+    description: >-
+      The option ID of the column that finished work lands in, which is where an
+      issue goes as it is closed. Read it with `gh project field-list <number>
+      --owner <owner>`. There is no default, and the value is eight hexadecimal
+      characters. Point it at whichever column your board treats as the end of
+      the line.
+    example: "98236657"
     required: true
     scope: shared
     validate:
@@ -131,9 +186,12 @@ variables:
     type: string
     prompt: What is your GitHub login?
     description: >-
-      Used to assign issues to you and to filter the board down to your own
-      work. Each person on the team answers this differently, so it is stored in
-      the gitignored local env file.
+      Agents use this to assign issues to you and to filter the board down to
+      your own work, so it is your login rather than anything about the project.
+      There is no default, since no answer would be right for a second person on
+      the team; for the same reason the answer is kept in the gitignored local
+      env file, and each teammate answers it for themselves.
+    example: octocat
     required: true
     scope: local
     validate:
@@ -143,8 +201,12 @@ variables:
     type: string
     prompt: What is your full name, as it should appear in issue text?
     description: >-
-      Your display name, written into issues and board updates. Personal to each
-      team member, so it is stored in the gitignored local env file.
+      Your display name, written into the issues and board updates agents
+      compose on your behalf, so that prose reads as though a person wrote it.
+      There is no default. Any form you are happy to see in public issue text is
+      acceptable; like the login above, it is personal, so it is kept in the
+      gitignored local env file.
+    example: Ada Lovelace
     required: true
     scope: local
     validate:
@@ -155,9 +217,14 @@ variables:
     type: string
     prompt: What prefix goes in front of a ticket number when you compose a branch name?
     description: >-
-      Joined to a bare issue number to build a ticket ID, so issue 47 becomes
-      gh-47 when the prefix is 'gh-'. Include any trailing separator. The
-      task-files recipe asks the same question, so a single answer serves both.
+      Agents join this prefix to a bare issue number to build a ticket ID, so
+      issue 47 becomes gh-47 when the prefix is 'gh-'. Include any trailing
+      separator, because nothing is inserted between the prefix and the number.
+      The default suits GitHub issues, which is what this recipe tracks; any
+      prefix is acceptable, and an empty answer means the bare number is used on
+      its own. The task-files recipe asks the same question, so a single answer
+      serves both.
+    example: PROJ-
     default: gh-
     required: false
     scope: shared

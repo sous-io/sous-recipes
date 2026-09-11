@@ -30,10 +30,14 @@ contents:
 variables:
   - name: taskFileRoot
     type: path
-    prompt: Where should per-branch task files be written?
+    prompt: Where should task files be stored?
     description: >-
-      One markdown file per git branch is written here. Most projects keep these
-      as local working notes and gitignore the directory.
+      This recipe mandates the creation of task files that are stored locally
+      and, in general, should not be committed. This setting dictates the path in
+      which agents will store and search for your task files. The default value
+      stores task files in the project's .sous directory, but you can specify any
+      local path, either relative to the project root or absolute.
+    example: .claude/tasks
     default: .sous/tasks
     required: true
     scope: shared
@@ -44,8 +48,13 @@ variables:
     type: string
     prompt: What does one of your ticket IDs look like?
     description: >-
-      A sample ticket ID from your tracker. It appears in skill trigger phrases
-      and in example branch and file names, so agents recognise the real thing.
+      The skills in this recipe quote a ticket ID in their trigger phrases and in
+      the branch and file names they show as examples, and an ID in the shape
+      your own tracker uses is what makes those examples recognisable. The
+      default is a generic Jira-style placeholder that belongs to no real
+      tracker, so replace it with whatever your team actually types, whether that
+      is a Jira key, a GitHub issue reference, or something else entirely.
+    example: gh-47
     default: PROJ-1234
     required: true
     scope: shared
@@ -57,10 +66,14 @@ variables:
     type: string
     prompt: What prefix goes in front of a ticket number when you compose a branch name?
     description: >-
-      Joined to a bare ticket number to build a branch name, so ticket 1234
-      becomes PROJ-1234 when the prefix is 'PROJ-'. Include any trailing
-      separator. The github-projects recipe answers the same question, so a
-      single answer serves both.
+      Agents join this prefix to a bare ticket number to build a full ticket ID,
+      so ticket 1234 becomes PROJ-1234 when the prefix is 'PROJ-'. Include any
+      trailing separator, because nothing is inserted between the prefix and the
+      number. The default suits a Jira-style tracker; any prefix is acceptable,
+      and an empty answer means the bare number is used on its own. The
+      github-projects recipe asks the same question, so a single answer serves
+      both.
+    example: gh-
     default: PROJ-
     required: false
     scope: shared
@@ -69,8 +82,12 @@ variables:
     type: string
     prompt: What prefix should new feature branches start with?
     description: >-
-      Prepended to every new branch name, usually your initials or username with
-      a trailing slash. Leave it empty for no prefix.
+      Agents prepend this to every branch name they create, which is how your
+      branches stay grouped under your initials or your username. The default is
+      empty, so a branch name begins with the ticket ID and nothing else. Any
+      prefix is acceptable; include the trailing separator you want to see in the
+      finished branch name.
+    example: luke/
     default: ""
     required: false
     scope: local
