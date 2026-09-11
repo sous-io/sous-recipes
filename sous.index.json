@@ -33,14 +33,7 @@
     "core/sous-skills": {
       "description": "The skills that teach an agent what sous is and how it works: which files sous owns and must never be hand-edited, how a sous configuration is written and debugged, the .tpl. template convention and LiquidJS syntax, what an agent skill is, and how to create one.",
       "path": "recipes/core/sous-skills",
-      "versions": {
-        "0.1.1": {
-          "hash": "sha256-48a01305f8f887f0176723c7814fa266be1886a37bda3d4d001ec2bb28745e19",
-          "prerelease": false,
-          "releasedAt": "2026-09-10T06:00:38.000Z",
-          "tag": "core/sous-skills@0.1.1"
-        }
-      }
+      "versions": {}
     },
     "tool-usage/automated-browser-tasks": {
       "description": "Headless browser automation driven from the user's own Chrome session: the ctx API, the auth and cookie model, the scriptwriting conventions, and skills for writing, updating and running a browser task.",
