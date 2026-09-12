@@ -11,7 +11,7 @@ formatVersion: 1
 
 namespace: core
 name: sous-skills
-version: 0.1.1
+version: 0.2.1
 
 description: >-
   The skills that teach an agent what sous is and how it works: which files sous
@@ -26,6 +26,7 @@ contents:
 
 variables:
   - name: skillsRoot
+    env: SKILLS_ROOT
     type: path
     prompt: Where should this project's own skills be kept?
     description: >-
