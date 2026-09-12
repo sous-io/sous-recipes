@@ -8,7 +8,7 @@ formatVersion: 1
 
 namespace: workflow
 name: task-files
-version: 1.0.1
+version: 1.0.2
 
 description: >-
   Per-branch task files: one working-notes file per git branch, with skills for

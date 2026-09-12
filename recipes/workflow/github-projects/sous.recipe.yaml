@@ -11,7 +11,7 @@ formatVersion: 1
 
 namespace: workflow
 name: github-projects
-version: 1.0.1
+version: 1.0.2
 
 description: >-
   The GitHub Issues and Projects v2 workflow: how issues are written, picked up,

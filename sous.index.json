@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-11T06:13:08.849Z",
+  "generatedAt": "2026-09-12T06:22:17.983Z",
   "generator": "0.1.1",
   "name": "sous-recipes",
   "namespaces": {
@@ -67,6 +67,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-11T06:13:08.849Z",
           "tag": "tool-usage/automated-browser-tasks@1.0.1"
+        },
+        "1.0.2": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-73fd80b756d3c113a687ce76ff2b7d3547677a7284522ff80b4fad7eb15139f8",
+          "prerelease": false,
+          "releasedAt": "2026-09-12T06:22:17.983Z",
+          "tag": "tool-usage/automated-browser-tasks@1.0.2"
         }
       }
     },
@@ -90,6 +101,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-11T06:13:08.849Z",
           "tag": "workflow/github-projects@1.0.1"
+        },
+        "1.0.2": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-8cff152d6ec30b242a35f1e2c4c98a8ca730728de61630cec4b6bcf7dee45615",
+          "prerelease": false,
+          "releasedAt": "2026-09-12T06:22:17.983Z",
+          "tag": "workflow/github-projects@1.0.2"
         }
       }
     },
@@ -125,6 +147,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-11T06:13:08.849Z",
           "tag": "workflow/task-files@1.0.1"
+        },
+        "1.0.2": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-cbdb330aafe322839017c404beaaefae3140553436962b1949065512e7c156c5",
+          "prerelease": false,
+          "releasedAt": "2026-09-12T06:22:17.983Z",
+          "tag": "workflow/task-files@1.0.2"
         }
       }
     }
