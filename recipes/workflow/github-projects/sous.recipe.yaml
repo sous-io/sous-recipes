@@ -32,6 +32,7 @@ contents:
 
 variables:
   - name: githubRepo
+    env: GITHUB_REPO
     type: string
     prompt: Which GitHub repository do this project's issues live in?
     description: >-
@@ -48,6 +49,7 @@ variables:
       pattern: "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$"
 
   - name: githubProjectOwner
+    env: GITHUB_PROJECT_OWNER
     type: string
     prompt: Which organization or user owns the Projects v2 board?
     description: >-
@@ -63,6 +65,7 @@ variables:
       pattern: "^[A-Za-z0-9-]+$"
 
   - name: githubProjectNumber
+    env: GITHUB_PROJECT_NUMBER
     type: number
     prompt: What is the Projects v2 board's number?
     description: >-
@@ -78,6 +81,7 @@ variables:
       min: 1
 
   - name: githubProjectId
+    env: GITHUB_PROJECT_ID
     type: string
     prompt: What is the Projects v2 board's GraphQL node ID?
     description: >-
@@ -93,6 +97,7 @@ variables:
       pattern: "^PVT_[A-Za-z0-9_-]+$"
 
   - name: githubStatusFieldId
+    env: GITHUB_STATUS_FIELD_ID
     type: string
     prompt: What is the node ID of the board's Status field?
     description: >-
@@ -108,6 +113,7 @@ variables:
       pattern: "^PVTSSF_[A-Za-z0-9_-]+$"
 
   - name: githubStatusBacklogId
+    env: GITHUB_STATUS_BACKLOG_ID
     type: string
     prompt: What is the option ID of the Status value "Backlog"?
     description: >-
@@ -124,6 +130,7 @@ variables:
       pattern: "^[0-9a-f]{8}$"
 
   - name: githubStatusReadyId
+    env: GITHUB_STATUS_READY_ID
     type: string
     prompt: What is the option ID of the Status value "Ready"?
     description: >-
@@ -140,6 +147,7 @@ variables:
       pattern: "^[0-9a-f]{8}$"
 
   - name: githubStatusInProgressId
+    env: GITHUB_STATUS_IN_PROGRESS_ID
     type: string
     prompt: What is the option ID of the Status value "In Progress"?
     description: >-
@@ -155,6 +163,7 @@ variables:
       pattern: "^[0-9a-f]{8}$"
 
   - name: githubStatusInReviewId
+    env: GITHUB_STATUS_IN_REVIEW_ID
     type: string
     prompt: What is the option ID of the Status value "In Review"?
     description: >-
@@ -171,6 +180,7 @@ variables:
       pattern: "^[0-9a-f]{8}$"
 
   - name: githubStatusDoneId
+    env: GITHUB_STATUS_DONE_ID
     type: string
     prompt: What is the option ID of the Status value "Done"?
     description: >-
@@ -186,6 +196,7 @@ variables:
       pattern: "^[0-9a-f]{8}$"
 
   - name: githubUserLogin
+    env: GITHUB_USER_LOGIN
     type: string
     prompt: What is your GitHub login?
     description: >-
@@ -201,6 +212,7 @@ variables:
       pattern: "^[A-Za-z0-9-]+$"
 
   - name: userFullName
+    env: USER_FULL_NAME
     type: string
     prompt: What is your full name, as it should appear in issue text?
     description: >-

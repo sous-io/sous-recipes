@@ -29,6 +29,7 @@ contents:
 
 variables:
   - name: taskFileRoot
+    env: TASK_FILE_ROOT
     type: path
     prompt: Where should task files be stored?
     description: >-
@@ -45,6 +46,7 @@ variables:
       minLength: 1
 
   - name: ticketIdExample
+    env: TICKET_ID_EXAMPLE
     type: string
     prompt: What does one of your ticket IDs look like?
     description: >-
@@ -80,6 +82,7 @@ variables:
     scope: shared
 
   - name: featureBranchPrefix
+    env: FEATURE_BRANCH_PREFIX
     type: string
     prompt: What prefix should new feature branches start with?
     description: >-

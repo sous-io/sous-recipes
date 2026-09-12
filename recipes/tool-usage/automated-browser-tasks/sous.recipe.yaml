@@ -43,6 +43,7 @@ contents:
 
 variables:
   - name: browserAutomationScriptsDir
+    env: BROWSER_AUTOMATION_SCRIPTS_DIR
     type: path
     prompt: Which directory holds this project's browser task scripts?
     description: >-
@@ -58,6 +59,7 @@ variables:
       minLength: 1
 
   - name: chromeProfile
+    env: CHROME_PROFILE
     type: string
     prompt: Which Chrome profile should browser tasks use?
     description: >-
