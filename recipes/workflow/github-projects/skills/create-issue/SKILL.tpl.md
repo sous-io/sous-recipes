@@ -24,6 +24,9 @@ Confirm:
 - Issue type via label (`tech-debt`, `enhancement`, `bug`, or none for a plain task)
 - Parent issue, if this is a sub-issue of a larger effort
 - Any additional labels
+- Open goals: the agent doing this step MUST load `about-goals` and run its light check for the
+  new issue against every open goal. Report any conflict to the user before drafting; a goal
+  the issue contributes to becomes a `--blocking` relationship once the user agrees
 - Do any necessary code research before drafting
 
 ### 2. Gather Context
@@ -53,7 +56,8 @@ Load the appropriate reference from `about-github-projects`:
 The orchestrator presents the draft and waits for the user's approval. An Opus sub-agent then:
 
 1. Creates the issue with the exact approved Markdown (heredoc pattern in
-   `about-github-projects`), capturing the issue number from the printed URL
+   `about-github-projects`), passing `--blocking <goal numbers>` for any goal the user agreed
+   it contributes to, and capturing the issue number from the printed URL
 2. Adds it to the board (`gh project item-add`)
 3. Sets its status: Backlog by default, Ready if the draft is already fully scoped (confirm
    which with the orchestrator's prompt)

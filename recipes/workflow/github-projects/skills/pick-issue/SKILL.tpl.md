@@ -17,6 +17,10 @@ The agent running the searches MUST load `about-github-projects`.
 
 Show no more than 5 issues at a time, sorted by Rank descending (highest first).
 
+Goals (issues labeled `goal`) are never offered as work to pick; leave them out of every level.
+When the user asks for work that moves a particular goal forward, narrow every level to that
+goal's open members (`about-goals` shows how to read them).
+
 ## Search Strategy
 
 Delegate the whole escalation sweep below to one Sonnet sub-agent. It returns the issues from
@@ -27,7 +31,8 @@ Fetch the board once and filter locally, rather than one call per level:
 
 ```bash
 gh project item-list {{ githubProjectNumber }} --owner {{ githubProjectOwner }} \
-  --limit 200 --format json > /tmp/board.json
+  --limit 200 --format json \
+  | jq '.items |= map(select((.labels // []) | index("goal") | not))' > /tmp/board.json
 ```
 
 Inspect the item shape with `jq '.items[0]' /tmp/board.json` if a filter matches nothing
@@ -100,6 +105,7 @@ factors (ordered greatest to least impact):
 - Issue is Ready
 - Issue is unassigned
 - Issue is labeled `bug`
+- Issue blocks one or more open goals (more goals, more rank), and nothing open blocks it
 - Issue seems easy and touches few modules
 
 ## Source for this Skill

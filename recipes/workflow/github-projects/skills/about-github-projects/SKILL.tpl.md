@@ -39,9 +39,16 @@ GitHub auto-links it.
 
 Per the sub-agent delegation pattern:
 
-- The orchestrator drafts issue and comment bodies; the user approves them.
+- The orchestrator drafts issue and comment bodies; the user approves them. When the user says
+  to skip the drafts and do the work, the approval step is waived for that request.
 - An Opus sub-agent then executes the write with the exact approved text and reports back the
   issue number and link.
+- Every body is written to a file first (with a file-writing tool, or a heredoc whose delimiter
+  is quoted, `<<'MD'`) and passed with `--body-file`. An unquoted heredoc or an inline `--body`
+  lets the shell run every backticked span in the text as a command.
+- Before replacing an issue's body wholesale, post the original as a comment on that issue, so
+  the text survives in plain view and not only in GitHub's edit history.
+- After any write, read the issue back and confirm it says what was intended.
 - Read-only queries (issue lists, issue views, board reads) can be delegated freely; Sonnet is
   sufficient.
 
@@ -68,6 +75,13 @@ When the user specifies a **parent issue** (one with sub-issues) as the basis fo
 
 When the user specifies a single ordinary issue, ignore any parent and work it normally.
 
+### Goals
+
+A **goal** is an issue labeled `goal` (titled `[Goal] ...`) that is blocked by the issues working
+toward it; one issue may serve several goals. Goals are not parents: never use sub-issues for
+them. The agent doing any of the following MUST load `about-goals`: creating, amending,
+reviewing or closing a goal; picking up an issue that blocks a goal; or creating an issue.
+
 ### Picking Up an Issue
 
 When starting work on an issue:
@@ -77,8 +91,11 @@ When starting work on an issue:
 3. Ensure the issue is **on the board** (see Board Operations below); issues are NOT added
    automatically
 4. Set its status to **In Progress**
+5. List the open goals the issue blocks; if there are any, run the pickup check from
+   `about-goals` and report any conflict to the user before starting work
 
-Delegate the assign/board/status sequence to a sub-agent; it reports the final state.
+Delegate the assign/board/status sequence and the goal lookup to a sub-agent; it reports the
+final state and the goals it found.
 
 ### Completing an Issue
 

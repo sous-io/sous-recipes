@@ -1,7 +1,7 @@
 # workflow/github-projects
 #
-# From shared-prompts/skills/github-projects/: about-github-projects (with its
-# five reference pages) plus create-issue, pick-issue and techdebt.
+# The GitHub Issues and Projects v2 workflow, plus goals: issues labeled `goal`
+# that other issues work toward (about-goals and its action skills).
 #
 # The board, field and option identifiers are opaque GraphQL node IDs. They are
 # discovered once with `gh project view --format json` and `gh project
@@ -11,12 +11,13 @@ formatVersion: 1
 
 namespace: workflow
 name: github-projects
-version: 1.0.2
+version: 1.1.0
 
 description: >-
   The GitHub Issues and Projects v2 workflow: how issues are written, picked up,
   moved across a board's Status column, and closed, with action skills for
-  creating an issue, picking one to work on, and filing tech debt.
+  creating an issue, picking one to work on, and filing tech debt, and for
+  creating, amending and reviewing goals that several issues work toward.
 
 # The sub-agent delegation recipe is a build dependency, not a co-subscription:
 # it becomes addressable from this recipe's own files, and its memory file lands
