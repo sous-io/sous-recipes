@@ -1,9 +1,12 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-27T10:17:48.378Z",
+  "generatedAt": "2026-09-27T10:19:31.080Z",
   "generator": "0.2.19",
   "name": "sous-recipes",
   "namespaces": {
+    "cli": {
+      "description": "Skills for designing command-line interfaces that behave predictably, name things consistently and tell their users plainly what happened."
+    },
     "communication": {
       "description": "Generic interaction patterns between a person and an agent, and between an orchestrating agent and its sub-agents."
     },
@@ -18,6 +21,18 @@
     }
   },
   "recipes": {
+    "cli/command-design": {
+      "description": "Principles for designing command-line interfaces in any language: inferring intent and defaulting sensibly, informed consent over prevention, safe and non-interactive behavior, consistent flag naming and flag grammar, network and remote reads, plan-then-confirm execution, and plain factual output, with action skills for creating a new command and for updating an existing one.",
+      "path": "recipes/cli/command-design",
+      "versions": {
+        "1.0.0": {
+          "hash": "sha256-0e118b4221b7592fff1688f536753d7cdaedd11d8018d4f6334862e44734c0f0",
+          "prerelease": false,
+          "releasedAt": "2026-09-27T10:19:31.080Z",
+          "tag": "cli/command-design@1.0.0"
+        }
+      }
+    },
     "communication/control-flow": {
       "description": "Generic interaction skills for steering a session: approve a plan and proceed, ask for an opinion without acting, repeat the last instruction, and run a research task across background sub-agents.",
       "path": "recipes/communication/control-flow",
