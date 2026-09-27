@@ -34,6 +34,10 @@ namespaces:
     description: >-
       Recipes that teach an agent to drive an external tool, together with the
       scripts and references that tool needs.
+  cli:
+    description: >-
+      Skills for designing command-line interfaces that behave predictably,
+      name things consistently and tell their users plainly what happened.
 
 recipes:
   - recipes/core/sous-skills
@@ -42,3 +46,4 @@ recipes:
   - recipes/workflow/task-files
   - recipes/workflow/github-projects
   - recipes/tool-usage/automated-browser-tasks
+  - recipes/cli/command-design
