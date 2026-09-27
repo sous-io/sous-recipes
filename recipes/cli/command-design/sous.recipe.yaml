@@ -1,0 +1,24 @@
+# cli/command-design
+#
+# Generic principles for designing command-line interfaces, plus action skills
+# for creating a new command and for changing an existing one without breaking
+# the people and scripts that already call it. Nothing here is specific to one
+# tool, language or argument parser. No variables; the only template
+# substitution any skill makes is the auto-var sousTemplatePath.
+formatVersion: 1
+
+namespace: cli
+name: command-design
+version: 1.0.0
+
+description: >-
+  Principles for designing command-line interfaces in any language: inferring
+  intent and defaulting sensibly, informed consent over prevention, safe and
+  non-interactive behavior, consistent flag naming and flag grammar, network
+  and remote reads, plan-then-confirm execution, and plain factual output, with
+  action skills for creating a new command and for updating an existing one.
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*
