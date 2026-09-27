@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-27T01:56:04.114Z",
+  "generatedAt": "2026-09-27T02:06:11.272Z",
   "generator": "0.2.13",
   "name": "sous-recipes",
   "namespaces": {
@@ -148,7 +148,7 @@
       }
     },
     "workflow/github-projects": {
-      "description": "The GitHub Issues and Projects v2 workflow: how issues are written, picked up, moved across a board's Status column, and closed, with action skills for creating an issue, picking one to work on, and filing tech debt.",
+      "description": "The GitHub Issues and Projects v2 workflow: how issues are written, picked up, moved across a board's Status column, and closed, with action skills for creating an issue, picking one to work on, and filing tech debt, and for creating, amending and reviewing goals that several issues work toward.",
       "path": "recipes/workflow/github-projects",
       "versions": {
         "1.0.0": {
@@ -178,6 +178,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-12T06:22:17.983Z",
           "tag": "workflow/github-projects@1.0.2"
+        },
+        "1.1.0": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-051bb65274caecd2d7f2121b7016758554f17a9fe9740a13b786c3519b4825be",
+          "prerelease": false,
+          "releasedAt": "2026-09-27T02:06:11.272Z",
+          "tag": "workflow/github-projects@1.1.0"
         }
       }
     },
