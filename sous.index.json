@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-27T10:32:59.782Z",
+  "generatedAt": "2026-09-28T04:35:39.467Z",
   "generator": "0.2.20",
   "name": "sous-recipes",
   "namespaces": {
@@ -246,6 +246,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-27T02:06:11.272Z",
           "tag": "workflow/github-projects@1.1.0"
+        },
+        "1.1.1": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-71498b4cc26b08be63cd10adc72bfc84b9dc79dc70392a74bdc79b43e5d10f7d",
+          "prerelease": false,
+          "releasedAt": "2026-09-28T04:35:39.467Z",
+          "tag": "workflow/github-projects@1.1.1"
         }
       }
     },
