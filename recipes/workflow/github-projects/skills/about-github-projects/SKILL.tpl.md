@@ -46,8 +46,6 @@ Per the sub-agent delegation pattern:
 - Every body is written to a file first (with a file-writing tool, or a heredoc whose delimiter
   is quoted, `<<'MD'`) and passed with `--body-file`. An unquoted heredoc or an inline `--body`
   lets the shell run every backticked span in the text as a command.
-- Before replacing an issue's body wholesale, post the original as a comment on that issue, so
-  the text survives in plain view and not only in GitHub's edit history.
 - After any write, read the issue back and confirm it says what was intended.
 - Read-only queries (issue lists, issue views, board reads) can be delegated freely; Sonnet is
   sufficient.
