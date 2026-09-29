@@ -1,14 +1,17 @@
 # communication/agent-conduct
 #
-# Always-loaded conduct rules for an agent working with a person, as four
+# Always-loaded conduct rules for an agent working with a person, as five
 # memories: agent conduct (a question is not an instruction, the whole problem
 # is in scope, durable memories live in tracked sources), interaction style,
-# quoting sources, and respecting the user's time (research before asking, no
-# hangers, links, numbered points, one report). Four partials carry short
-# reminders into the commands that need them: quote sources, the reply format,
-# respect the user's time, and reporting back. Partials live in _partials/ and
-# are never installed on their own. One variable, memoryRoot, names where the
-# project keeps its tracked memory fragments.
+# quoting sources, respecting the user's time (research before asking, no
+# hangers, links, numbered points, one report), and drafting (anything that
+# leaves the machine is drafted in chat and approved before it is sent). Four
+# partials carry short reminders into the commands that need them: quote
+# sources, the reply format, respect the user's time, and reporting back.
+# Partials live in _partials/ and are never installed on their own. One
+# command, /create-reply, drafts replies to other people's questions in the
+# reply format. One variable, memoryRoot, names where the project keeps its
+# tracked memory fragments.
 formatVersion: 1
 
 namespace: communication
@@ -19,14 +22,26 @@ description: >-
   Always-loaded conduct rules for an agent working with a person: a question is
   not an instruction, solve the whole problem, keep durable memories in tracked
   sources, quote a source's exact words behind every assertion based on what it
-  said, and respect the user's time (research before asking, no hangers, links,
-  numbered points, one report); plus partials for quoting, replying to
-  questions, and reporting back.
+  said, respect the user's time (research before asking, no hangers, links,
+  numbered points, one report), and draft anything that leaves the machine in
+  chat for approval before it is sent; plus partials for quoting, replying to
+  questions, and reporting back, and the /create-reply command, which drafts
+  replies that quote each question before answering it.
+
+# The /create-reply command includes partials from these two recipes; they are
+# build dependencies only, so their own memories and skills land in a project
+# only when it subscribes to them directly.
+depends:
+  - communication/plain-speech@^1.0.0
+  - communication/control-flow@^1.1.0
 
 contents:
   - kind: memories
     include:
       - memories/*.md
+  - kind: skills
+    include:
+      - skills/**/*
 
 variables:
   - name: memoryRoot
