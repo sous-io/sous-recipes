@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-29T11:22:37.364Z",
+  "generatedAt": "2026-09-29T15:30:07.933Z",
   "generator": "0.2.22",
   "name": "sous-recipes",
   "namespaces": {
@@ -56,6 +56,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T11:04:32.785Z",
           "tag": "communication/agent-conduct@1.0.0"
+        },
+        "1.1.0": {
+          "dependencies": {
+            "communication/plain-speech": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-29eb29ad0f33aad82f7580a4c390b9794c6eddcbb163be19f97c2a5086ea87da",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T15:30:07.933Z",
+          "tag": "communication/agent-conduct@1.1.0"
         }
       }
     },
@@ -77,7 +88,7 @@
         "1.1.0": {
           "dependencies": {
             "communication/agent-conduct": {
-              "version": "1.0.0"
+              "version": "1.1.0"
             },
             "communication/plain-speech": {
               "version": "1.0.0"
@@ -301,7 +312,7 @@
         "1.0.0": {
           "dependencies": {
             "communication/agent-conduct": {
-              "version": "1.0.0"
+              "version": "1.1.0"
             },
             "communication/control-flow": {
               "version": "1.1.0"
@@ -337,6 +348,23 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T11:04:32.785Z",
           "tag": "workflow/autonomous-work@1.0.0"
+        },
+        "1.1.0": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "version": "1.1.0"
+            },
+            "communication/control-flow": {
+              "version": "1.1.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-906b96b0f57f261297a35c6b1272dd795647fe0ac8d36f8d80b249e269995e75",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T15:30:07.933Z",
+          "tag": "workflow/autonomous-work@1.1.0"
         }
       }
     },
@@ -414,7 +442,7 @@
         "1.0.0": {
           "dependencies": {
             "communication/agent-conduct": {
-              "version": "1.0.0"
+              "version": "1.1.0"
             },
             "communication/control-flow": {
               "version": "1.1.0"
@@ -483,7 +511,7 @@
         "1.1.0": {
           "dependencies": {
             "communication/agent-conduct": {
-              "version": "1.0.0"
+              "version": "1.1.0"
             },
             "communication/control-flow": {
               "version": "1.1.0"
