@@ -48,5 +48,6 @@ three things:
    - /home/ada/projects/widget-api/.sous/memories/testing/migrations.md:3
 ```
 
-The user MAY run `/harvest` to review a whole session, or `/mistake` to fix the instructions behind
-a mistake; the agent MUST NOT wait for either.
+The user MAY run `/harvest` to review a whole session, `/reflect` to learn why the agent took an
+action, or `/mistake` to fix the instructions behind a mistake; the agent MUST NOT wait for any of
+them.
