@@ -7,12 +7,15 @@
 # unrecorded instructions) and points at the communication/agent-conduct rule
 # for what to fix now and what to list at the end. The about-agent-memory
 # topic skill explains what a memory is, where this project keeps them, and
-# how to write one. Two commands: /reflect explains why the agent took a recent
-# action, quoting the instruction, file or message behind it, and changes
-# nothing; /mistake traces a recent mistake to the instruction that failed or
-# was missing, proposes a fix, and makes it only once the user approves. Two
-# partials: "Trace the Cause", the tracing step both commands share, and
-# "Improve the Instructions", the short improvement procedure. Partials live in
+# how to write one. Three commands: /harvest scans the whole session for what
+# went wrong, what was learned and what was wasted, and proposes changes to the
+# instructions, making only those the user approves; /reflect explains why the
+# agent took a recent action, quoting the instruction, file or message behind
+# it, and changes nothing; /mistake traces a recent mistake to the instruction
+# that failed or was missing, proposes a fix, and makes it only once the user
+# approves. Two partials: "Trace the Cause", the tracing step /reflect and
+# /mistake share, and "Improve the Instructions", the short improvement
+# procedure /mistake and /harvest include. Partials live in
 # _partials/ and are never installed on their own. The recipes under 'depends'
 # supply the partials the commands include; they are build dependencies only.
 formatVersion: 1
@@ -26,10 +29,12 @@ description: >-
   always-loaded memory that has the agent constantly find stale, failed,
   missing, costly, repeated and unrecorded instructions and fix or propose
   the fix, the about-agent-memory skill (what a memory is, where it lives and
-  how to write one), the /reflect command (why the agent took a recent
-  action, with its sources quoted; changes nothing), and the /mistake command
-  (trace a recent mistake to the instruction behind it, then fix that
-  instruction once the user approves).
+  how to write one), the /harvest command (scan the session for mistakes,
+  lessons and waste, and propose changes to the instructions, made once the
+  user approves), the /reflect command (why the agent took a recent action,
+  with its sources quoted; changes nothing), and the /mistake command (trace a
+  recent mistake to the instruction behind it, then fix that instruction once
+  the user approves).
 
 depends:
   - communication/agent-conduct@^1.0.0
