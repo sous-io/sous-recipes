@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-29T11:04:32.785Z",
-  "generator": "0.2.21",
+  "generatedAt": "2026-09-29T11:22:37.364Z",
+  "generator": "0.2.22",
   "name": "sous-recipes",
   "namespaces": {
     "cli": {
@@ -106,7 +106,7 @@
       }
     },
     "core/sous-skills": {
-      "description": "The skills that teach an agent what sous is and how it works: which files sous owns and must never be hand-edited, how a sous configuration is written and debugged, the .tpl. template convention and LiquidJS syntax, what an agent skill is, and how to create one.",
+      "description": "The skills that teach an agent what sous is and how it works: which files sous owns and must never be hand-edited, how a sous configuration is written and debugged, the .tpl. template convention and LiquidJS syntax, what an agent skill is and how to create one, and how a recipe repository and a recipe work.",
       "path": "recipes/core/sous-skills",
       "versions": {
         "0.1.1": {
@@ -192,6 +192,12 @@
           "prerelease": false,
           "releasedAt": "2026-09-28T04:52:45.692Z",
           "tag": "core/sous-skills@0.2.21"
+        },
+        "0.2.22": {
+          "hash": "sha256-f662987b0e30512aff0aed662506a8ad7cd3c14c1195b64f8f4a065540d77e71",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:22:37.364Z",
+          "tag": "core/sous-skills@0.2.22"
         },
         "0.2.3": {
           "hash": "sha256-fb624e8d78b7ac3784dfa414d3a47722eb7bdd578fb9ece8bc988e11e6d87c99",
