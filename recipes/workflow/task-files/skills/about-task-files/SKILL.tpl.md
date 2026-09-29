@@ -8,12 +8,10 @@ A **task file** is a Markdown document that tracks a unit of work across one or 
 
 ## Who Reads and Writes It
 
-Per the sub-agent delegation pattern, reading and
-writing task files is delegated work: the orchestrator supplies the facts and decisions, and a
-sub-agent loads this skill and does the edit.
-Sub-agents start with fresh context and cannot see the chat conversation, so a delegating prompt
-must state any fact that exists only in the conversation. Anything the sub-agent can gather itself
-(branch name, commits, changed files, error output) should be gathered by the sub-agent.
+Per the sub-agent delegation pattern, writing a task file is orchestrator-only: the main session
+edits the file itself, because it holds the facts and decisions the file records. No sub-agent
+writes a task file. A background sub-agent MAY read one and report its status, or collect facts
+the main session does not hold (commits, changed files, error output) and report them back.
 
 ## Location and Naming
 
@@ -116,7 +114,7 @@ commit at least once per layer.
 
 ## Source for this Skill
 
-This skill was pulled from the `sous` project's "shared skills" library. It was compiled from a template and
-the output file should not be edited directly.
+This skill comes from the `workflow/task-files` recipe, installed by sous from a recipe
+repository. It was compiled from a template, so edit the source, never this output file.
 
 - Source Path: {{ sousTemplatePath }}

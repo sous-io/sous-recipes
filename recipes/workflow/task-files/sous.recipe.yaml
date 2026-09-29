@@ -1,26 +1,35 @@
 # workflow/task-files
 #
 # From shared-prompts/skills/task-files/, plus the two partials that only these
-# skills include: _partials/resume-task.md and _partials/update-task-file.md.
-# Those partials move INTO this recipe rather than becoming a shared dependency,
-# because nothing outside this recipe includes them.
+# skills include: _partials/resume-task.tpl.md and
+# _partials/update-task-file.tpl.md. Those partials move INTO this recipe rather
+# than becoming a shared dependency, because nothing outside this recipe
+# includes them.
+#
+# The /wrap-up command lives here too: it ends a session by updating the task
+# file and setting up the next sessions, so it needs this recipe's task files.
 formatVersion: 1
 
 namespace: workflow
 name: task-files
-version: 1.0.2
+version: 1.1.0
 
 description: >-
   Per-branch task files: one working-notes file per git branch, with skills for
-  starting a task, resuming one, updating it before a session ends, and carrying
-  remaining work into a follow-up branch.
+  starting a task, resuming one, updating it before a session ends, carrying
+  remaining work into a follow-up branch, and a /wrap-up command that brings a
+  session to a clean stopping point and sets up the next sessions.
 
 # The sub-agent delegation recipe is a build dependency, not a co-subscription:
 # it becomes addressable from this recipe's own files, and its memory file lands
 # in a project only when that project subscribes to it directly. The skills below
 # therefore name the pattern rather than pointing at a file path.
+# control-flow and agent-conduct supply the partials /wrap-up includes (Arguments
+# or Context, and Respect the User's Time); neither depends on this recipe.
 depends:
   - workflow/sub-agent-delegation@^1.0.0
+  - communication/control-flow@^1.1.0
+  - communication/agent-conduct@^1.0.0
 
 contents:
   - kind: skills

@@ -1,0 +1,89 @@
+# workflow/agent-memory
+#
+# How a sous project keeps and improves its agent instructions. One
+# always-loaded memory, "Improving the Instructions", makes improving the
+# instructions one of the agent's primary jobs on every task: it names the
+# kinds of problem to watch for (stale, failed, missing, costly, repeated and
+# unrecorded instructions) and points at the communication/agent-conduct rule
+# for what to fix now and what to list at the end. The about-agent-memory
+# topic skill explains what a memory is, where this project keeps them, and
+# how to write one. Three commands: /harvest scans the whole session for what
+# went wrong, what was learned and what was wasted, and proposes changes to the
+# instructions, making only those the user approves; /reflect explains why the
+# agent took a recent action, quoting the instruction, file or message behind
+# it, and changes nothing; /mistake traces a recent mistake to the instruction
+# that failed or was missing, proposes a fix, and makes it only once the user
+# approves. Two partials: "Trace the Cause", the tracing step /reflect and
+# /mistake share, and "Improve the Instructions", the short improvement
+# procedure /mistake and /harvest include. Partials live in
+# _partials/ and are never installed on their own. The recipes under 'depends'
+# supply the partials the commands include; they are build dependencies only.
+formatVersion: 1
+
+namespace: workflow
+name: agent-memory
+version: 1.0.0
+
+description: >-
+  Improving the instructions as one of the agent's primary jobs: an
+  always-loaded memory that has the agent constantly find stale, failed,
+  missing, costly, repeated and unrecorded instructions and fix or propose
+  the fix, the about-agent-memory skill (what a memory is, where it lives and
+  how to write one), the /harvest command (scan the session for mistakes,
+  lessons and waste, and propose changes to the instructions, made once the
+  user approves), the /reflect command (why the agent took a recent action,
+  with its sources quoted; changes nothing), and the /mistake command (trace a
+  recent mistake to the instruction behind it, then fix that instruction once
+  the user approves).
+
+depends:
+  - communication/agent-conduct@^1.0.0
+  - communication/control-flow@^1.1.0
+  - workflow/sub-agent-delegation@^1.1.0
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*
+  - kind: memories
+    include:
+      - memories/*.md
+
+variables:
+  - name: memoryRoot
+    env: MEMORY_ROOT
+    type: path
+    prompt: Where are this project's tracked memory fragments kept?
+    description: >-
+      Memory fragments are the Markdown sources a build composes into the
+      agent's always-loaded instruction file. This setting names the tracked
+      directory that holds them; agents read and write memories there, never
+      in a compiled instruction file. The default is the directory sous init
+      creates for those fragments. Any path works, either relative to the
+      project root or absolute. The communication/agent-conduct recipe asks
+      the same question, so one answer serves both.
+    example: .sous/prompts/memories
+    default: .sous/memories
+    required: true
+    scope: shared
+    validate:
+      minLength: 1
+
+  - name: conventionsSourceDir
+    env: CONVENTIONS_SOURCE_DIR
+    type: path
+    prompt: Where should newly recorded coding conventions be written?
+    description: >-
+      When the user asks for a coding convention, style or preference that no
+      instruction records yet, the agent records it as a memory fragment, and
+      this setting names the tracked source directory it writes to; never point
+      it at a compiled output. The default is a conventions directory inside
+      the default memory directory. Any path works, either relative to the
+      project root or absolute, and it is usually inside the memory directory
+      so a build picks the conventions up.
+    example: .sous/prompts/memories/conventions
+    default: .sous/memories/conventions
+    required: true
+    scope: shared
+    validate:
+      minLength: 1

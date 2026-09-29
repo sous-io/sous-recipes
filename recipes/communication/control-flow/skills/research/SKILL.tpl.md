@@ -1,8 +1,8 @@
 ---
 name: research
-description: Run a research task using background sub-agents
-user-invocable-only: true
-arguments-hint: what to research via background subagents
+description: Run a research task using background sub-agents.
+argument-hint: "[what to research]"
+disable-model-invocation: true
 ---
 
 Have a background sub-agent do the following:
@@ -28,7 +28,7 @@ for the notification. Synthesis and reporting to the user are orchestrator-only.
 
 ## Source for this Skill
 
-This skill was pulled from the `sous` project's "shared skills" library. It was compiled from a
-template and the output file should not be edited directly.
+This skill comes from the `communication/control-flow` recipe, installed by sous from a recipe
+repository. It was compiled from a template, so edit the source, never this output file.
 
 - Source Path: {{ sousTemplatePath }}

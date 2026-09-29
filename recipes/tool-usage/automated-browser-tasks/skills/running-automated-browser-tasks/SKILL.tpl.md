@@ -52,7 +52,7 @@ Never silently swallow a failure or fake a result. Report what happened.
 
 ## Source for this Skill
 
-This skill was pulled from the `sous` project's "shared skills" library. It was compiled from a template and
-the output file should not be edited directly.
+This skill comes from the `tool-usage/automated-browser-tasks` recipe, installed by sous from a recipe
+repository. It was compiled from a template, so edit the source, never this output file.
 
 - Source Path: {{ sousTemplatePath }}

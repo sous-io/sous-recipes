@@ -38,12 +38,22 @@ namespaces:
     description: >-
       Skills for designing command-line interfaces that behave predictably,
       name things consistently and tell their users plainly what happened.
+  reasoning:
+    description: >-
+      How an agent thinks through a problem: weighing evidence, self-checking,
+      decomposition, and knowing when it is stuck.
 
 recipes:
   - recipes/core/sous-skills
   - recipes/communication/control-flow
+  - recipes/communication/plain-speech
+  - recipes/communication/agent-conduct
   - recipes/workflow/sub-agent-delegation
   - recipes/workflow/task-files
+  - recipes/workflow/autonomous-work
   - recipes/workflow/github-projects
+  - recipes/workflow/sources-of-truth
+  - recipes/workflow/agent-memory
   - recipes/tool-usage/automated-browser-tasks
   - recipes/cli/command-design
+  - recipes/reasoning/evidence-and-verification

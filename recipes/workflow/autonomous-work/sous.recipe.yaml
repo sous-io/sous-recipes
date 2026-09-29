@@ -1,0 +1,34 @@
+# workflow/autonomous-work
+#
+# Commands for letting the agent work while the user is away: /afk (a long
+# absence), /brb (a short one) and /plan-auto (the thorough preparation run
+# before either), plus the partials they share: Working Around Blockers,
+# Questions Worth Asking, Blocker Checks (a list that grows with every
+# unexpected blocker) and Work While Away (the shared body of /afk and /brb).
+# The partials live here because every skill that includes them is in this
+# recipe. Outward actions follow the project's settings in
+# communication/agent-conduct. No variables.
+formatVersion: 1
+
+namespace: workflow
+name: autonomous-work
+version: 1.0.0
+
+description: >-
+  Let the agent keep working while the user is away: a thorough planning
+  pass that settles the scope and asks everything only the user can answer,
+  a quick check for questions, permissions and known blockers before the
+  user leaves, ways of getting past blockers without the user, a list of
+  blocker checks that grows with every unexpected blocker, and one report on
+  return with the blockers last.
+
+# Build dependencies: the partials these skills include live in these recipes.
+depends:
+  - communication/control-flow@^1.1.0
+  - communication/agent-conduct@^1.0.0
+  - workflow/sub-agent-delegation@^1.1.0
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*

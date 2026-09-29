@@ -14,10 +14,9 @@ project's task management system (e.g. Jira, Linear, etc.).
 Per the sub-agent delegation pattern:
 
 - **Orchestrator-only:** every step that needs the user (picking the ticket, confirming the branch
-  name, approving the plan) and the git branch operations, which change the working tree the
-  orchestrator is in.
-- **Delegated:** pulling ticket info (step 2) and writing the task file (step 4), each to a
-  background sub-agent. Dispatch them in parallel when independent.
+  name, approving the plan), the git branch operations, which change the working tree the
+  orchestrator is in, and writing the task file (steps 4 and 5).
+- **Delegated:** pulling ticket info (steps 2 and 4), to a background sub-agent.
 - Sub-agents return links, questions, and confirmations to the orchestrator, which relays them to
   the user.
 
@@ -75,19 +74,19 @@ Check for an existing task file at `{{ taskFileRoot }}/[branch-name].md`.
 - **Found**: read it, note what's already captured, and continue to step 5
 - **Not found**: delegate to a sub-agent, which collects full ticket info (summary, description,
   status, assignee, related issues, comments, story points, sub-tasks, any linked MRs or commits)
-  and creates the task file using the format in `about-task-files`. Include relevant testing URLs
-  with real record IDs so URLs are actually clickable. Use `file:/absolute/path:line` format for
-  source file links.
+  and reports it back. The main session creates the task file from it, using the format in
+  `about-task-files`. Include relevant testing URLs with real record IDs so URLs are actually
+  clickable. Use `file:/absolute/path:line` format for source file links.
 
 ### 5. Plan and Start
 
 The orchestrator drafts the task plan, organized by layer (see `about-task-files` for layer
-ordering), and asks the user if they want to begin work. Recording the approved plan in the task
-file is delegated; pass the plan text to the sub-agent verbatim.
+ordering), and asks the user if they want to begin work. The main session records the approved
+plan in the task file itself.
 
 ## Source for this Skill
 
-This skill was pulled from the `sous` project's "shared skills" library. It was compiled from a
-template and the output file should not be edited directly.
+This skill comes from the `workflow/task-files` recipe, installed by sous from a recipe
+repository. It was compiled from a template, so edit the source, never this output file.
 
 - Source Path: {{ sousTemplatePath }}

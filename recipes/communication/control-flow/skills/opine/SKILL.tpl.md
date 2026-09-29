@@ -52,7 +52,7 @@ After repeating the idea back, offer your analysis in three parts:
 
 ## Source for this Skill
 
-This skill was pulled from the `sous` project's "shared skills" library. It was compiled from a
-template and the output file should not be edited directly.
+This skill comes from the `communication/control-flow` recipe, installed by sous from a recipe
+repository. It was compiled from a template, so edit the source, never this output file.
 
 - Source Path: {{ sousTemplatePath }}

@@ -1,21 +1,14 @@
-The agent performing this work MUST load `about-task-files`.
+The main session performs this work itself and MUST load `about-task-files`.
 
 **CRITICAL: Do NOTHING ELSE. Update the task file IMMEDIATELY. Use as few edits as possible.**
 
-## Delegation
+## Who Writes It
 
-Per the sub-agent delegation pattern, writing the
-task file is delegated work. The orchestrator does not edit the file itself; it hands an Opus
-sub-agent everything below in one self-contained prompt:
-
-- The task file path (branch name), or instructions to derive it from `git status`.
-- The facts and decisions to record. Compiling these is orchestrator-only; sub-agents cannot see
-  this conversation, so anything known only from the conversation must be stated in the prompt.
-- Anything the sub-agent can gather itself (commit list, changed files, test/build output), which it
-  should collect rather than have the orchestrator paste in.
-
-The sub-agent loads `about-task-files`, edits the file, and reports back a concise summary of what
-it wrote. The orchestrator spot-checks with a targeted diff, not a full re-read.
+Per the sub-agent delegation pattern, writing a task file is orchestrator-only: the main session
+edits the file itself, and no sub-agent does. The main session holds the facts and decisions the
+file records; a sub-agent cannot see the conversation. A background sub-agent MAY still collect
+what the main session does not hold (commit list, changed files, test or build output) and report
+it back.
 
 ## What to Include
 
@@ -48,5 +41,4 @@ Scan the existing file for contradictions or outdated information. Correct befor
 - Start new work
 - Make additional changes
 
-A sub-agent reports what it wrote and stops. The orchestrator then waits; the user will end the
-session and start a new one.
+The main session then waits; the user will end the session and start a new one.

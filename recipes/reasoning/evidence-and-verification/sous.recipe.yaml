@@ -1,0 +1,22 @@
+# reasoning/evidence-and-verification
+#
+# One always-loaded memory about calibration: state every assumption and verify
+# the ones that matter (anything one read settles, anything the work depends
+# on, anything with no evidence), verify before asserting, label what is
+# unconfirmed, treat sub-agent output as a lead, run read-only checks directly,
+# and fix root causes. No variables.
+formatVersion: 1
+
+namespace: reasoning
+name: evidence-and-verification
+version: 1.0.0
+
+description: >-
+  State assumptions and verify the ones that matter; verify before asserting,
+  label anything unconfirmed, treat sub-agent output as a lead, run read-only
+  checks directly, and look for root causes.
+
+contents:
+  - kind: memories
+    include:
+      - memories/*.md

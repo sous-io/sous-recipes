@@ -7,12 +7,9 @@ The agent performing this work MUST load `about-task-files`.
 
 ## Delegation
 
-Per the sub-agent delegation pattern, the
-orchestrator does the git branch work itself (steps 1, 2,
-and 6, which change the working tree it is in) and delegates the task file writing (steps 3, 4, 5)
-to one Opus sub-agent. That sub-agent needs the old and new branch names, the remaining-work list,
-and the patterns/gotchas to carry forward; sub-agents cannot see this conversation, so state them in
-the prompt.
+Per the sub-agent delegation pattern, the main session does every step itself: the git branch
+work (steps 1, 2 and 6) changes the working tree it is in, and writing task files (steps 3, 4 and
+5) is orchestrator-only.
 
 ## Steps
 
@@ -74,7 +71,7 @@ git branch -D {{ featureBranchPrefix }}{{ ticketIdExample }}-description-a
 
 ## Source for this Skill
 
-This skill was pulled from the `sous` project's "shared skills" library. It was compiled from a template and
-the output file should not be edited directly.
+This skill comes from the `workflow/task-files` recipe, installed by sous from a recipe
+repository. It was compiled from a template, so edit the source, never this output file.
 
 - Source Path: {{ sousTemplatePath }}
