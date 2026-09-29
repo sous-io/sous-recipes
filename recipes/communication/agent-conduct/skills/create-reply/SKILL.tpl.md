@@ -11,7 +11,10 @@ The user wants help drafting one or more replies to what other people wrote.
 
 What to reply to, and anything the user already said about the answers: $ARGUMENTS
 
-@~communication/control-flow/_partials/arguments-or-context.md
+With no text after the command, take the broadest reasonable reading of roughly the last 10 turns:
+here, every message someone sent that still needs a reply. Name what was taken in the first line of
+the response, so the user can narrow it.
+
 @~communication/plain-speech/_partials/speak-plainly.md
 @~communication/agent-conduct/_partials/quote-sources.md
 

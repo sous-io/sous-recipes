@@ -28,12 +28,11 @@ description: >-
   questions, and reporting back, and the /create-reply command, which drafts
   replies that quote each question before answering it.
 
-# The /create-reply command includes partials from these two recipes; they are
-# build dependencies only, so their own memories and skills land in a project
-# only when it subscribes to them directly.
+# The /create-reply command includes a partial from this recipe; it is a build
+# dependency only, so its own memories and skills land in a project only when it
+# subscribes to it directly.
 depends:
   - communication/plain-speech@^1.0.0
-  - communication/control-flow@^1.1.0
 
 contents:
   - kind: memories
