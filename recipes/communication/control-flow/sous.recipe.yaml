@@ -7,7 +7,7 @@ formatVersion: 1
 
 namespace: communication
 name: control-flow
-version: 1.0.1
+version: 1.1.0
 
 description: >-
   Generic interaction skills for steering a session: approve a plan and proceed,

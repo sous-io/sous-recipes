@@ -12,7 +12,7 @@ and, in one recipe, JavaScript you can read before you run it.
 
 | Recipe | What it gives an agent |
 |--------|------------------------|
-| `core/sous-skills` | What sous is, which files it owns and must never be hand-edited, how a sous config is written and debugged, the `.tpl.` template convention and LiquidJS syntax, what an agent skill is, and how to create one. |
+| `core/sous-skills` | What sous is, which files it owns and must never be hand-edited, how a sous config is written and debugged, the `.tpl.` template convention and LiquidJS syntax, what an agent skill is and how to create one, and how a recipe repository and a recipe work. |
 | `communication/control-flow` | Generic interaction skills for steering a session: approve a plan and proceed, ask for an opinion without acting, repeat the last instruction, and run a research task across background sub-agents. |
 | `workflow/sub-agent-delegation` | The orchestrator-and-sub-agent working pattern the other recipes cite: the main session reasons, decides and talks to you, and delegates execution to background sub-agents. |
 | `workflow/task-files` | Per-branch task files: one working-notes file per git branch, with skills for starting a task, resuming one, updating it before a session ends, and carrying remaining work into a follow-up branch. |
@@ -60,18 +60,9 @@ sous subscribe workflow/sub-agent-delegation
 
 ## Contributing
 
-Improvements are welcome, including new recipes. The short version: fork the
-repository, make the change in a recipe folder, raise that recipe's `version` in
-its `sous.recipe.yaml`, and open a pull request. From a working copy, sous will do
-the last part for you:
-
-```bash
-sous repo release --check     # validate every manifest, the index and the tags
-sous repo submit              # validate, then open a pull request
-```
-
-`CONTRIBUTING.md` has the details, including how versions are numbered and what
-the release workflow does on merge.
+Improvements are welcome, including new recipes. Contribution instructions in this repository are
+written for agents: `CONTRIBUTING.md` says why, and `CLAUDE.md` is where an agent without the sous
+core skills starts.
 
 ## License
 
