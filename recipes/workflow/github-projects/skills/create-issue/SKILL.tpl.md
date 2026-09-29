@@ -67,8 +67,8 @@ The orchestrator presents the draft and waits for the user's approval. An Opus s
 
 - Share the new ticket ID ({{ ticketPrefix }}<number>), title, and a brief positioning summary
   with the user
-- If a task file exists for the current branch, delegate recording the new issue link to a
-  sub-agent; it must load `about-task-files`
+- If a task file exists for the current branch, the main session records the new issue link in
+  it itself (writing task files is orchestrator-only), after loading `about-task-files`
 - Surface any open questions or risks
 
 ## Source for this Skill

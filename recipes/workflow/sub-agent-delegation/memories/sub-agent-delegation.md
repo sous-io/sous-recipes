@@ -6,19 +6,38 @@ project's agent context, so the agent follows the pattern by default. A recipe t
 quote or include the text declares `workflow/sub-agent-delegation` under `depends` and writes
 `@~workflow/sub-agent-delegation/memories/sub-agent-delegation.md`.
 
-The main chat session is an **orchestrator**: it does the reasoning, the decisions, and all
-interaction with the user, and it delegates execution to sub-agents. The orchestrator usually runs
-an expensive model, so pushing execution down to cheaper sub-agents cuts cost and, because
-sub-agents run in parallel, finishes sooner.
+The **main session** is the one the user talks to. It is the **orchestrator**: it does the
+reasoning, the decisions, and all interaction with the user, and it delegates execution to
+sub-agents (agent sessions). Delegate as much as possible. The point is not only cost: the user
+should never have to stop and wait while work or research finishes. Guard the main session's flow
+greedily, so the user can keep directing.
 
 **Orchestrator-only:** planning, decisions, anything that needs the user (questions, approvals,
-drafts), and very small actions where delegating costs more than doing it (a quick file read, a
-one-line edit).
+drafts), writing task files (the main session holds the context a task file records), work that
+needs much of the conversation's context (briefing an agent on it would cost more than doing it),
+and very small actions where delegating costs more than doing it (a quick file read, a one-line
+edit).
 
-**Delegated:** anything with real work in it, including research, code changes, doc and task file
-writing, and multi-step lookups.
+**Delegated:** anything with real work in it, including research, code changes, doc writing, and
+multi-step lookups.
 
-**Rules:**
+## Model Tiers
+
+Rank the models available to the agent tool by capability: the top tier is the most capable, then
+the second tier, and so on. The main session's own model is the top tier unless the user says
+otherwise. NEVER name a model or a provider in instructions; name the tier.
+
+- The main session runs the top tier. Sub-agents do not.
+- Substantive work (writing code or docs, research, anything outward-facing): the second tier.
+- Rote, mechanical work (listing, extracting, reformatting): the third tier or lower.
+- **The cheapest model is code.** NEVER have an agent collect what a short script can: counts, file
+  lists, test output. Run the command. A one-command script runs in the main session; a script that
+  takes writing and debugging is delegated to a sub-agent, which writes and runs it.
+
+A **low-key agent** is the cheapest possible check: the lowest tier that can do it, in the
+background, one narrow question, a one-line answer.
+
+## Rules
 
 - Run sub-agents in the background and in parallel by default; batch independent dispatches into one
   message. Go synchronous only when the result blocks the very next step.
@@ -29,6 +48,17 @@ writing, and multi-step lookups.
 - Sub-agents cannot talk to the user. Questions and user-facing messages go back to the orchestrator
   to relay.
 - Every sub-agent reports a concise summary of what it did or found, not a file dump.
-- The orchestrator spot-checks load-bearing results (task files, code diffs, outward-facing writes)
-  in a cheap, targeted way; it does not re-read everything.
+- The orchestrator spot-checks load-bearing results (code diffs, outward-facing writes) in a cheap,
+  targeted way; it does not re-read everything.
 - Never fabricate or predict a pending sub-agent's result. Wait for it.
+- Research is never a to-do. The moment the agent realizes something needs researching, it
+  dispatches a background agent to research it, and keeps going.
+- When several agents work on one objective, report to the user once, after all of them return.
+
+```text
+The user asks: "Why do the nightly exports fail on Sundays?"
+
+- Read the export job's logs for the last 8 Sundays and summarize the errors: second tier.
+- List every file under src/export/ that mentions "weekday": a script (one grep), no agent.
+- Check whether the staging cron file matches production: a low-key agent, third tier.
+```
