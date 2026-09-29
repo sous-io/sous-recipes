@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-28T04:52:45.692Z",
+  "generatedAt": "2026-09-29T11:04:32.785Z",
   "generator": "0.2.21",
   "name": "sous-recipes",
   "namespaces": {
@@ -12,6 +12,9 @@
     },
     "core": {
       "description": "Skills that teach an agent about sous itself: what sous manages, how its configuration works, how templates render, and how skills are written. Auto-subscribed in every project, with opt-out-only semantics."
+    },
+    "reasoning": {
+      "description": "How an agent thinks through a problem: weighing evidence, self-checking, decomposition, and knowing when it is stuck."
     },
     "tool-usage": {
       "description": "Recipes that teach an agent to drive an external tool, together with the scripts and references that tool needs."
@@ -30,11 +33,34 @@
           "prerelease": false,
           "releasedAt": "2026-09-27T10:19:31.080Z",
           "tag": "cli/command-design@1.0.0"
+        },
+        "1.0.1": {
+          "hash": "sha256-2393f09e33fd7cde218887876d1ee0a3a24c72a63aa3f6fa254d2e0e8660ce26",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "cli/command-design@1.0.1"
+        }
+      }
+    },
+    "communication/agent-conduct": {
+      "description": "Always-loaded conduct rules for an agent working with a person: a question is not an instruction, solve the whole problem, keep durable memories in tracked sources, quote a source's exact words behind every assertion based on what it said, label every rule it writes as a ruling or an inference and read unsourced rules as tentative, respect the user's time (research before asking, no hangers, links, numbered points, one report), show a requested draft in chat instead of sending it, and take outward actions (pushes, pull requests, merges, releases, issues, comments, messages) only as far as this project's settings allow; plus partials for quoting, rulings and provenance, replying to questions, and reporting back, and the /create-reply command, which drafts replies that quote each question before answering it.",
+      "path": "recipes/communication/agent-conduct",
+      "versions": {
+        "1.0.0": {
+          "dependencies": {
+            "communication/plain-speech": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-60e380ef3ab5042575b8a46b5cd090569da5c76ccea98e68a5480c38bfc22988",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "communication/agent-conduct@1.0.0"
         }
       }
     },
     "communication/control-flow": {
-      "description": "Generic interaction skills for steering a session: approve a plan and proceed, ask for an opinion without acting, repeat the last instruction, and run a research task across background sub-agents.",
+      "description": "Generic interaction skills for steering a session: approve a plan and proceed, ask for an opinion without acting, repeat the last instruction, hand any work to background agents while the conversation carries on, run a research task across background sub-agents, and walk through what needs the user's input one item at a time.",
       "path": "recipes/communication/control-flow",
       "versions": {
         "1.0.0": {
@@ -47,6 +73,35 @@
           "prerelease": false,
           "releasedAt": "2026-09-10T06:00:38.000Z",
           "tag": "communication/control-flow@1.0.0"
+        },
+        "1.1.0": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "version": "1.0.0"
+            },
+            "communication/plain-speech": {
+              "version": "1.0.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-a3113ae0c442237efa8367520b8564888ab71118e846ae8a44028cedd6ee65cf",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "communication/control-flow@1.1.0"
+        }
+      }
+    },
+    "communication/plain-speech": {
+      "description": "Speaking plainly: the rules for writing a reader who was not there can understand, as a memory, a topic skill and a short partial other commands include, plus the commands /q (answer a question plainly) and /speak-plainly and /wtf (say the last message again, plainly).",
+      "path": "recipes/communication/plain-speech",
+      "versions": {
+        "1.0.0": {
+          "hash": "sha256-6f4966daa90dc8ec1d153f7c7bdaede5d5300938d3dd7ca321ddde32edd07d1f",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "communication/plain-speech@1.0.0"
         }
       }
     },
@@ -176,6 +231,18 @@
         }
       }
     },
+    "reasoning/evidence-and-verification": {
+      "description": "State assumptions and verify the ones that matter; verify before asserting, label anything unconfirmed, treat sub-agent output as a lead, run read-only checks directly, and look for root causes.",
+      "path": "recipes/reasoning/evidence-and-verification",
+      "versions": {
+        "1.0.0": {
+          "hash": "sha256-9634aedf36d0eb9a3e89e7041560320a95640bde48faa7e4d62a16082a1d2eac",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "reasoning/evidence-and-verification@1.0.0"
+        }
+      }
+    },
     "tool-usage/automated-browser-tasks": {
       "description": "Headless browser automation driven from the user's own Chrome session: the ctx API, the auth and cookie model, the scriptwriting conventions, and skills for writing, updating and running a browser task.",
       "path": "recipes/tool-usage/automated-browser-tasks",
@@ -207,6 +274,63 @@
           "prerelease": false,
           "releasedAt": "2026-09-12T06:22:17.983Z",
           "tag": "tool-usage/automated-browser-tasks@1.0.2"
+        },
+        "1.0.3": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-f9513c93f6ee7294bd3cd592a75d9228c3b7c666372cc3b08dcd5762135f7377",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "tool-usage/automated-browser-tasks@1.0.3"
+        }
+      }
+    },
+    "workflow/agent-memory": {
+      "description": "Improving the instructions as one of the agent's primary jobs: an always-loaded memory that has the agent constantly find stale, failed, missing, costly, repeated and unrecorded instructions and fix or propose the fix, the about-agent-memory skill (what a memory is, where it lives and how to write one), the /harvest command (scan the session for mistakes, lessons and waste, and propose changes to the instructions, made once the user approves), the /reflect command (why the agent took a recent action, with its sources quoted; changes nothing), and the /mistake command (trace a recent mistake to the instruction behind it, then fix that instruction once the user approves).",
+      "path": "recipes/workflow/agent-memory",
+      "versions": {
+        "1.0.0": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "version": "1.0.0"
+            },
+            "communication/control-flow": {
+              "version": "1.1.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-4f63dbd376e7848ec754b447cdc1fa098502308fae712cfdb56785b671338479",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "workflow/agent-memory@1.0.0"
+        }
+      }
+    },
+    "workflow/autonomous-work": {
+      "description": "Let the agent keep working while the user is away: a thorough planning pass that settles the scope and asks everything only the user can answer, a quick check for questions, permissions and known blockers before the user leaves, ways of getting past blockers without the user, a list of blocker checks that grows with every unexpected blocker, and one report on return with the blockers last.",
+      "path": "recipes/workflow/autonomous-work",
+      "versions": {
+        "1.0.0": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "version": "1.0.0"
+            },
+            "communication/control-flow": {
+              "version": "1.1.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-b05e5df727ce2e4c08bcdee3862ad1afb87e087815e7650d218c74d1f7e32033",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "workflow/autonomous-work@1.0.0"
         }
       }
     },
@@ -263,11 +387,45 @@
           "prerelease": false,
           "releasedAt": "2026-09-28T04:35:39.467Z",
           "tag": "workflow/github-projects@1.1.1"
+        },
+        "1.1.2": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-0764a482f272006131cd7694301c3ad9cc1e1fad30ac580d29317a79ffe8b60c",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "workflow/github-projects@1.1.2"
+        }
+      }
+    },
+    "workflow/sources-of-truth": {
+      "description": "Which artifact answers which question (docs for now, decision records for decisions, the tracker for process), how authority passes between them, and fixing a stale doc line on sight; plus the /decide command, which records a ruling the user has made in every issue, doc, agent instruction and decision record it affects, once the user approves the list of exact changes.",
+      "path": "recipes/workflow/sources-of-truth",
+      "versions": {
+        "1.0.0": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "version": "1.0.0"
+            },
+            "communication/control-flow": {
+              "version": "1.1.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-c085d8e8f853d784b95826da6145a34d93d114ff881415b0d1ada5e75563bf52",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "workflow/sources-of-truth@1.0.0"
         }
       }
     },
     "workflow/sub-agent-delegation": {
-      "description": "The orchestrator-and-sub-agent working pattern that the other recipes cite: the main session reasons, decides and talks to the user, and delegates execution to background sub-agents.",
+      "description": "The orchestrator-and-sub-agent working pattern that the other recipes cite: the main session reasons, decides and talks to the user, and delegates execution to background sub-agents, with sub-agents on lower model tiers. Also ships the \"Delegation Brief\" partial for commands that delegate work.",
       "path": "recipes/workflow/sub-agent-delegation",
       "versions": {
         "1.0.0": {
@@ -275,11 +433,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-10T06:00:38.000Z",
           "tag": "workflow/sub-agent-delegation@1.0.0"
+        },
+        "1.1.0": {
+          "hash": "sha256-2d69ae2727b66cc33c1afe9a035f1652a2a4189cca9aaa19b1cd8032e46a8b9c",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "workflow/sub-agent-delegation@1.1.0"
         }
       }
     },
     "workflow/task-files": {
-      "description": "Per-branch task files: one working-notes file per git branch, with skills for starting a task, resuming one, updating it before a session ends, and carrying remaining work into a follow-up branch.",
+      "description": "Per-branch task files: one working-notes file per git branch, with skills for starting a task, resuming one, updating it before a session ends, carrying remaining work into a follow-up branch, and a /wrap-up command that brings a session to a clean stopping point and sets up the next sessions.",
       "path": "recipes/workflow/task-files",
       "versions": {
         "1.0.0": {
@@ -309,6 +473,23 @@
           "prerelease": false,
           "releasedAt": "2026-09-12T06:22:17.983Z",
           "tag": "workflow/task-files@1.0.2"
+        },
+        "1.1.0": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "version": "1.0.0"
+            },
+            "communication/control-flow": {
+              "version": "1.1.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-5fee65861429bc0d358730fff6f02278346eb5d48fb770b9779aba6e923bc26c",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T11:04:32.785Z",
+          "tag": "workflow/task-files@1.1.0"
         }
       }
     }
