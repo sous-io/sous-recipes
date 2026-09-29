@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-29T20:57:13.788Z",
+  "generatedAt": "2026-09-29T23:18:51.420Z",
   "generator": "0.2.24",
   "name": "sous-recipes",
   "namespaces": {
@@ -78,6 +78,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T20:39:30.286Z",
           "tag": "communication/agent-conduct@1.2.0"
+        },
+        "1.2.1": {
+          "dependencies": {
+            "communication/plain-speech": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-cd509610b6277b260c8ea6646bf3ac2cd1396702c3bff0db6488704c326f0905",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T23:18:51.420Z",
+          "tag": "communication/agent-conduct@1.2.1"
         }
       }
     },
@@ -129,6 +140,23 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T20:39:30.286Z",
           "tag": "communication/control-flow@1.2.0"
+        },
+        "1.2.1": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "version": "1.2.1"
+            },
+            "communication/plain-speech": {
+              "version": "1.0.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-9c9053cb30a0f285ba1e0ef3ae36c0aad89e560b288c4d3bc30c8b0f52010550",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T23:18:51.420Z",
+          "tag": "communication/control-flow@1.2.1"
         }
       }
     },
@@ -369,10 +397,10 @@
         "1.1.0": {
           "dependencies": {
             "communication/agent-conduct": {
-              "version": "1.2.0"
+              "version": "1.2.1"
             },
             "communication/control-flow": {
-              "version": "1.2.0"
+              "version": "1.2.1"
             },
             "workflow/sub-agent-delegation": {
               "version": "1.1.0"
@@ -443,10 +471,10 @@
         "1.2.0": {
           "dependencies": {
             "communication/agent-conduct": {
-              "version": "1.2.0"
+              "version": "1.2.1"
             },
             "communication/control-flow": {
-              "version": "1.2.0"
+              "version": "1.2.1"
             },
             "workflow/sub-agent-delegation": {
               "version": "1.1.0"
@@ -533,10 +561,10 @@
         "1.0.0": {
           "dependencies": {
             "communication/agent-conduct": {
-              "version": "1.2.0"
+              "version": "1.2.1"
             },
             "communication/control-flow": {
-              "version": "1.2.0"
+              "version": "1.2.1"
             },
             "workflow/sub-agent-delegation": {
               "version": "1.1.0"
@@ -602,10 +630,10 @@
         "1.1.0": {
           "dependencies": {
             "communication/agent-conduct": {
-              "version": "1.2.0"
+              "version": "1.2.1"
             },
             "communication/control-flow": {
-              "version": "1.2.0"
+              "version": "1.2.1"
             },
             "workflow/sub-agent-delegation": {
               "version": "1.1.0"
