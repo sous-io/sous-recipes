@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-29T15:39:03.515Z",
+  "generatedAt": "2026-09-29T20:39:30.286Z",
   "generator": "0.2.23",
   "name": "sous-recipes",
   "namespaces": {
@@ -67,6 +67,17 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T15:30:07.933Z",
           "tag": "communication/agent-conduct@1.1.0"
+        },
+        "1.2.0": {
+          "dependencies": {
+            "communication/plain-speech": {
+              "version": "1.0.0"
+            }
+          },
+          "hash": "sha256-a82477b396594245be99ba03a7ca95b760514256d323cea66b38ce4ee72cb6e3",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T20:39:30.286Z",
+          "tag": "communication/agent-conduct@1.2.0"
         }
       }
     },
@@ -101,6 +112,23 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T11:04:32.785Z",
           "tag": "communication/control-flow@1.1.0"
+        },
+        "1.2.0": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "version": "1.2.0"
+            },
+            "communication/plain-speech": {
+              "version": "1.0.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-d1434528ab05eb46685b8d61bf66df0183bcee4ecb28740a44ff9fb316199505",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T20:39:30.286Z",
+          "tag": "communication/control-flow@1.2.0"
         }
       }
     },
@@ -331,6 +359,23 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T11:04:32.785Z",
           "tag": "workflow/agent-memory@1.0.0"
+        },
+        "1.1.0": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "version": "1.2.0"
+            },
+            "communication/control-flow": {
+              "version": "1.2.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-c07c702c5b6e67db2c9d7d84f3b78e347e4bda68f4a10440b33ad9c2c52d89be",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T20:39:30.286Z",
+          "tag": "workflow/agent-memory@1.1.0"
         }
       }
     },
@@ -388,6 +433,23 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T15:31:46.085Z",
           "tag": "workflow/autonomous-work@1.1.1"
+        },
+        "1.2.0": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "version": "1.2.0"
+            },
+            "communication/control-flow": {
+              "version": "1.2.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-eccb8657a94da51d3992620e772060b67551c34561538ee174e5a8f1fc6747f9",
+          "prerelease": false,
+          "releasedAt": "2026-09-29T20:39:30.286Z",
+          "tag": "workflow/autonomous-work@1.2.0"
         }
       }
     },
@@ -465,10 +527,10 @@
         "1.0.0": {
           "dependencies": {
             "communication/agent-conduct": {
-              "version": "1.1.0"
+              "version": "1.2.0"
             },
             "communication/control-flow": {
-              "version": "1.1.0"
+              "version": "1.2.0"
             },
             "workflow/sub-agent-delegation": {
               "version": "1.1.0"
@@ -534,10 +596,10 @@
         "1.1.0": {
           "dependencies": {
             "communication/agent-conduct": {
-              "version": "1.1.0"
+              "version": "1.2.0"
             },
             "communication/control-flow": {
-              "version": "1.1.0"
+              "version": "1.2.0"
             },
             "workflow/sub-agent-delegation": {
               "version": "1.1.0"
