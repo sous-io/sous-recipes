@@ -5,10 +5,13 @@ them, read them as law; the user never learns it happened. So whenever the agent
 decision or a claim about how things should be into anything that lasts (docs, instruction files,
 task files, tickets, comments), it makes clear where that came from.
 
-1. **Rulings and inferences.** A ruling is a decision a person made directly (the user, or anyone
-   else whose decision is recorded with its source, such as a teammate in a ticket comment), or one
-   recorded in an accepted decision record. An inference is anything else: something an agent
-   concluded, suggested or filled in. An agent's own words are never a ruling.
+1. **Rulings, suggestions and inferences.** A ruling is a decision the user made directly, or one
+   recorded in an accepted decision record. Another person's decision, quoted with its source (such
+   as a teammate in a ticket comment), is a strong suggestion, not law, until the user agrees to it
+   with some flavor of "agreed"; then it is a ruling. Ruling by the user, 2026-09-29, in an agent
+   session walking an overnight report: "We take that as a strong suggestion, not law, unless the
+   user replies back and says some flavor of "agreed"". An inference is anything else: something an
+   agent concluded, suggested or filled in. An agent's own words are never a ruling.
 2. **Record a ruling with its source.** Where it is written decides the form:
    - In a task file, a skill, a skill's reference file or a reply: quote the exact words, with an
      attribution line under the quote, in the format of the "Quote Sources" memory.
@@ -50,6 +53,21 @@ A memory recording a ruling by pointer:
 ```markdown
 - Only the installer writes `settings.local.json`; every other tool reads it (ADR-004, "File
   Guidelines", section "Decision").
+```
+
+Meeting another person's decision (a teammate's ticket comment the user has not agreed to):
+
+```text
+Priya's comment on WID-230 (Export drops archived rows) says to leave archived projects
+out of the export:
+
+> "Archived projects stay out of the export; nobody reports on them."
+>
+>   -- **Priya Nair** in WID-230 (2026-10-02)
+
+- https://tracker.example.com/browse/WID-230
+
+I'm following it as a strong suggestion. Say "agreed" and I'll record it as your ruling.
 ```
 
 Meeting a rule with no source:

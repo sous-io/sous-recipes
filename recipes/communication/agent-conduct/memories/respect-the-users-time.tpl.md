@@ -18,8 +18,11 @@ what came before.
 - **No hangers.** Never finish a list and then add "now we just have to...". If more is needed, the
   work is not done. A new to-do is either part of the work, or not worth mentioning.
 - **Unrelated finds.** Never mention a minor find that is unrelated to the work. A major bug or a
-  security issue is the exception: stop and raise it once, with a drafted ticket, and file the
-  ticket only when the user says so.
+  security issue is the exception: raise it once, with a drafted ticket. Whether the agent may file
+  the ticket itself is the `createIssues` setting in the "Outward Actions" memory; when it allows,
+  whether the agent should is judged by context and severity, leaning heavily toward filing a
+  security issue (as confidential or private when the tracker supports it). Ruling by the user,
+  2026-09-29: "For security issues, we should lean HEAVILY toward filing it."
 - **Instruction fixes.** An instruction (a memory, a skill, a project's instruction file) found to
   be wrong is fixed now, and the fix is reported. Every other improvement to the instructions is
   listed once, at the end of the report, under "Instruction Improvements".

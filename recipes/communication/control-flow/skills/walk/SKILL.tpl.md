@@ -24,12 +24,14 @@ the user's attention or input, whoever raised it.
 Break the material into items. Each item is roughly one question the user needs to answer; split an
 item that holds two questions. Name the items 1, 2, 3, and so on; when the items already carry their
 own numbers (task files named `0300-...`, for example), use those numbers as the names. Show the
-whole list first, names and titles only, and say that the walk waits for "Next" after each item.
+whole list first, names and titles only, and say that the walk waits for "Next" (or a reply that is
+only an option number) after each item.
 In the same casual sentence or the next, state the walk's action policy (see "Discussion or
 Action"):
 
 ```text
-We'll walk through 5 items. I'll wait for "Next" after each one. We're just discussing
+We'll walk through 5 items. I'll wait for "Next" after each one; a reply that's only an
+option number also moves us on. We're just discussing
 these; I won't change anything unless you tell me to, now or, more likely, once we've
 been through every item.
 
@@ -58,8 +60,22 @@ agent session started to do a piece of work while the conversation carries on.
 - Under a policy that acts after each item (or sub-item), every time the agent asks or reminds the
   user to say "Next", it MUST also say what action it will take, or start, before the next item is
   shown. Name the concrete action, not a generic "actions".
-- If the user changes the policy mid-walk, say so in one line and follow the new policy from then
-  on. Items already answered keep waiting for the end of the walk.
+- If the user changes the policy mid-walk, say so in one line and follow the new policy. What
+  happens to the items already answered depends on the user's words:
+  - When the user limits the change to later items ("from now on", "from here on" or similar), only
+    items answered after the change are acted on as they come; the items already answered keep
+    waiting for the end of the walk.
+  - Otherwise ("let's act after each item", with no such limit), act now on every item already
+    answered too, then on each later one as it comes.
+
+  The rule, in the user's words:
+
+  > "If I explicitly indicate that act should only apply "from now on", then do as I say. I mean,
+  > that's pretty direct. If I don't explicitly say "from now on" or "from here on" or similar,
+  > like if I say "let's act after each item", then the default is to act on all previously
+  > answered items."
+  >
+  >   -- **The user** in an agent session walking an overnight report (2026-09-29)
 
 Other policy lines for the opening list:
 
@@ -71,11 +87,21 @@ As we finish each item, I'll hand it to a background agent to carry out, so we c
 I'll act on each item and each sub-item as we finish it, through background agents.
 ```
 
-A policy change mid-walk:
+A policy change mid-walk, limited by the user to later items ("from here on, act after each
+item"):
 
 ```text
 Got it: from here on, I'll act on each item through a background agent as we finish it.
 Items 1 and 2 are still waiting for the end of the walk.
+```
+
+A policy change mid-walk with no such limit ("let's act after each item"):
+
+```text
+Got it: I'll act on each item through a background agent as we finish it, starting now
+with the two you've already answered. One agent is moving the three secrets into the
+hosting provider's secrets service (item 1), and another is limiting the production logs
+to the on-call engineer (item 2).
 ```
 
 ## Present One Item
@@ -116,12 +142,26 @@ Which option? 1, 2, 3, or something else?
 
 ## Move Forward Only When the User Says So
 
-NEVER present the next item until the user's reply clearly means "move on": "Next", "n", "yes, go
-on", "sounds good, next one", in any case. A reply that answers, questions or doubts the current
-item is about the current item: respond to it, and stay on that item.
+NEVER present the next item until the user's reply is one of these, in any case:
 
-When the user has answered, end the reply by asking for "Next". In a discussion-only walk, that is
-all:
+- **"Next".** Only the word "Next" moves the walk on; "ok", "sounds good" or "go on" do not. When
+  the same reply also answers the item ("option 2, next"), record the answer and move on.
+- **Only an option number**, when the item presents options ("2"). It answers the item and moves
+  on.
+
+Any other reply is about the current item, including an option number with anything else besides
+"Next" ("2, but check the price first"): respond to it and stay on that item. Accept the number
+tentatively, and wait for an explicit "Next" before moving on. The rule, in the user's words:
+
+> "If the walk step presents options and the user replies with only an option number, that counts
+> as next. If the user replies with an option number and then says something else besides "next",
+> then the user is still discussing this item. Accept the number tentatively, but go back to
+> waiting for an explicit "next" before you move on."
+>
+>   -- **The user** in an agent session walking an overnight report (2026-09-29)
+
+When the reply answers the item without moving on, end the reply by asking for "Next". In a
+discussion-only walk, that is all:
 
 ```text
 Noted: we'll use the hosting provider's secrets service. If that's right, say "Next" to
@@ -136,6 +176,27 @@ Noted: we'll use the hosting provider's secrets service. If that's right, say "N
 move on to item 2. As you asked, before I show item 2 I'll dispatch a background agent to
 move the three secrets into the hosting provider's secrets service.
 ```
+
+An option number with something else, which the agent accepts tentatively (the user replied "1, but
+what does it cost for all three?"):
+
+```text
+Option 1 costs about $1.20 a month for the three secrets ($0.40 each). I've noted option 1
+for now; say "Next" to move on to item 2, or tell me if the cost changes your mind.
+```
+
+A reply that is only an option number (the user replied "1") moves straight on, recording the
+answer in one line above the next item:
+
+```text
+Noted: we'll use the hosting provider's secrets service.
+
+Item 2 - Who can read the production logs? (2/5)
+...
+```
+
+Under a policy that acts after each item, that line also names the action just started ("I've
+dispatched a background agent to move the three secrets.").
 
 ## When the List Changes
 

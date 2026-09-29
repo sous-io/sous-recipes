@@ -18,7 +18,9 @@ or the user asks with `/walk-deeper`.
 - The sub-items follow the walk's action policy. A split never changes the policy and is never
   permission to act: in a discussion-only walk, take no state-changing action; under "act after
   each item", act on the parent once its last sub-item is answered; under "act after each item and
-  sub-item", act on each sub-item as it is answered.
+  sub-item", act on each sub-item as it is answered. When the user switches to acting mid-walk
+  without limiting it to later items ("from now on", "from here on" or similar), the sub-items
+  already answered are acted on at once, like any answered item.
 - In one message, say what was split, into how many sub-items, and the new total; show the
   remaining list with the sub-items in place; then present the first sub-item in the usual item
   format.

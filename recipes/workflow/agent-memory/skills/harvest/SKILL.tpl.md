@@ -35,7 +35,7 @@ Compiled memories and skills are build output; edit only their sources.
   installs the recipe gets the change. `sous repo contribute <recipe>` starts a change there; never
   edit the compiled copy.
 
-## Phase 1: Scan and Present
+## Phase 1: Scan
 
 The main session MUST do this itself, because background agents cannot see the conversation.
 
@@ -60,26 +60,9 @@ Several findings of one kind often share one cause: say what they share, and pro
 cause.
 
 Summarize each finding in one sentence that a future agent with no memory of this session would
-understand, with its kind, and present them numbered. Quote the user's words where a finding rests on
-them. Then ask which to keep, and wait for the answer. If the session produced nothing worth keeping,
-say so; NEVER invent findings.
-
-```text
-Findings from the whole session. Nothing is changed yet.
-
-1. [mistake] The deploy step needs the branch ID returned by the create call, not the
-   default branch ID.
-2. [correction] Related changes go in one bundled pull request. You said:
-
-   > "put the schema change and the migration in the same PR"
-
-3. [waste] I read the 900-line schema file four times to find table names.
-4. [costly instruction] The 40-line deploy checklist loads in every session, and we
-   deployed once this month.
-5. [discovery] The payment sandbox resets every night at 02:00 UTC.
-
-Which should I keep? The numbers ("1, 3, 5"), "all", "all except 4", or "none".
-```
+understand, with its kind. Quote the user's words where a finding rests on them. Do not ask about the
+findings yet: they are shown in Phase 3, together with the plan for each, so the user answers once.
+If the session produced nothing worth keeping, say so and stop; NEVER invent findings.
 
 ## Phase 2: Survey What Exists
 
@@ -94,11 +77,11 @@ parallel:
   default) and reports what each covers, which have a `references/` or `scripts/` directory, and each
   one's source path from its "Source for this Skill" footer.
 
-Then classify each kept finding as one or more of: update a memory, create a memory, update a skill,
+Then classify each finding as one or more of: update a memory, create a memory, update a skill,
 add a reference file to a skill, create a skill, add a script, move or remove an instruction, or no
 action (already covered, or derivable from the code or git history).
 
-## Phase 3: Present the Plan
+## Phase 3: Present the Findings and the Plan
 
 @~workflow/agent-memory/_partials/improve-the-instructions.tpl.md
 
@@ -111,32 +94,42 @@ Weigh what sous offers, not only rewording:
 - a recipe variable, when the right behavior differs by project;
 - a script, a hook or a template tag that does the work, instead of words that describe it.
 
-Present the plan grouped by action, naming each target file and what changes in it: the current text
-quoted, and the new text in full. List a finding under every action it needs. Mark any finding the
-agent is unsure is already covered, and let the user decide.
+Ask once. Present every finding, numbered, with its kind and the plan for it right under it: each
+action it needs, naming each target file and what changes in it (the current text quoted, and the
+new text in full). A finding that needs no action says why. Mark any finding the agent is unsure is
+already covered, and let the user decide. Then ask which to make; the user approves findings and
+their plans together, in one answer.
 
 ```text
-The plan for findings 3, 4 and 5. Nothing is changed yet.
+Findings from the whole session, each with what I'd change. Nothing is changed yet.
 
-Add a script:
-1. Finding 3: a script that prints the table names.
-   - /home/ada/projects/widget-api/.sous/skills/about-database/scripts/tables.sh
+1. [mistake] The deploy step needs the branch ID returned by the create call, not the
+   default branch ID.
+   No action: the deploy skill already says so; I skipped that line this time.
+2. [correction] Related changes go in one bundled pull request. You said:
 
-Update a skill:
-2. Finding 3: one new line in the database skill.
+   > "put the schema change and the migration in the same PR"
+
+   Update a memory: one new line in the pull request memory.
+   Proposed: "Related changes, such as a schema change and its migration, go in one pull
+   request."
+   - /home/ada/projects/widget-api/.sous/memories/pull-requests.md
+3. [waste] I read the 900-line schema file four times to find table names.
+   Add a script that prints the table names, and point the database skill at it.
    Proposed: "To list the tables, run `scripts/tables.sh`; never read the schema file for them."
+   - /home/ada/projects/widget-api/.sous/skills/about-database/scripts/tables.sh
    - /home/ada/projects/widget-api/.sous/skills/about-database/SKILL.tpl.md
-3. Finding 5: one new line in the payments skill.
+4. [costly instruction] The 40-line deploy checklist loads in every session, and we
+   deployed once this month.
+   Move it from a memory into a new skill that loads only when deploying; remove the memory.
+   - /home/ada/projects/widget-api/.sous/memories/deploy-checklist.md
+   - /home/ada/projects/widget-api/.sous/skills/deploy/SKILL.tpl.md
+5. [discovery] The payment sandbox resets every night at 02:00 UTC.
+   Update a skill: one new line in the payments skill.
    Proposed: "The payment sandbox resets every night at 02:00 UTC; recreate test data after it."
    - /home/ada/projects/widget-api/.sous/skills/about-payments/SKILL.tpl.md
 
-Move an instruction:
-4. Finding 4: the deploy checklist moves from a memory into a new skill that loads only when
-   deploying; the memory is removed.
-   - /home/ada/projects/widget-api/.sous/memories/deploy-checklist.md
-   - /home/ada/projects/widget-api/.sous/skills/deploy/SKILL.tpl.md
-
-Which should I make? The numbers, "all", "all except 3", or "none".
+Which should I make? The numbers ("2, 3, 4"), "all", "all except 5", or "none".
 ```
 
 The agent MUST NOT change any file until the user approves the plan; the user may change it first.
@@ -155,11 +148,12 @@ changed, and check that each built instruction file carries its change.
 @~communication/agent-conduct/_partials/reporting-back.tpl.md
 
 ```text
-Made 1, 2 and 4, and rebuilt. Skipped 3, as you asked.
+Made 2, 3 and 4, and rebuilt. Skipped 5, as you asked.
 
-1. New script that prints the table names.
+2. The pull request memory says related changes go in one pull request.
+   - /home/ada/projects/widget-api/.sous/memories/pull-requests.md:9
+3. New script that prints the table names, and the database skill points at it.
    - /home/ada/projects/widget-api/.sous/skills/about-database/scripts/tables.sh
-2. The database skill points at the script.
    - /home/ada/projects/widget-api/.sous/skills/about-database/SKILL.tpl.md:22
 4. The deploy checklist is now a skill; the memory is gone.
    - /home/ada/projects/widget-api/.sous/skills/deploy/SKILL.tpl.md
