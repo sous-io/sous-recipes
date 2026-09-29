@@ -9,7 +9,7 @@ formatVersion: 1
 
 namespace: cli
 name: command-design
-version: 1.0.0
+version: 1.0.1
 
 description: >-
   Principles for designing command-line interfaces in any language: inferring

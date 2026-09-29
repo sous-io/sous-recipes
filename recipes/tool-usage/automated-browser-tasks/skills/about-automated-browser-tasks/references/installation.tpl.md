@@ -60,7 +60,7 @@ answers are written to the gitignored `.sous/.env.local`, because both are speci
 to one machine.
 
 Any other project values the scripts need (base URLs, resource identifiers and so
-on) go in the project's own `_vars`. The `{% exportScalarVarsJs %}` tag in
+on) go in the project's own `_vars`. The `{% raw %}{% exportScalarVarsJs %}{% endraw %}` tag in
 `settings.tpl.mjs` emits every in-scope scalar as the runtime settings module, so
 there is no per-key wiring to do.
 
@@ -68,7 +68,7 @@ there is no per-key wiring to do.
 
 So the agent always knows which browser tasks exist, without relying on a skill
 trigger firing, the recipe ships a memory file that renders a live list of every
-task script with `{% getFiles ... import="meta" %}`, reading each script's `meta`
+task script with `{% raw %}{% getFiles ... import="meta" %}{% endraw %}`, reading each script's `meta`
 export.
 
 The subscription places it in the project's memories directory as

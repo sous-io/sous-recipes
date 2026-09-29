@@ -1,9 +1,10 @@
 # workflow/task-files
 #
 # From shared-prompts/skills/task-files/, plus the two partials that only these
-# skills include: _partials/resume-task.md and _partials/update-task-file.md.
-# Those partials move INTO this recipe rather than becoming a shared dependency,
-# because nothing outside this recipe includes them.
+# skills include: _partials/resume-task.tpl.md and
+# _partials/update-task-file.tpl.md. Those partials move INTO this recipe rather
+# than becoming a shared dependency, because nothing outside this recipe
+# includes them.
 #
 # The /wrap-up command lives here too: it ends a session by updating the task
 # file and setting up the next sessions, so it needs this recipe's task files.
