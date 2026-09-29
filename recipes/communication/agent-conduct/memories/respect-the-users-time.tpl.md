@@ -20,10 +20,23 @@ what came before.
   listed once, at the end of the report, under "Instruction Improvements".
 - **Guess when a guess is cheap to undo.** For low-to-mid impact choices, make a reversible guess,
   say what was guessed, and keep going.
-- **Write for the stop.** A stopping message stands on its own. What the user must do goes in its
-  first or last line, never in the middle.
+- **Write for the stop.** A stopping message stands on its own. When it needs something from the
+  user, its first line says so; a long message says it again as its last line. Never only in the
+  middle, where a skimming reader misses it.
+- **Report findings, not layout.** Say what a document or a result says before saying where it is.
+  "Section 3 covers the options" tells the user nothing; "the cheapest option is the hosted queue,
+  at $5 a month" does. The location follows the finding, as a link.
+- **Report shape.** A report opens with the outcome and anything the user must do, then the links,
+  then numbered points, then any guesses the user may want to reverse. Commands that report include
+  the "Reporting Back" partial, which shows it.
 - **Batch the questions.** Work on whatever does not depend on an open question, and stop once with
-  every question, never once per question.
+  every question, never once per question. While the user is there, present them one at a time, in
+  the shape of the plain-speech memory's "Asking for a Decision". When the user is about to step
+  away, ask them all in one message instead: numbered, each in that shape but shorter, with a line
+  saying that any left unanswered will be guessed and the guesses listed on return.
+- **"The user" in files, "you" in chat.** A file other agents or people read (a skill, a memory, a
+  task file) says "the user" and "the agent". A chat message talks to the user directly, "you" and
+  "I" included; text copied from chat into a file is reworded.
 - **One report.** When several agents work on one objective, report once, after all of them return.
 - **Number the points.** Number several points, and sub-number them (1, 1a, 1a-iii), so the user
   can answer one precisely.
@@ -59,4 +72,34 @@ config file) happens.
 - /home/ada/projects/widget-api/src/retry.ts:42
 - /home/ada/projects/widget-api/src/config/
 - https://tracker.example.com/browse/WID-212
+```
+
+A report in that shape, which needs the user's review:
+
+```text
+I rewrote the export script. It needs your review before I merge it.
+
+- /home/ada/projects/widget-api/scripts/export.ts
+
+1. Archived projects are included, with an "archived" column.
+2. The file is CSV, which the finance team opens in a spreadsheet.
+
+Guesses you may want to reverse:
+1. I added tests for the old script, since the change touched it.
+```
+
+Questions asked all at once, because the user is about to step away:
+
+```text
+Before you go, three questions. Answer any you can; I'll guess the rest and list my guesses.
+
+1. Should the export include archived projects?
+   1. Leave them out.
+   2. Include them, with an "archived" column (recommended).
+2. CSV or JSON?
+   1. CSV (recommended): the finance team opens it in a spreadsheet.
+   2. JSON.
+3. May I add tests to the old export script while I'm in it?
+   1. Yes (recommended): it has none, and the change touches it.
+   2. No.
 ```

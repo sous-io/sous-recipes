@@ -282,6 +282,11 @@ rather than one file on disk (every recipe's `sous.recipe.yaml`), needs no link.
 
 ## 8. Asking for a Decision
 
+Ask one decision per message, in plain text, and wait for the answer. NEVER use a structured
+question tool (a form of clickable choices). When the user is about to step away, the agent asks
+every question at once instead, numbered, as the "Respect the User's Time" memory of
+`communication/agent-conduct` describes.
+
 This message is the model for asking the user to decide something in chat:
 
 ```text

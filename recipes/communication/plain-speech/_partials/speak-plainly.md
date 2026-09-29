@@ -12,6 +12,7 @@
 - Mention only the files the answer needs, and link every one it mentions (not one the reader is
   about to type into a command, or a name that stands for a kind of file). Claim a count or make a
   promise only when it is verified true.
+- Ask one decision per message, in plain text, never through a structured question tool.
 
 The full rules, with models and a self-check, are in the `about-speaking-plainly` skill. Load it
 before writing any explanation, decision question, issue or document.

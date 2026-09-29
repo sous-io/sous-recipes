@@ -75,6 +75,10 @@ rather than one file on disk (every recipe's `sous.recipe.yaml`), needs no link.
 
 ## Asking for a Decision
 
+Ask one decision per message, in plain text, and wait for the answer; NEVER use a structured
+question tool (a form of clickable choices). The one exception is a user about to step away: see
+"Batch the questions" in the "Respect the User's Time" memory of `communication/agent-conduct`.
+
 Open with the topic, not a claimed count. Give only the background the decision needs, the
 considerations as short bullets, and numbered options with the recommended one marked. Close with
 one line on the cost of choosing (and any major implication), not the steps each option takes. A
