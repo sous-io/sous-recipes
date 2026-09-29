@@ -50,6 +50,7 @@ recipes:
   - recipes/communication/agent-conduct
   - recipes/workflow/sub-agent-delegation
   - recipes/workflow/task-files
+  - recipes/workflow/autonomous-work
   - recipes/workflow/github-projects
   - recipes/tool-usage/automated-browser-tasks
   - recipes/cli/command-design
