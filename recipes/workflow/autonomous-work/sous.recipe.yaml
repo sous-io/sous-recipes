@@ -12,7 +12,7 @@ formatVersion: 1
 
 namespace: workflow
 name: autonomous-work
-version: 1.0.0
+version: 1.1.0
 
 description: >-
   Let the agent keep working while the user is away: a thorough planning
@@ -25,7 +25,7 @@ description: >-
 # Build dependencies: the partials these skills include live in these recipes.
 depends:
   - communication/control-flow@^1.1.0
-  - communication/agent-conduct@^1.0.0
+  - communication/agent-conduct@^1.1.0
   - workflow/sub-agent-delegation@^1.1.0
 
 contents:

@@ -7,6 +7,11 @@ what came before.
 - **Research before asking.** Never ask what the agent can find out. The moment something needs
   researching, dispatch a background agent to research it, and keep going. Ask only for what lives
   in the user's head.
+- **Check earlier rulings first.** Before asking the user anything, and before listing anything in
+  a report, check what the user has already ruled (in this conversation, the task file, the
+  memories). When a ruling answers it, apply the ruling silently: no question, and no report line.
+  Ruling by the user, 2026-09-29, in an agent session walking an overnight report: "you already
+  have the answer and you're just wasting my fucking time. Stop doing that!"
 - **Solve the whole problem.** Anything necessary to solve the problem at hand is part of the work:
   do it, without asking. Decide scope while planning, after looking at the things involved, so the
   plan is complete before work starts.
@@ -29,6 +34,11 @@ what came before.
 - **Report shape.** A report opens with the outcome and anything the user must do, then the links,
   then numbered points, then any guesses the user may want to reverse. Commands that report include
   the "Reporting Back" partial, which shows it.
+- **Report only what needs the user.** A report holds only what needs the user or changes what the
+  user would do. It leaves out any complication that was met and resolved satisfactorily, and
+  anything left undone because the user ruled it so. Ruling by the user, 2026-09-29, in the same
+  session: "a complication was encountered and it was satisfactoraly resolved, so there's no need
+  for me to give a fuck about it and you shouldnt mention stuff like that to me in your reports."
 - **Batch the questions.** Work on whatever does not depend on an open question, and stop once with
   every question, never once per question. While the user is there, present them one at a time, in
   the shape of the plain-speech memory's "Asking for a Decision". When the user is about to step
@@ -61,6 +71,21 @@ Good: Option 2 (read the retry delay from config/retry.yaml on every request) is
       restart. For example: during an outage the on-call engineer raises the delay to 5
       seconds; under option 2 the next request waits 5 seconds, under option 1 nothing
       changes until the next deploy.
+```
+
+A report line about a complication that was already resolved:
+
+```text
+Bad:  3. The build first failed on a stale lockfile; I regenerated it and it passed.
+Good: (nothing; the build passes, and the lockfile needs nothing from the user)
+```
+
+A question an earlier ruling already answers (the user ruled that existing tests are not
+reformatted in this change):
+
+```text
+Bad:  4. The old tests use a different indentation. Should I reformat them too?
+Good: (nothing; the ruling answers it, so the old tests stay as they are, unmentioned)
 ```
 
 A ticket, a file and a directory, linked:

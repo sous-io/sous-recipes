@@ -9,6 +9,25 @@ Wait until every agent working on this has returned, then report once, in this o
 5. Any improvements to the agent's instructions that were not made, under "Instruction
    Improvements"; an instruction found wrong was already fixed, and is a point under 3.
 
+The report holds only what needs the user or changes what the user would do. It leaves out any
+complication that was met and resolved satisfactorily, and anything left undone because the user
+ruled it so. Before listing anything, check the user's earlier rulings; when one answers it, apply it
+silently.
+
+> "a complication was encountered and it was satisfactoraly resolved, so there's no need for me to
+> give a fuck about it and you shouldnt mention stuff like that to me in your reports."
+>
+>   -- **the user** in an agent session walking an overnight report (2026-09-29)
+
+> "you already have the answer and you're just wasting my fucking time. Stop doing that!"
+>
+>   -- **the user** in the same session (2026-09-29)
+
+```text
+Bad:  4. The old tests use a different indentation; I left them, as you ruled.
+Good: (nothing; the ruling covers it)
+```
+
 ```text
 The permission check is on all 8 endpoints and the full test suite passes. One thing needs
 you: approve the drafted ticket "Password reset links never expire", or tell me to drop it.
