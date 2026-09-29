@@ -26,6 +26,9 @@ and online, at their latest published version:
 
 - https://github.com/sous-io/sous-recipes/tree/main/recipes/core/sous-skills/skills
 
+Never write `$` followed by a digit in a skill or anything a skill includes: Claude Code replaces
+`$0`, `$1` and so on with the command's arguments.
+
 ## The Core Recipe Here Is a Copy
 
 `recipes/core/sous-skills/` is written by the sous release pipeline, from its source in the

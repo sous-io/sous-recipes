@@ -126,7 +126,7 @@ in to the server can read them, and nobody would notice if they were copied. We 
 place to keep them where access is limited and every read is recorded.
 
 Considerations:
-- The hosting provider's secrets service costs about $0.40 per secret per month.
+- The hosting provider's secrets service costs about 40 cents per secret per month.
 - A self-hosted secrets server costs nothing to license, but it is one more server to patch.
 - Moving the three secrets takes about an hour, plus one deploy, whichever we pick.
 
@@ -181,7 +181,7 @@ An option number with something else, which the agent accepts tentatively (the u
 what does it cost for all three?"):
 
 ```text
-Option 1 costs about $1.20 a month for the three secrets ($0.40 each). I've noted option 1
+Option 1 costs about 1.20 dollars a month for the three secrets (40 cents each). I've noted option 1
 for now; say "Next" to move on to item 2, or tell me if the cost changes your mind.
 ```
 
@@ -230,13 +230,13 @@ Remaining:
 Item 3-a - Do we keep a nightly backup at all? (4/8)
 
 We back up the database every night and keep the copies on a separate server. Nobody has
-restored from one in two years, and the job costs about $30 a month to run.
+restored from one in two years, and the job costs about 30 dollars a month to run.
 
 Options:
 1. Keep the nightly backup. (recommended)
 2. Stop it and rely on the hosting provider's weekly snapshot.
 
-Option 2 saves $30 a month, but a failure could lose up to a week of orders.
+Option 2 saves 30 dollars a month, but a failure could lose up to a week of orders.
 
 Which option? 1, 2, or something else?
 ```

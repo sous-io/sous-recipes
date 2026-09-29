@@ -33,7 +33,7 @@ what came before.
   middle, where a skimming reader misses it.
 - **Report findings, not layout.** Say what a document or a result says before saying where it is.
   "Section 3 covers the options" tells the user nothing; "the cheapest option is the hosted queue,
-  at $5 a month" does. The location follows the finding, as a link.
+  at 5 dollars a month" does. The location follows the finding, as a link.
 - **Report shape.** A report opens with the outcome and anything the user must do, then the links,
   then numbered points, then any guesses the user may want to reverse. Commands that report include
   the "Reporting Back" partial, which shows it.
