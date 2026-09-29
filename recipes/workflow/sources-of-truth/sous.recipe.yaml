@@ -4,7 +4,11 @@
 # the docs for how things work now, decision records for what was decided and
 # why, and the tracker for how the work happened. It also says how authority
 # passes between them as an effort closes, and that a stale doc line is fixed
-# when it is found.
+# when it is found. One command, /decide, records a ruling the user has made
+# in every place it belongs: it lists each change (the exact text now, and the
+# exact text it becomes), and makes them all once the user approves. Its search
+# uses this recipe's three variables. The recipes under 'depends' supply the
+# partials the command includes; they are build dependencies only.
 formatVersion: 1
 
 namespace: workflow
@@ -14,12 +18,22 @@ version: 1.0.0
 description: >-
   Which artifact answers which question (docs for now, decision records for
   decisions, the tracker for process), how authority passes between them, and
-  fixing a stale doc line on sight.
+  fixing a stale doc line on sight; plus the /decide command, which records a
+  ruling the user has made in every issue, doc, agent instruction and decision
+  record it affects, once the user approves the list of exact changes.
+
+depends:
+  - communication/agent-conduct@^1.0.0
+  - communication/control-flow@^1.1.0
+  - workflow/sub-agent-delegation@^1.1.0
 
 contents:
   - kind: memories
     include:
       - memories/*.md
+  - kind: skills
+    include:
+      - skills/**/*
 
 variables:
   - name: docsDir
