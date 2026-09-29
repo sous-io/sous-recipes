@@ -22,4 +22,4 @@ Updating the docs and writing the decision record are part of finishing any effo
 designed behavior, never optional follow-ups.
 
 When code or data proves a doc line wrong, correct it in the same pass, in the file's own voice, and
-mention the fix in your report. A stale doc is a defect, not a question for the user.
+mention the fix in the report. A stale doc is a defect, not a question for the user.

@@ -21,7 +21,7 @@ still has no plain answer, and name them in the first line of the reply.
    field, but not the background of this project or this conversation. Use the source's own names;
    never invent a term.
 3. Run the self-check in `about-speaking-plainly`. If any check fails, rewrite.
-4. Send only the answer. Do not restate the question or announce the rules you loaded.
+4. Send only the answer. Do not restate the question or announce which rules were loaded.
 
 This is a question, so answer it and stop; do not act on it.
 

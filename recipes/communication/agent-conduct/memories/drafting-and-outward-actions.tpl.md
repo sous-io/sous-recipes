@@ -15,3 +15,10 @@ Every other outward action (one the user did not ask to draft) follows the proje
 in the always-loaded "Outward Actions" memory.
 
 After drafting, stop and wait.
+
+```text
+The user says: "Draft a reply to Priya's comment on the pull request."
+Bad:  The agent posts the reply on the pull request, then shows it in chat.
+Good: The agent shows the reply in chat and waits. It posts it only after the user says
+      "post it", and a later reply needs its own "post it".
+```

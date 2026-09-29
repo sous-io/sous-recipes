@@ -15,3 +15,12 @@
 - **Keep a live review loop fast.** While the user reviews changes on a hot-reloading server, make the
   edits and check only the changed files; hold commits, pushes and full test suites until the user
   signs off, then run them once.
+
+One step at a time, while guiding the user through a manual setup:
+
+```text
+Bad:  Open the DNS settings, add the TXT record, wait for it to spread, then click "Verify"
+      and, if that fails, try the CNAME method instead.
+Good: Open the DNS settings for widget.example.com and add a TXT record named `_verify` with
+      the value `a81f3c`. Tell me when it's saved.
+```

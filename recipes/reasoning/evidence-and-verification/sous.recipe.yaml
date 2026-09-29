@@ -12,7 +12,7 @@ name: evidence-and-verification
 version: 1.0.0
 
 description: >-
-  State assumptions and verify the load-bearing ones; verify before asserting,
+  State assumptions and verify the ones that matter; verify before asserting,
   label anything unconfirmed, treat sub-agent output as a lead, run read-only
   checks directly, and look for root causes.
 

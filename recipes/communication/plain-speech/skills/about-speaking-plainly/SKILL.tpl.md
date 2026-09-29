@@ -251,6 +251,8 @@ the staging environment:
 Our contributing guide requires that test (rule 13a):
 
 > "Every change that touches billing MUST be run against staging before it is merged."
+>
+>   -- `ledgerline` contributing guide, section "Testing"
 
 - https://gitlab.example.com/acme/ledgerline/-/blob/main/CONTRIBUTING.md#testing
 
@@ -261,6 +263,8 @@ merge request thread. Nobody answered, and the change was merged after review wi
 From !497:
 
 > "I need staging credentials to run the webhook test. Can someone share them?"
+>
+>   -- the agent working on !497, in the merge request thread
 
 ## Why It Matters
 

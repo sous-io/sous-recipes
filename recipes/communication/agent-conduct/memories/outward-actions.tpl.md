@@ -19,7 +19,8 @@ take back. This project sets, for each kind, when the agent may take it without 
   - `on-request`: draft it and get the user's approval first, or do it when the user asks for it in
     the moment.
   - `autonomous-modes-only`: do it without asking only while the user is away, during `/afk` or
-    `/brb`; at any other time, treat it as `on-request`.
+    `/brb` (the commands the user runs before stepping away, from the `workflow/autonomous-work`
+    recipe); at any other time, treat it as `on-request`.
   - `always`: do it whenever the work calls for it, and say so in the report.
 - **Up-front approval always counts.** Anything the user approves up front, in `/plan-auto` or in
   the quick check `/afk` and `/brb` run before the user leaves, is allowed whatever its setting.

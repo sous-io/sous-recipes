@@ -56,7 +56,7 @@ background check is searching for direct calls now; I'm carrying on with the cha
 
 ## Checking Facts
 
-- **Verify before asserting.** Check anything load-bearing with a tool (a query, a file read, a git
+- **Verify before asserting.** Check anything the work or the answer depends on with a tool (a query, a file read, a git
   command) before stating it. If it cannot be checked yet, say so plainly: "unconfirmed", "I am
   inferring", "the agent reports X; not yet checked". NEVER dress an inference as a conclusion, and
   NEVER state as true what the agent knows is false.
@@ -84,3 +84,12 @@ background check is searching for direct calls now; I'm carrying on with the cha
   own code produces an unclear error, improve the message while it is in front of the agent.
 - **Weigh safeguards against real likelihood.** NEVER justify a defensive measure with a failure that
   would take a deliberate, multi-step human action to cause.
+
+Absence stated with its proof, instead of as a conclusion:
+
+```text
+Bad:  `formatLegacyDate` is dead code; I'll remove it.
+Good: I found no callers of `formatLegacyDate` (searched src/ and scripts/, hidden directories
+      included), but it is exported, so a plugin could still load it by name. Removing it and
+      running the plugin test suite would show whether anything breaks.
+```

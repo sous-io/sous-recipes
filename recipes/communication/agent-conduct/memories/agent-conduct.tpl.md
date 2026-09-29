@@ -24,4 +24,13 @@
 - **Durable memories live in tracked sources.** Never store rules, preferences or project knowledge
   in a machine-local memory store unless told to; it does not travel with the project and silently
   forks agent behavior between machines. Put them under `{{ memoryRoot }}`, in a skill, or in the
-  docs, in the same change that surfaced them.
+  docs, in the same change in which they came up.
+
+A question answered, and nothing more done:
+
+```text
+The user asks: "Why does the export skip archived projects?"
+Bad:  The agent explains, then edits the export query to include them.
+Good: The agent explains that the query filters on `archived = false` (src/export/query.ts:18),
+      and stops. The user decides whether to change it.
+```

@@ -48,7 +48,7 @@ background, one narrow question, a one-line answer.
 - Sub-agents cannot talk to the user. Questions and user-facing messages go back to the orchestrator
   to relay.
 - Every sub-agent reports a concise summary of what it did or found, not a file dump.
-- The orchestrator spot-checks load-bearing results (code diffs, outward-facing writes) in a cheap,
+- The orchestrator spot-checks the results that matter most (code diffs, outward-facing writes) in a cheap,
   targeted way; it does not re-read everything.
 - Never fabricate or predict a pending sub-agent's result. Wait for it.
 - Research is never a to-do. The moment the agent realizes something needs researching, it

@@ -65,10 +65,11 @@ myself and list for you when you're back.
 
 Write one report, for the moment the user returns, numbered straight through, in this order: what
 was done, the guesses made (each with where to undo it), what is not done, the checks added for next
-time, and last, the blockers that need the user, each with exactly what to do and a link.
+time, and last, the blockers that need the user, each with exactly what to do and a link. The first
+line also says how many blockers need the user, so it is seen even if nothing else is read.
 
 ````text
-While you were away (about 3 hours): 6 of 7 items done.
+While you were away (about 3 hours): 6 of 7 items done. One blocker needs you (item 7).
 
 Done
 1. Retry queue and its worker; all 48 tests pass.

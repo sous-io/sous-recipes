@@ -1,4 +1,5 @@
-Load `about-agent-memory` and `about-agent-skills` before changing any instruction.
+Load `about-agent-memory` and `about-agent-skills` before changing any instruction. Then, for each
+instruction that needs a change, take these four steps:
 
 1. **Find the source.** Name the instruction that caused the behavior, or confirm that none covers
    it. Quote it verbatim, with the absolute path and line of its tracked source, never the built
