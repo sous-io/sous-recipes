@@ -1,8 +1,8 @@
 ---
 name: research
-description: Run a research task using background sub-agents
-user-invocable-only: true
-arguments-hint: what to research via background subagents
+description: Run a research task using background sub-agents.
+argument-hint: "[what to research]"
+disable-model-invocation: true
 ---
 
 Have a background sub-agent do the following:
