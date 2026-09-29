@@ -5,6 +5,8 @@
   follow the quote; it MUST NOT replace it. The user does not trust an agent's paraphrase; the quote
   is how the user checks it.
 - Quote only the part that matters.
+- In a reply, a task file, a skill or a skill's reference file the quote is REQUIRED; a memory
+  MUST point at the source and MAY add a short quote. Code snippets are not covered by this rule.
 - Under every quote whose source is known or easy to find out, an attribution line gives who said
   it, where, when, the source's own label for it and a link, each only when it is known or easy to
   find out (no link when there is none).

@@ -52,6 +52,7 @@ recipes:
   - recipes/workflow/task-files
   - recipes/workflow/autonomous-work
   - recipes/workflow/github-projects
+  - recipes/workflow/sources-of-truth
   - recipes/tool-usage/automated-browser-tasks
   - recipes/cli/command-design
   - recipes/reasoning/evidence-and-verification

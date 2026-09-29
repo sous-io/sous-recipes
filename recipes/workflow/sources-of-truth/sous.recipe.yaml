@@ -1,0 +1,72 @@
+# workflow/sources-of-truth
+#
+# One always-loaded memory that says which artifact answers which question:
+# the docs for how things work now, decision records for what was decided and
+# why, and the tracker for how the work happened. It also says how authority
+# passes between them as an effort closes, and that a stale doc line is fixed
+# when it is found.
+formatVersion: 1
+
+namespace: workflow
+name: sources-of-truth
+version: 1.0.0
+
+description: >-
+  Which artifact answers which question (docs for now, decision records for
+  decisions, the tracker for process), how authority passes between them, and
+  fixing a stale doc line on sight.
+
+contents:
+  - kind: memories
+    include:
+      - memories/*.md
+
+variables:
+  - name: docsDir
+    env: DOCS_DIR
+    type: path
+    prompt: Where is this project's living documentation kept?
+    description: >-
+      The living documentation describes how the project works right now, and
+      agents update it whenever behavior changes. The default is a docs
+      directory at the project root. Any path works, either relative to the
+      project root or absolute.
+    example: docs/markdown
+    default: docs
+    required: true
+    scope: shared
+    validate:
+      minLength: 1
+
+  - name: adrDir
+    env: ADR_DIR
+    type: path
+    prompt: Where are this project's architecture decision records kept?
+    description: >-
+      Architecture decision records say what was decided and why, and are
+      never rewritten once accepted. The default is an adrs directory inside
+      the docs directory. Any path works, either relative to the project root
+      or absolute.
+    example: docs/markdown/adrs
+    default: docs/adrs
+    required: true
+    scope: shared
+    validate:
+      minLength: 1
+
+  - name: issueTracker
+    env: ISSUE_TRACKER
+    type: string
+    prompt: Where are this project's issues or tickets tracked?
+    description: >-
+      The issues or tickets are the record of how work happened, including
+      design changes made along the way. Describe where they live in a few
+      words that an agent can act on, such as the repository whose issues you
+      use or the name of your tracker project. The default names no particular
+      tracker.
+    example: GitHub issues in acme/widget-api
+    default: the project's issue tracker
+    required: true
+    scope: shared
+    validate:
+      minLength: 1

@@ -29,6 +29,15 @@ should never have to remember or look up what they said.
 6. Leave one blank line above and one below every quote block, and put a line holding only `>`
    between the quote and its attribution line.
 
+## Where a Quote Is Required
+
+- **Replies, task files, skills and a skill's reference files:** a quote is REQUIRED, with its
+  attribution line.
+- **Memories:** a pointer to the source (the decision record, the issue, the file and line) is
+  REQUIRED; a short quote MAY follow it. Memories load in every session, so they stay short.
+- **Code:** not covered. The rule is about what people, documents, contracts and decisions said; a
+  code snippet may help, but none is required.
+
 The format, with every part of the attribution known:
 
 ```text

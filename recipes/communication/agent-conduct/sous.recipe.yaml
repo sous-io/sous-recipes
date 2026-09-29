@@ -1,19 +1,21 @@
 # communication/agent-conduct
 #
-# Always-loaded conduct rules for an agent working with a person, as six
+# Always-loaded conduct rules for an agent working with a person, as seven
 # memories: agent conduct (a question is not an instruction, the whole problem
 # is in scope, durable memories live in tracked sources), interaction style,
-# quoting sources, respecting the user's time (research before asking, no
+# quoting sources (and where a quote is required), rulings and provenance
+# (label every written rule as a ruling or an inference, and read unsourced
+# rules as tentative), respecting the user's time (research before asking, no
 # hangers, links, numbered points, one report), drafting (a requested draft is
 # shown in chat and never sent on its own), and outward actions (this
-# project's setting for each kind of action other people can see). Four
+# project's setting for each kind of action other people can see). Five
 # partials carry short reminders into the commands that need them: quote
-# sources, the reply format, respect the user's time, and reporting back.
-# Partials live in _partials/ and are never installed on their own. One
-# command, /create-reply, drafts replies to other people's questions in the
-# reply format. Nine variables: memoryRoot names where the project keeps its
-# tracked memory fragments, and eight more say when the agent may take each
-# kind of outward action without being asked.
+# sources, rulings and provenance, the reply format, respect the user's time,
+# and reporting back. Partials live in _partials/ and are never installed on
+# their own. One command, /create-reply, drafts replies to other people's
+# questions in the reply format. Nine variables: memoryRoot names where the
+# project keeps its tracked memory fragments, and eight more say when the agent
+# may take each kind of outward action without being asked.
 formatVersion: 1
 
 namespace: communication
@@ -21,16 +23,17 @@ name: agent-conduct
 version: 1.0.0
 
 description: >-
-  Always-loaded conduct rules for an agent working with a person: a question is
-  not an instruction, solve the whole problem, keep durable memories in tracked
-  sources, quote a source's exact words behind every assertion based on what it
-  said, respect the user's time (research before asking, no hangers, links,
-  numbered points, one report), show a requested draft in chat instead of
-  sending it, and take outward actions (pushes, pull requests, merges,
-  releases, issues, comments, messages) only as far as this project's settings
-  allow; plus partials for quoting, replying to questions, and reporting back,
-  and the /create-reply command, which drafts replies that quote each question
-  before answering it.
+  Always-loaded conduct rules for an agent working with a person: a question
+  is not an instruction, solve the whole problem, keep durable memories in
+  tracked sources, quote a source's exact words behind every assertion based
+  on what it said, label every rule it writes as a ruling or an inference and
+  read unsourced rules as tentative, respect the user's time (research before
+  asking, no hangers, links, numbered points, one report), show a requested
+  draft in chat instead of sending it, and take outward actions (pushes, pull
+  requests, merges, releases, issues, comments, messages) only as far as this
+  project's settings allow; plus partials for quoting, rulings and provenance,
+  replying to questions, and reporting back, and the /create-reply command,
+  which drafts replies that quote each question before answering it.
 
 # The /create-reply command includes a partial from this recipe; it is a build
 # dependency only, so its own memories and skills land in a project only when it
