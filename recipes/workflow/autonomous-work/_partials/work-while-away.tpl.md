@@ -27,15 +27,19 @@ question would clear, and ask everything in one message. Delay the user as littl
   action and leave it for approval.
 - Anything else: only if it is very important and cannot be researched.
 
-When there are questions, ask them and wait. When there are none, say so in one line and start.
+Ask the questions in one message, then start at once on everything that does not depend on the
+answers; never wait for a reply, because the user may already be gone. When the work reaches a
+question that is still unanswered, guess, keeping the guess within what the project's settings allow
+(an outward action without a yes is prepared and left for approval), and list the guess in the
+report. When there are no questions, say so in one line and start.
 
 ```text
 I ran the 4 blocker checks: `gh` is signed in with the scopes the work needs,
 `feature/retry-queue` has no branch protection, and a dry-run push to origin works. The
 fourth, whether the work's commands run without a permission prompt, failed; it is item 1.
 
-Three things before you go. I'll start the moment you answer; everything else I'll decide
-myself and list for you when you're back.
+Three things before you go. I'm starting now on everything that doesn't depend on them;
+anything still unanswered when I reach it, I'll guess and list for you when you're back.
 
 1. Permissions. The work will run `npm test`, `npm run build` and `git push` to the branch
    `feature/retry-queue`. None of these is allowed yet, so each would stop me at a prompt.
@@ -81,7 +85,8 @@ Done
    - https://github.com/example/widget-api/pull/57
 
 Guesses (each one is easy to undo)
-4. Longest wait between tries is 60 seconds; one line to change.
+4. Longest wait between tries is 60 seconds (question 3 before you left; no answer came);
+   one line to change.
    - /home/ada/projects/widget-api/src/retry/config.ts:12
      ```ts
      export const MAX_BACKOFF_MS = 60_000;

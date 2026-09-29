@@ -32,8 +32,9 @@ Item to split, or how to split it: $ARGUMENTS
 Present the first sub-item as the walk presents every item: the title
 `Item <name> - <question> (<position>/<total>)`, a plain explanation, short bullets for the
 considerations, numbered options with the recommended one marked, one line on what the choice
-costs, and "Which option? 1, 2, 3, or something else?". Then wait until the user's reply clearly
-means "move on".
+costs, and "Which option? 1, 2, 3, or something else?". Then move on only as the walk does: on
+"Next", or on a reply that is only an option number. An option number with anything else besides
+"Next" is accepted tentatively, and the walk stays on the sub-item until the user says "Next".
 
 The walk is on task file `0300`, the 3rd of 5, and the user types `/walk-deeper`:
 
@@ -85,7 +86,7 @@ With no walk running there is no current item. Start a walk over the parts of wh
 likely meant, and say so in the first line. The walk is discussion only: the agent MUST NOT take a
 state-changing action (editing a file, committing, pushing, posting, opening an issue) until the
 user says to. Show the whole list first, then present one item per message in the format above,
-move on only when the user's reply clearly means "move on", and after the last item give a
+move on only on "Next" or on a reply that is only an option number, and after the last item give a
 numbered recap of what the user decided.
 
 ```text

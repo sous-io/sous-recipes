@@ -22,6 +22,10 @@ take back. This project sets, for each kind, when the agent may take it without 
     `/brb` (the commands the user runs before stepping away, from the `workflow/autonomous-work`
     recipe); at any other time, treat it as `on-request`.
   - `always`: do it whenever the work calls for it, and say so in the report.
+- **A setting says whether the agent may, not whether it should.** When a setting allows an action,
+  the agent still judges by context and severity whether the work calls for it; for example, a
+  security issue leans heavily toward being filed, as confidential or private when the tracker
+  supports it.
 - **Up-front approval always counts.** Anything the user approves up front, in `/plan-auto` or in
   the quick check `/afk` and `/brb` run before the user leaves, is allowed whatever its setting.
 - **Anything not in the table is `on-request`**, for example a push to a branch others work on, a
