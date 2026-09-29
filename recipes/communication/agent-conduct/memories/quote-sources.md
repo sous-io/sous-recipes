@@ -18,20 +18,27 @@ should never have to remember or look up what they said.
    NOT replace it.
 2. Quote only the part that matters. The quote saves the reader a trip to the source; it does not
    reproduce the source.
-3. Put an attribution line under every quote, as complete as what is known: who said it (or which
-   document), where (the medium or the section), when, the source's own number, label or title for
-   it, and a link. Leave out any part that is not known; NEVER guess one.
+3. Put an attribution line under every quote whose source is known or easy to find out. It holds,
+   best effort, each part that is known or easy to find out: who said it (or which document), where
+   (the medium or the section), when, the source's own number, label or title for it, and a link.
+   Leave out every other part; NEVER guess one. A source with no link gets no link.
 4. Link when a link exists: a URL for anything on the web, inside the attribution line; for a file,
    its absolute path with a line number, on its own line as a list item under the quote.
 5. Words from earlier in this conversation count too: quote or restate them where they are referred
    to, never only point at them ("your last question", "the option above").
+6. Leave one blank line above and one below every quote block, and put a line holding only `>`
+   between the quote and its attribution line.
 
-The attribution line with every part known:
+The format, with every part of the attribution known:
 
 ```text
+Priya asked where the admin tools belong:
+
 > "Should admin-console and status-page live in apps/ at all?"
 >
 >   -- **Priya Natarajan** via Slack (2026-03-10; labeled as **Q-2** in [ADR-0012](https://git.example.com/harbor/harbor-web/-/blob/main/docs/adrs/0012-workspace-layout.md))
+
+I think they stay in apps/.
 ```
 
 ## Examples

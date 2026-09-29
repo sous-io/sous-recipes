@@ -5,7 +5,8 @@ When answering questions someone else asked, answer each question in turn:
 1. Quote the question first, verbatim; NEVER a paraphrase.
 2. Under the quote, put the attribution line: who asked it, through what medium and when, the
    source's own number, label or title for the question if it has one, and a link to it when one
-   exists.
+   exists; each part only when it is known or easy to find out. Put a line holding only `>` between
+   the quote and the attribution, and one blank line above and below the whole quote block.
 3. Open the answer with a direct answer.
 4. Word the answer as an opinion unless it is an objective, irrefutable fact. A reply is a
    negotiation, a debate or a collaboration: stay humble and respectful.

@@ -1,10 +1,14 @@
 # communication/agent-conduct
 #
-# Always-loaded conduct rules for an agent working with a person. The quoting
-# memory requires a verbatim quote, with an attribution line, behind every
-# assertion based on what a source said. Two partials carry the quoting rule and
-# a quote-then-answer reply format into the commands that need them; they live
-# in _partials/ and are never installed on their own. No variables.
+# Always-loaded conduct rules for an agent working with a person, as four
+# memories: agent conduct (a question is not an instruction, the whole problem
+# is in scope, durable memories live in tracked sources), interaction style,
+# quoting sources, and respecting the user's time (research before asking, no
+# hangers, links, numbered points, one report). Four partials carry short
+# reminders into the commands that need them: quote sources, the reply format,
+# respect the user's time, and reporting back. Partials live in _partials/ and
+# are never installed on their own. One variable, memoryRoot, names where the
+# project keeps its tracked memory fragments.
 formatVersion: 1
 
 namespace: communication
@@ -12,12 +16,34 @@ name: agent-conduct
 version: 1.0.0
 
 description: >-
-  Always-loaded conduct rules for an agent working with a person: quote a
-  source's exact words, with who said them, where, when and a link, behind
-  every assertion based on what it said; plus a quote-then-answer format for
-  replying to someone's questions.
+  Always-loaded conduct rules for an agent working with a person: a question is
+  not an instruction, solve the whole problem, keep durable memories in tracked
+  sources, quote a source's exact words behind every assertion based on what it
+  said, and respect the user's time (research before asking, no hangers, links,
+  numbered points, one report); plus partials for quoting, replying to
+  questions, and reporting back.
 
 contents:
   - kind: memories
     include:
       - memories/*.md
+
+variables:
+  - name: memoryRoot
+    env: MEMORY_ROOT
+    type: path
+    prompt: Where are this project's tracked memory fragments kept?
+    description: >-
+      Durable rules, preferences and project knowledge belong in a directory
+      that is committed with the project, so they travel to every machine and
+      every colleague instead of living in one machine's private memory store.
+      This setting names that directory, and the conduct rules point agents at
+      it. The default is the directory sous init creates for the fragments a
+      build composes into the agent's instruction file. Any path works, either
+      relative to the project root or absolute.
+    example: .sous/prompts/memories
+    default: .sous/memories
+    required: true
+    scope: shared
+    validate:
+      minLength: 1
