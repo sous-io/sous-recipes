@@ -277,6 +277,8 @@ asking.
 
 NEVER mention a file the answer does not need. ALWAYS link a file the answer does mention: its full
 absolute path on its own line, with a line number when one helps. A website gets its URL.
+A file the reader is about to type into a command, or a file name that stands for a kind of file
+rather than one file on disk (every recipe's `sous.recipe.yaml`), needs no link.
 
 ## 8. Asking for a Decision
 
@@ -325,7 +327,8 @@ out part of an example ("...four paragraphs...").
 5. Does an analogy come first? Move it after the plain statement, or cut it.
 6. In chat: only what the user needs now? In an issue or document: full context, citations and
    verbatim quotes?
-7. Is a file mentioned that the answer does not need, or a mentioned file missing its link?
+7. Is a file mentioned that the answer does not need, or a mentioned file missing its link? (A file
+   the reader is about to type into a command, or a name that stands for a kind of file, needs none.)
 8. Is there a count or a promise that has not been verified?
 9. Does a list appear before the reader knows what the list is?
 10. Were examples asked for? Exactly that many, each complete?

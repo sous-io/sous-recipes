@@ -2,9 +2,11 @@
 #
 # The plain-speech rules in three forms: a memory every session loads, a topic
 # skill holding the full rules with models and a self-check, and a short partial
-# (_partials/speak-plainly.md) that other recipes' commands include. Two action
-# skills apply the rules on demand: one answers a question plainly, the other
-# rewrites the previous reply plainly. No variables.
+# (_partials/speak-plainly.md) that other recipes' commands include. Three
+# commands apply the rules on demand: /q answers a question plainly, and
+# /speak-plainly and /wtf say the agent's last message again, plainly. The two
+# share one body (_partials/say-it-plainly.tpl.md) and differ only in their
+# description. No variables.
 formatVersion: 1
 
 namespace: communication
@@ -14,8 +16,8 @@ version: 1.0.0
 description: >-
   Speaking plainly: the rules for writing a reader who was not there can
   understand, as a memory, a topic skill and a short partial other commands
-  include, plus action skills to answer a question plainly and to rewrite the
-  last reply plainly.
+  include, plus the commands /q (answer a question plainly) and
+  /speak-plainly and /wtf (say the last message again, plainly).
 
 contents:
   - kind: skills

@@ -9,7 +9,8 @@
   are allowed. NEVER open with an analogy.
 - A chat reply carries only what the user needs now; an issue or document carries full context,
   citations and verbatim quotes.
-- Mention only the files the answer needs, and link every one it mentions. Claim a count or make a
+- Mention only the files the answer needs, and link every one it mentions (not one the reader is
+  about to type into a command, or a name that stands for a kind of file). Claim a count or make a
   promise only when it is verified true.
 
 The full rules, with models and a self-check, are in the `about-speaking-plainly` skill. Load it

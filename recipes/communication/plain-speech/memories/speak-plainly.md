@@ -70,6 +70,8 @@ Before a list, say what the list is, and define every term the list depends on b
 
 NEVER mention a file the answer does not need. ALWAYS link a file the answer does mention: its full
 absolute path on its own line, with a line number when one helps. A website gets its URL.
+A file the reader is about to type into a command, or a file name that stands for a kind of file
+rather than one file on disk (every recipe's `sous.recipe.yaml`), needs no link.
 
 ## Asking for a Decision
 
