@@ -1,0 +1,23 @@
+# communication/agent-conduct
+#
+# Always-loaded conduct rules for an agent working with a person. The quoting
+# memory requires a verbatim quote, with an attribution line, behind every
+# assertion based on what a source said. Two partials carry the quoting rule and
+# a quote-then-answer reply format into the commands that need them; they live
+# in _partials/ and are never installed on their own. No variables.
+formatVersion: 1
+
+namespace: communication
+name: agent-conduct
+version: 1.0.0
+
+description: >-
+  Always-loaded conduct rules for an agent working with a person: quote a
+  source's exact words, with who said them, where, when and a link, behind
+  every assertion based on what it said; plus a quote-then-answer format for
+  replying to someone's questions.
+
+contents:
+  - kind: memories
+    include:
+      - memories/*.md

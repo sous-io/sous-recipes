@@ -43,6 +43,7 @@ recipes:
   - recipes/core/sous-skills
   - recipes/communication/control-flow
   - recipes/communication/plain-speech
+  - recipes/communication/agent-conduct
   - recipes/workflow/sub-agent-delegation
   - recipes/workflow/task-files
   - recipes/workflow/github-projects
