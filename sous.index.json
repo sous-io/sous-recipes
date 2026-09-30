@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-30T02:17:40.311Z",
+  "generatedAt": "2026-09-30T02:18:25.542Z",
   "generator": "0.2.27",
   "name": "sous-recipes",
   "namespaces": {
@@ -15,6 +15,9 @@
     },
     "engineering": {
       "description": "How to design software people enjoy using."
+    },
+    "omakase": {
+      "description": "Preset sets of recipes, chosen for you and subscribed together."
     },
     "reasoning": {
       "description": "How an agent thinks through a problem: weighing evidence, self-checking, decomposition, and knowing when it is stuck."
@@ -346,6 +349,50 @@
           "prerelease": false,
           "releasedAt": "2026-09-30T01:19:40.250Z",
           "tag": "engineering/design-tenets@1.0.0"
+        }
+      }
+    },
+    "omakase/house": {
+      "description": "The standard set of recipes, chosen for you: the conduct, plain-speech and session-steering rules, evidence and verification, sub-agent delegation, per-branch task files, work while the user is away, sources of truth, improving the agent's own instructions, and the design tenets.",
+      "path": "recipes/omakase/house",
+      "versions": {
+        "1.0.0": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "version": "1.2.1"
+            },
+            "communication/control-flow": {
+              "version": "1.2.1"
+            },
+            "communication/plain-speech": {
+              "version": "1.0.0"
+            },
+            "engineering/design-tenets": {
+              "version": "1.0.0"
+            },
+            "reasoning/evidence-and-verification": {
+              "version": "1.0.0"
+            },
+            "workflow/agent-memory": {
+              "version": "1.1.0"
+            },
+            "workflow/autonomous-work": {
+              "version": "1.2.0"
+            },
+            "workflow/sources-of-truth": {
+              "version": "1.0.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "version": "1.1.1"
+            },
+            "workflow/task-files": {
+              "version": "1.1.0"
+            }
+          },
+          "hash": "sha256-c9a85a45991177e447581200a95c8b6bcdd28db3bfda6a521676d01ce4105ed6",
+          "prerelease": false,
+          "releasedAt": "2026-09-30T02:18:25.542Z",
+          "tag": "omakase/house@1.0.0"
         }
       }
     },
