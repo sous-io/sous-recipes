@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-30T01:18:18.749Z",
+  "generatedAt": "2026-09-30T01:19:40.250Z",
   "generator": "0.2.25",
   "name": "sous-recipes",
   "namespaces": {
@@ -12,6 +12,9 @@
     },
     "core": {
       "description": "Skills that teach an agent about sous itself: what sous manages, how its configuration works, how templates render, and how skills are written. Auto-subscribed in every project, with opt-out-only semantics."
+    },
+    "engineering": {
+      "description": "How to design software people enjoy using."
     },
     "reasoning": {
       "description": "How an agent thinks through a problem: weighing evidence, self-checking, decomposition, and knowing when it is stuck."
@@ -319,6 +322,18 @@
           "prerelease": false,
           "releasedAt": "2026-09-17T07:06:12.948Z",
           "tag": "core/sous-skills@0.2.9"
+        }
+      }
+    },
+    "engineering/design-tenets": {
+      "description": "Design tenets for software people enjoy using: start from the ideal experience and compromise only at named walls, keep one implementation per concern, make the same input mean the same thing everywhere, and accept every reasonable form of an intent while storing only the canonical one.",
+      "path": "recipes/engineering/design-tenets",
+      "versions": {
+        "1.0.0": {
+          "hash": "sha256-6c08cc8f33ae0d20ee7ee767a11015fd29e7a4014448a3ab80bb6964b6df160d",
+          "prerelease": false,
+          "releasedAt": "2026-09-30T01:19:40.250Z",
+          "tag": "engineering/design-tenets@1.0.0"
         }
       }
     },
