@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-29T23:33:11.272Z",
+  "generatedAt": "2026-09-30T01:18:18.749Z",
   "generator": "0.2.25",
   "name": "sous-recipes",
   "namespaces": {
@@ -150,7 +150,7 @@
               "version": "1.0.0"
             },
             "workflow/sub-agent-delegation": {
-              "version": "1.1.0"
+              "version": "1.1.1"
             }
           },
           "hash": "sha256-9c9053cb30a0f285ba1e0ef3ae36c0aad89e560b288c4d3bc30c8b0f52010550",
@@ -369,7 +369,7 @@
         "1.0.3": {
           "dependencies": {
             "workflow/sub-agent-delegation": {
-              "version": "1.1.0"
+              "version": "1.1.1"
             }
           },
           "hash": "sha256-f9513c93f6ee7294bd3cd592a75d9228c3b7c666372cc3b08dcd5762135f7377",
@@ -409,7 +409,7 @@
               "version": "1.2.1"
             },
             "workflow/sub-agent-delegation": {
-              "version": "1.1.0"
+              "version": "1.1.1"
             }
           },
           "hash": "sha256-c07c702c5b6e67db2c9d7d84f3b78e347e4bda68f4a10440b33ad9c2c52d89be",
@@ -483,7 +483,7 @@
               "version": "1.2.1"
             },
             "workflow/sub-agent-delegation": {
-              "version": "1.1.0"
+              "version": "1.1.1"
             }
           },
           "hash": "sha256-eccb8657a94da51d3992620e772060b67551c34561538ee174e5a8f1fc6747f9",
@@ -550,7 +550,7 @@
         "1.1.2": {
           "dependencies": {
             "workflow/sub-agent-delegation": {
-              "version": "1.1.0"
+              "version": "1.1.1"
             }
           },
           "hash": "sha256-0764a482f272006131cd7694301c3ad9cc1e1fad30ac580d29317a79ffe8b60c",
@@ -573,7 +573,7 @@
               "version": "1.2.1"
             },
             "workflow/sub-agent-delegation": {
-              "version": "1.1.0"
+              "version": "1.1.1"
             }
           },
           "hash": "sha256-c085d8e8f853d784b95826da6145a34d93d114ff881415b0d1ada5e75563bf52",
@@ -598,6 +598,12 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T11:04:32.785Z",
           "tag": "workflow/sub-agent-delegation@1.1.0"
+        },
+        "1.1.1": {
+          "hash": "sha256-afc503969c6e4a8a3aee0504c1e30e5c72b8bbdfcb89edeca40b739481df9279",
+          "prerelease": false,
+          "releasedAt": "2026-09-30T01:18:18.749Z",
+          "tag": "workflow/sub-agent-delegation@1.1.1"
         }
       }
     },
@@ -642,7 +648,7 @@
               "version": "1.2.1"
             },
             "workflow/sub-agent-delegation": {
-              "version": "1.1.0"
+              "version": "1.1.1"
             }
           },
           "hash": "sha256-5fee65861429bc0d358730fff6f02278346eb5d48fb770b9779aba6e923bc26c",
