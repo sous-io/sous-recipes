@@ -12,12 +12,20 @@ and, in one recipe, JavaScript you can read before you run it.
 
 | Recipe | What it gives an agent |
 |--------|------------------------|
+| `omakase/house` | The standard set, chosen for you: subscribing to it subscribes the project to every `communication` and `reasoning` recipe, and to `workflow/agent-memory`, `workflow/autonomous-work`, `workflow/sources-of-truth`, `workflow/sub-agent-delegation`, `workflow/task-files` and `engineering/design-tenets`. It has no files of its own. |
 | `core/sous-skills` | What sous is, which files it owns and must never be hand-edited, how a sous config is written and debugged, the `.tpl.` template convention and LiquidJS syntax, what an agent skill is and how to create one, and how a recipe repository and a recipe work. |
 | `communication/control-flow` | Generic interaction skills for steering a session: approve a plan and proceed, ask for an opinion without acting, repeat the last instruction, and run a research task across background sub-agents. |
+| `communication/agent-conduct` | Always-loaded conduct rules for an agent working with a person: a question is not an instruction, solve the whole problem, quote sources, label rulings and inferences, respect the user's time, show requested drafts instead of sending them, and take outward actions only as far as the project's settings allow. |
+| `communication/plain-speech` | Speaking plainly, as a memory, a topic skill and a partial, plus the `/q`, `/speak-plainly` and `/wtf` commands. |
+| `reasoning/evidence-and-verification` | State assumptions and verify the ones that matter; verify before asserting, label anything unconfirmed, and look for root causes. |
 | `workflow/sub-agent-delegation` | The orchestrator-and-sub-agent working pattern the other recipes cite: the main session reasons, decides and talks to you, and delegates execution to background sub-agents. |
 | `workflow/task-files` | Per-branch task files: one working-notes file per git branch, with skills for starting a task, resuming one, updating it before a session ends, and carrying remaining work into a follow-up branch. |
+| `workflow/autonomous-work` | Let the agent keep working while you are away: `/plan-auto`, `/afk` and `/brb`, with ways around blockers and one report on your return. |
+| `workflow/sources-of-truth` | Which artifact answers which question (docs, decision records, the tracker), and the `/decide` command, which records a ruling everywhere it belongs. |
+| `workflow/agent-memory` | Improving the agent's instructions as one of its primary jobs, with the `/harvest`, `/reflect` and `/mistake` commands. |
 | `workflow/github-projects` | The GitHub Issues and Projects v2 workflow, with skills for creating an issue, picking one to work on, and filing tech debt. |
 | `tool-usage/automated-browser-tasks` | Headless browser automation driven from your own Chrome session: the `ctx` API, the auth and cookie model, the scriptwriting conventions, and skills for writing, updating and running a browser task. Linux only, and it ships runnable code. |
+| `cli/command-design` | Principles for designing command-line interfaces, with skills for creating a new command and updating an existing one. |
 | `engineering/design-tenets` | Always-loaded design tenets: start from the ideal experience and compromise only at named walls, one implementation per concern, the same input means the same thing everywhere, and accept every reasonable form of an intent while storing only the canonical one. |
 
 ## Using it
@@ -47,6 +55,15 @@ Subscribe to the recipes you want, one at a time. The one exception is `core`,
 which sous auto-subscribes in every project with opt-out-only semantics; those are
 the skills that teach an agent about sous itself, so a project that uses sous
 wants them.
+
+If you would rather not choose, subscribe to `omakase/house`, the standard set.
+It subscribes you to the recipes and namespaces named in its row above, and
+leaves out the ones that need something most projects lack (an issue board, a
+browser script directory) or suit only some projects (command-line design):
+
+```bash
+sous subscribe omakase/house
+```
 
 ### Dependencies
 

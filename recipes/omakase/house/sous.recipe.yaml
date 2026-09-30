@@ -1,0 +1,37 @@
+# omakase/house
+#
+# The standard set: a recipe with no contents of its own, only a 'subscribes'
+# list. Subscribing to it subscribes the project to everything listed, as if
+# the project had subscribed to each one itself.
+#
+# A whole namespace is listed wherever every recipe in it belongs in the set,
+# so a recipe added to that namespace later joins the set on its own. A
+# namespace cannot leave a recipe out, so 'workflow' is listed recipe by
+# recipe. Left out on purpose:
+#
+#   - core: every project already has it, pinned to the running sous version.
+#   - workflow/github-projects: needs a GitHub Projects v2 board.
+#   - cli/command-design: useful only to projects that build a command-line tool.
+#   - tool-usage/automated-browser-tasks: needs a browser script directory, runs
+#     only on Linux, and needs npm packages installed in the project.
+formatVersion: 1
+
+namespace: omakase
+name: house
+version: 1.0.0
+
+description: >-
+  The standard set of recipes, chosen for you: the conduct, plain-speech and
+  session-steering rules, evidence and verification, sub-agent delegation,
+  per-branch task files, work while the user is away, sources of truth,
+  improving the agent's own instructions, and the design tenets.
+
+subscribes:
+  - communication
+  - reasoning
+  - workflow/agent-memory
+  - workflow/autonomous-work
+  - workflow/sources-of-truth
+  - workflow/sub-agent-delegation
+  - workflow/task-files
+  - engineering/design-tenets
