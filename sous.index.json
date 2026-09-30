@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-30T01:19:40.250Z",
-  "generator": "0.2.25",
+  "generatedAt": "2026-09-30T01:47:04.981Z",
+  "generator": "0.2.26",
   "name": "sous-recipes",
   "namespaces": {
     "cli": {
@@ -286,6 +286,12 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T23:33:11.272Z",
           "tag": "core/sous-skills@0.2.25"
+        },
+        "0.2.26": {
+          "hash": "sha256-5392fc3d89982e0836d37d89c74dd66af4bfe8e7874067fe21adde79a01a3734",
+          "prerelease": false,
+          "releasedAt": "2026-09-30T01:47:04.981Z",
+          "tag": "core/sous-skills@0.2.26"
         },
         "0.2.3": {
           "hash": "sha256-fb624e8d78b7ac3784dfa414d3a47722eb7bdd578fb9ece8bc988e11e6d87c99",
