@@ -4,7 +4,9 @@
 # Subscribers to THIS repository are expected to subscribe per recipe; `core`
 # is the exception, auto-subscribed as a whole namespace with opt-out-only
 # semantics. Namespace subscriptions remain a first-class feature for other
-# repositories, where a namespace is a coherent collection.
+# repositories, where a namespace is a coherent collection. The `omakase`
+# recipes are the one-step alternative: each is a preset set that subscribes a
+# project to recipes and namespaces chosen for it.
 formatVersion: 1
 
 name: sous-recipes
@@ -44,6 +46,9 @@ namespaces:
       decomposition, and knowing when it is stuck.
   engineering:
     description: How to design software people enjoy using.
+  omakase:
+    description: >-
+      Preset sets of recipes, chosen for you and subscribed together.
 
 recipes:
   - recipes/core/sous-skills
@@ -60,3 +65,4 @@ recipes:
   - recipes/cli/command-design
   - recipes/reasoning/evidence-and-verification
   - recipes/engineering/design-tenets
+  - recipes/omakase/house
