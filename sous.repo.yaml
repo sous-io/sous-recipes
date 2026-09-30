@@ -42,6 +42,8 @@ namespaces:
     description: >-
       How an agent thinks through a problem: weighing evidence, self-checking,
       decomposition, and knowing when it is stuck.
+  engineering:
+    description: How to design software people enjoy using.
 
 recipes:
   - recipes/core/sous-skills
@@ -57,3 +59,4 @@ recipes:
   - recipes/tool-usage/automated-browser-tasks
   - recipes/cli/command-design
   - recipes/reasoning/evidence-and-verification
+  - recipes/engineering/design-tenets

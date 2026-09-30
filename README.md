@@ -18,6 +18,7 @@ and, in one recipe, JavaScript you can read before you run it.
 | `workflow/task-files` | Per-branch task files: one working-notes file per git branch, with skills for starting a task, resuming one, updating it before a session ends, and carrying remaining work into a follow-up branch. |
 | `workflow/github-projects` | The GitHub Issues and Projects v2 workflow, with skills for creating an issue, picking one to work on, and filing tech debt. |
 | `tool-usage/automated-browser-tasks` | Headless browser automation driven from your own Chrome session: the `ctx` API, the auth and cookie model, the scriptwriting conventions, and skills for writing, updating and running a browser task. Linux only, and it ships runnable code. |
+| `engineering/design-tenets` | Always-loaded design tenets: start from the ideal experience and compromise only at named walls, one implementation per concern, the same input means the same thing everywhere, and accept every reasonable form of an intent while storing only the canonical one. |
 
 ## Using it
 
