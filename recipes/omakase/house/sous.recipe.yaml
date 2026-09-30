@@ -18,7 +18,7 @@ formatVersion: 1
 
 namespace: omakase
 name: house
-version: 1.0.0
+version: 1.0.1
 
 description: >-
   The standard set of recipes, chosen for you: the conduct, plain-speech and
