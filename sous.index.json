@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-09-30T03:02:29.109Z",
+  "generatedAt": "2026-09-30T03:04:08.885Z",
   "generator": "0.2.30",
   "name": "sous-recipes",
   "namespaces": {
@@ -431,6 +431,76 @@
           "prerelease": false,
           "releasedAt": "2026-09-30T02:18:25.542Z",
           "tag": "omakase/house@1.0.0"
+        },
+        "1.0.1": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "declared": "communication",
+              "kind": "subscribes",
+              "version": "1.2.1"
+            },
+            "communication/control-flow": {
+              "declared": "communication",
+              "kind": "subscribes",
+              "version": "1.2.1"
+            },
+            "communication/plain-speech": {
+              "declared": "communication",
+              "kind": "subscribes",
+              "version": "1.0.0"
+            },
+            "engineering/design-tenets": {
+              "declared": "engineering/design-tenets",
+              "kind": "subscribes",
+              "version": "1.0.0"
+            },
+            "reasoning/evidence-and-verification": {
+              "declared": "reasoning",
+              "kind": "subscribes",
+              "version": "1.0.0"
+            },
+            "workflow/agent-memory": {
+              "declared": "workflow/agent-memory",
+              "kind": "subscribes",
+              "version": "1.1.0"
+            },
+            "workflow/autonomous-work": {
+              "declared": "workflow/autonomous-work",
+              "kind": "subscribes",
+              "version": "1.2.0"
+            },
+            "workflow/sources-of-truth": {
+              "declared": "workflow/sources-of-truth",
+              "kind": "subscribes",
+              "version": "1.0.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "declared": "workflow/sub-agent-delegation",
+              "kind": "subscribes",
+              "version": "1.1.1"
+            },
+            "workflow/task-files": {
+              "declared": "workflow/task-files",
+              "kind": "subscribes",
+              "version": "1.1.0"
+            }
+          },
+          "depends": [],
+          "hash": "sha256-857784637ee9e373dee57606d561a699f50e85793db69e8a5a5d55a2b8c48efd",
+          "prerelease": false,
+          "releasedAt": "2026-09-30T03:04:08.885Z",
+          "subscribes": [
+            "communication",
+            "reasoning",
+            "workflow/agent-memory",
+            "workflow/autonomous-work",
+            "workflow/sources-of-truth",
+            "workflow/sub-agent-delegation",
+            "workflow/task-files",
+            "engineering/design-tenets"
+          ],
+          "tag": "omakase/house@1.0.1",
+          "variables": []
         }
       }
     },
