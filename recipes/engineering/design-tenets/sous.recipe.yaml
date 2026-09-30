@@ -1,0 +1,21 @@
+# engineering/design-tenets
+#
+# One always-loaded memory holding the design tenets: start from the ideal
+# experience, one implementation per concern, the same input means the same
+# thing everywhere, and accept liberally but store strictly. No variables.
+formatVersion: 1
+
+namespace: engineering
+name: design-tenets
+version: 1.0.0
+
+description: >-
+  Design tenets for software people enjoy using: start from the ideal
+  experience and compromise only at named walls, keep one implementation per
+  concern, make the same input mean the same thing everywhere, and accept
+  every reasonable form of an intent while storing only the canonical one.
+
+contents:
+  - kind: memories
+    include:
+      - memories/*.md
