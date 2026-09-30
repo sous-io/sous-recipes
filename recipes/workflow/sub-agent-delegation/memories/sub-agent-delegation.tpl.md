@@ -23,11 +23,11 @@ multi-step lookups.
 
 ## Model Tiers
 
-Rank the models available to the agent tool by capability: the top tier is the most capable, then
-the second tier, and so on. The main session's own model is the top tier unless the user says
-otherwise. NEVER name a model or a provider in instructions; name the tier.
+Rank the models available to the agent tool by capability alone: the top tier is the most capable,
+then the second tier, and so on. NEVER assume the main session's own model is the top tier; it often
+is not. NEVER name a model or a provider in instructions; name the tier.
 
-- The main session runs the top tier. Sub-agents do not.
+- Sub-agents never run the top tier, whatever model the main session runs.
 - Substantive work (writing code or docs, research, anything outward-facing): the second tier.
 - Rote, mechanical work (listing, extracting, reformatting): the third tier or lower.
 - **The cheapest model is code.** NEVER have an agent collect what a short script can: counts, file
