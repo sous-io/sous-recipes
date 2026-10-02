@@ -49,9 +49,10 @@ sous build
 ```
 
 The subscription delivers the skills (`SKILL.tpl.md`, the references, the examples
-and the scripts) into the project's skills directory, and the task manifest memory
-into its memories directory. `settings.tpl.mjs` is compiled to `settings.mjs`
-beside `run.mjs` in the same pass, so scripts get `ctx.settings`.
+and the scripts) into the project's skills directory. `settings.tpl.mjs` is compiled
+to `settings.mjs` beside `run.mjs` in the same pass, so scripts get `ctx.settings`.
+The task manifest is a memory, which reaches the agent through the project's
+instruction file (see below).
 
 Subscribing asks the two questions this recipe declares:
 `browserAutomationScriptsDir` (the absolute path to the project's task scripts,
@@ -71,10 +72,20 @@ trigger firing, the recipe ships a memory file that renders a live list of every
 task script with `{% raw %}{% getFiles ... import="meta" %}{% endraw %}`, reading each script's `meta`
 export.
 
-The subscription places it in the project's memories directory as
-`automated-browser-tasks.md`, and sous rebuilds it on every `sous build`, so a
-newly created task appears on its own. It needs `browserAutomationScriptsDir` to be
-in scope; that is the same answer the subscription already collected.
+A memory reaches the agent when the project's instruction source (the file its
+`AGENTS.md` or `CLAUDE.md` is built from) includes it. Most projects include every
+subscribed recipe's memories with one line, which `sous init` writes for you:
+
+```markdown
+@#memories/**/*.md
+```
+
+To include only this one, write
+`@~tool-usage/automated-browser-tasks/memories/automated-browser-tasks.md` instead.
+The memory is a `.tpl.` file, so it renders wherever it is included, and sous
+rebuilds it on every `sous build`, so a newly created task appears on its own. It
+needs `browserAutomationScriptsDir` to be in scope; that is the same answer the
+subscription already collected. When no output includes it, `sous build` says so.
 
 ## Verifying
 
