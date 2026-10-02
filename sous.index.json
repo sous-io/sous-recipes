@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-10-02T07:42:45.418Z",
+  "generatedAt": "2026-10-02T07:44:47.390Z",
   "generator": "0.2.33",
   "name": "sous-recipes",
   "namespaces": {
@@ -636,6 +636,54 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T11:04:32.785Z",
           "tag": "tool-usage/automated-browser-tasks@1.0.3"
+        },
+        "1.0.4": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "declared": "workflow/sub-agent-delegation@^1.0.0",
+              "kind": "depends",
+              "version": "1.1.1"
+            }
+          },
+          "depends": [
+            "workflow/sub-agent-delegation@^1.0.0"
+          ],
+          "hash": "sha256-5a14dd89146b120afa7a0dd6c7f0de1bf16628f09c5cbda32bb5f1b9d6186333",
+          "prerelease": false,
+          "releasedAt": "2026-10-02T07:44:47.390Z",
+          "subscribes": [],
+          "tag": "tool-usage/automated-browser-tasks@1.0.4",
+          "variables": [
+            {
+              "description": "An absolute path. The runner reads task scripts from here, and the task manifest memory lists every script it finds there. The path is specific to one machine, so it is stored in the gitignored local env file. There is no default; any directory you can write to is acceptable, and a project that keeps its scripts inside the repository still names them absolutely here.",
+              "env": "BROWSER_AUTOMATION_SCRIPTS_DIR",
+              "example": "/home/ada/projects/widget-api/browser-tasks",
+              "name": "browserAutomationScriptsDir",
+              "prompt": "Which directory holds this project's browser task scripts?",
+              "required": true,
+              "scope": "local",
+              "secret": false,
+              "type": "path",
+              "validate": {
+                "minLength": 1
+              }
+            },
+            {
+              "default": "Default",
+              "description": "The profile directory name as Chrome writes it, such as 'Default' or 'Profile 1'. The default is the profile Chrome creates for a new installation, which is the right answer for most people; change it only if you keep the session these tasks need in a secondary profile.",
+              "env": "CHROME_PROFILE",
+              "example": "Profile 1",
+              "name": "chromeProfile",
+              "prompt": "Which Chrome profile should browser tasks use?",
+              "required": false,
+              "scope": "local",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "minLength": 1
+              }
+            }
+          ]
         }
       }
     },
