@@ -49,6 +49,11 @@ namespaces:
   omakase:
     description: >-
       Preset sets of recipes, chosen for you and subscribed together.
+  experimental:
+    description: >-
+      Unfinished recipes from experiments, published so others can learn from
+      them. Nothing here is expected to work without heavy modification, and
+      any recipe may change completely or disappear between versions.
 
 recipes:
   - recipes/core/sous-skills
@@ -66,3 +71,4 @@ recipes:
   - recipes/reasoning/evidence-and-verification
   - recipes/engineering/design-tenets
   - recipes/omakase/house
+  - recipes/experimental/batch-inference

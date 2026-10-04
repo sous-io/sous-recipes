@@ -1,0 +1,31 @@
+# experimental/batch-inference
+#
+# EXPERIMENTAL: this recipe records what one experiment learned about sending
+# large numbers of small decisions to model APIs. Its scripts are an unfinished
+# sketch; expect to modify them heavily before they work for you.
+#
+# The manifest format has no field for a recipe's stability, so it is flagged in
+# three places: the `experimental` namespace, the `x-status` key below, and a
+# notice at the top of every file. The scripts need Node 22.18 or newer (which
+# runs TypeScript directly) and API keys of the subscriber's own; the format has
+# no field for those either, so they live in the x- keys below and in the
+# scripts' README.
+formatVersion: 1
+
+namespace: experimental
+name: batch-inference
+version: 0.1.0
+
+description: >-
+  EXPERIMENTAL. Batch inference for large decision tasks: scripted API calls in
+  place of agent sessions, prompt refinement against a human answer key, and
+  fallback chains from cheap models to expensive ones, with notes on models and
+  providers and an unfinished evaluation harness.
+
+x-status: experimental
+x-requires-node: ">=22.18"
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*
