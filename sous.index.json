@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-10-02T07:44:47.390Z",
+  "generatedAt": "2026-10-04T02:04:46.530Z",
   "generator": "0.2.33",
   "name": "sous-recipes",
   "namespaces": {
@@ -15,6 +15,9 @@
     },
     "engineering": {
       "description": "How to design software people enjoy using."
+    },
+    "experimental": {
+      "description": "Unfinished recipes from experiments, published so others can learn from them. Nothing here is expected to work without heavy modification, and any recipe may change completely or disappear between versions."
     },
     "omakase": {
       "description": "Preset sets of recipes, chosen for you and subscribed together."
@@ -465,6 +468,22 @@
           "prerelease": false,
           "releasedAt": "2026-09-30T01:19:40.250Z",
           "tag": "engineering/design-tenets@1.0.0"
+        }
+      }
+    },
+    "experimental/batch-inference": {
+      "description": "EXPERIMENTAL. Batch inference for large decision tasks: scripted API calls in place of agent sessions, prompt refinement against a human answer key, and fallback chains from cheap models to expensive ones, with notes on models and providers and an unfinished evaluation harness.",
+      "path": "recipes/experimental/batch-inference",
+      "versions": {
+        "0.1.0": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-bbe403de06d6ad0b4a47cb34686454aaa41c35096a250b09a2a801e157f81074",
+          "prerelease": false,
+          "releasedAt": "2026-10-04T02:04:46.530Z",
+          "subscribes": [],
+          "tag": "experimental/batch-inference@0.1.0",
+          "variables": []
         }
       }
     },
