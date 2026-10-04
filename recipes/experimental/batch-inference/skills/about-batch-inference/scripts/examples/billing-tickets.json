@@ -1,0 +1,21 @@
+{
+  "_experimental": "EXPERIMENTAL: this code is an unfinished sketch from one experiment. Expect to modify it heavily before it works for you.",
+  "name": "billing-tickets",
+  "task": "decision",
+  "notes": "Fictional example: is each support ticket about billing? Jev first, then two Anthropic models.",
+  "models": [
+    "jev",
+    "claude-sonnet-5-5",
+    { "model": "claude-opus-5-5", "context": [] }
+  ],
+  "prompts": { "anthropic": "billing.md", "jev": "billing-jev.json" },
+  "prompts_dir": "prompts",
+  "context": ["channel", { "name": "customer_plan", "path": "plan", "default": "unknown" }],
+  "with_confidence": true,
+  "threshold": 0.75,
+  "batch_size": 4,
+  "max_tokens": 2048,
+  "items": { "file": "items.jsonl" },
+  "answer_key": { "file": "answer-key.jsonl" },
+  "concurrency": 4
+}

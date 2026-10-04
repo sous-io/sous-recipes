@@ -1,0 +1,9 @@
+{"_experimental": "EXPERIMENTAL: this code is an unfinished sketch from one experiment. Expect to modify it heavily before it works for you."}
+{"id": "t-001", "text": "I was charged twice for my March invoice. Can you refund the duplicate?", "channel": "email", "plan": "team", "group": "tuning"}
+{"id": "t-002", "text": "The export button does nothing when I click it in Firefox.", "channel": "chat", "plan": "free", "group": "tuning"}
+{"id": "t-003", "text": "How do I switch our workspace from monthly to yearly payment?", "channel": "email", "plan": "team", "group": "tuning"}
+{"id": "t-004", "text": "Please add my colleague as an admin on our account.", "channel": "chat", "plan": "business", "group": "tuning"}
+{"id": "t-005", "text": "Your app logged me out and now my card on file shows as expired, but it is not.", "channel": "email", "plan": "free", "group": "holdout"}
+{"id": "t-006", "text": "Can I get a receipt with our company tax number on it?", "channel": "email", "plan": "business", "group": "holdout"}
+{"id": "t-007", "text": "The dashboard takes almost a minute to load every morning.", "channel": "chat", "plan": "team", "group": "holdout"}
+{"id": "t-008", "text": "We cancelled last week but the trial reminder emails keep coming.", "channel": "email", "plan": "free", "group": "holdout"}

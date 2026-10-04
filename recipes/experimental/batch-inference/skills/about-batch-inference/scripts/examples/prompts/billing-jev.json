@@ -1,0 +1,17 @@
+{
+  "_experimental": "EXPERIMENTAL: this code is an unfinished sketch from one experiment. Expect to modify it heavily before it works for you.",
+  "state": {
+    "task_context": "Support tickets are routed to the billing team only when they are about billing: charges, refunds, invoices, receipts, payment methods or changing how the customer pays.",
+    "examples": [
+      { "item": "Why was my card charged on the 3rd?", "billing": true },
+      { "item": "The search box returns no results.", "billing": false },
+      { "item": "Please remove a former employee from our account.", "billing": false }
+    ]
+  },
+  "questions": {
+    "decision": {
+      "type": "noul",
+      "instructions": "Is the ticket in `item` about billing? Use `context`, when present, only as a hint."
+    }
+  }
+}
