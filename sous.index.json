@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-10-04T02:04:46.530Z",
-  "generator": "0.2.33",
+  "generatedAt": "2026-10-07T04:20:53.863Z",
+  "generator": "0.2.34",
   "name": "sous-recipes",
   "namespaces": {
     "cli": {
@@ -409,6 +409,32 @@
           "releasedAt": "2026-10-02T07:42:45.418Z",
           "subscribes": [],
           "tag": "core/sous-skills@0.2.33",
+          "variables": [
+            {
+              "default": "prompts/skills",
+              "description": "This recipe teaches agents to write skills of their own, and a skill's source is not the compiled copy sous builds into the agent directories. This setting says where those sources are kept: the create-skill skill writes new skills there, and the about-sous and about-agent-skills skills point agents at it when they go looking. The default keeps them in a prompts directory at the project root, but any path works, either relative to the project root or absolute.",
+              "env": "SKILLS_ROOT",
+              "example": "prompts/skills",
+              "name": "skillsRoot",
+              "prompt": "Where should this project's own skills be kept?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "path",
+              "validate": {
+                "minLength": 1
+              }
+            }
+          ]
+        },
+        "0.2.34": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-6599883745045be256dacabe9f2f92224657a05cb0ac6532fdd33b7598c6f9e1",
+          "prerelease": false,
+          "releasedAt": "2026-10-07T04:20:53.863Z",
+          "subscribes": [],
+          "tag": "core/sous-skills@0.2.34",
           "variables": [
             {
               "default": "prompts/skills",
