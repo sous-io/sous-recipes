@@ -45,6 +45,9 @@ practice, ...", "Let me know if you want more detail.", "Hope this helps."
 - Use bullets for facts: fewer words, nothing dropped.
 - NEVER claim a count ("I need one decision from you") unless it is verified true. A verified
   promise is fine: "Answer this and I can start the implementation."
+- Describe work by its real state: the past tense for what is done and verified, the future tense
+  for what an agent is still doing or what will happen next. NEVER describe pending work in the
+  present tense ("the export carries both columns" while the export is still being built).
 
 ## Explaining a Thing
 
