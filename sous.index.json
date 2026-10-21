@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-10-07T04:20:53.863Z",
+  "generatedAt": "2026-10-21T00:51:16.872Z",
   "generator": "0.2.34",
   "name": "sous-recipes",
   "namespaces": {
@@ -178,6 +178,16 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T11:04:32.785Z",
           "tag": "communication/plain-speech@1.0.0"
+        },
+        "1.0.1": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-3860bd68136d0d8ae5731168151df896a5c1d08c0128574430a5f391f18dddc7",
+          "prerelease": false,
+          "releasedAt": "2026-10-21T00:51:16.872Z",
+          "subscribes": [],
+          "tag": "communication/plain-speech@1.0.1",
+          "variables": []
         }
       }
     },
@@ -957,6 +967,16 @@
           "prerelease": false,
           "releasedAt": "2026-09-30T01:18:18.749Z",
           "tag": "workflow/sub-agent-delegation@1.1.1"
+        },
+        "1.1.2": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-c87a940f139510362f7fdb6a62504d1b9d536ffcd54830a4db6de0f0e2f34ccf",
+          "prerelease": false,
+          "releasedAt": "2026-10-21T00:51:16.872Z",
+          "subscribes": [],
+          "tag": "workflow/sub-agent-delegation@1.1.2",
+          "variables": []
         }
       }
     },
