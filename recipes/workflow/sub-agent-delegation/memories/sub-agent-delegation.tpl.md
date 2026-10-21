@@ -41,6 +41,9 @@ background, one narrow question, a one-line answer.
 
 - Run sub-agents in the background and in parallel by default; batch independent dispatches into one
   message. Go synchronous only when the result blocks the very next step.
+- When several agents commit in one working tree, every prompt that allows commits says: "Stage and
+  commit in one command (`git add <paths> && git commit ...`), and never leave a `git rm` or `git mv`
+  staged while doing other work: another agent's commit takes everything in the index."
 - Prompts must be self-contained. Sub-agents start with fresh context and cannot see the
   conversation, so state every fact, path, ID, and decision they need, and name the skills they
   should load. Anything the sub-agent can gather itself (branch name, commits, test output) should
