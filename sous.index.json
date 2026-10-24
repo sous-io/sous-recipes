@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-10-24T01:28:21.231Z",
+  "generatedAt": "2026-10-24T01:29:50.732Z",
   "generator": "0.2.34",
   "name": "sous-recipes",
   "namespaces": {
@@ -779,6 +779,31 @@
           "releasedAt": "2026-10-24T01:28:21.231Z",
           "subscribes": [],
           "tag": "tool-usage/chatgpt-images@0.2.0",
+          "variables": [
+            {
+              "description": "An OpenAI API key with access to the Images API, created at platform.openai.com. Every generated image is billed to the account that owns this key. It is a secret, so it is stored only in the gitignored .sous/.env.local file, where the image scripts read it when the environment does not already carry OPENAI_API_KEY. There is no default: without a key, no image can be generated.",
+              "env": "OPENAI_API_KEY",
+              "example": "sk-proj-AbCdEf0123456789",
+              "name": "openaiApiKey",
+              "prompt": "What OpenAI API key should image generation use?",
+              "required": true,
+              "scope": "local",
+              "secret": true,
+              "type": "string",
+              "validate": {
+                "minLength": 20
+              }
+            }
+          ]
+        },
+        "0.2.1": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-ea7b60e1439a2e39ae8d53a443b1bb5b18a42b3d07d9bd0a93a156fb491f715f",
+          "prerelease": false,
+          "releasedAt": "2026-10-24T01:29:50.732Z",
+          "subscribes": [],
+          "tag": "tool-usage/chatgpt-images@0.2.1",
           "variables": [
             {
               "description": "An OpenAI API key with access to the Images API, created at platform.openai.com. Every generated image is billed to the account that owns this key. It is a secret, so it is stored only in the gitignored .sous/.env.local file, where the image scripts read it when the environment does not already carry OPENAI_API_KEY. There is no default: without a key, no image can be generated.",
