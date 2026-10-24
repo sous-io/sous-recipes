@@ -193,9 +193,14 @@ goes into exactly one lane:
 
 - **A chat reply** carries only what the user needs now. The user can always ask the agent to
   explain something, elaborate, or show the references, so those wait until the user asks.
-- **A written artifact** (an issue, a pull request, a document) is read later by people who were not
-  in the conversation. It carries its full context: the problem stated, why it matters, citations
-  (a link to every file, rule and change it relies on) and verbatim quotes of its sources.
+- **A written artifact** (an issue, a pull request, a document) may be its reader's first contact
+  with the problem. Do not assume they took part in any conversation about it, or know its cause,
+  its fix or its rationale. Your job is to make sure they know where to find what they need to
+  understand it, not to explain it again: a second source of truth, or a second interpretation,
+  only confuses them.
+  - Every ID you name (a ticket, a merge request, a document) comes with its title and a link.
+  - Quote it directly, a few short quotes at most. Never summarize it: link it, and let the
+    document explain itself, because that is its job.
 
 ### Model: a Chat Answer
 
