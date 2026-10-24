@@ -67,9 +67,14 @@ Before a list, say what the list is, and define every term the list depends on b
 
 - **A chat reply** carries only what the user needs now; the user can always ask the agent to
   explain, elaborate or show the references.
-- **A written artifact** (an issue, a pull request, a document) is read later by people who were not
-  there. It carries full context: the problem stated, why it matters, citations (a link to every
-  file, rule and change it relies on) and verbatim quotes of its sources.
+- **A written artifact** (an issue, a pull request, a document) may be its reader's first contact
+  with the problem. Do not assume they took part in any conversation about it, or know its cause,
+  its fix or its rationale. Your job is to make sure they know where to find what they need to
+  understand it, not to explain it again: a second source of truth, or a second interpretation,
+  only confuses them.
+  - Every ID you name (a ticket, a merge request, a document) comes with its title and a link.
+  - Quote it directly, a few short quotes at most. Never summarize it: link it, and let the
+    document explain itself, because that is its job.
 
 NEVER mention a file the answer does not need. ALWAYS link a file the answer does mention: its full
 absolute path on its own line, with a line number when one helps. A website gets its URL.
