@@ -1,0 +1,48 @@
+# tool-usage/chatgpt-images
+#
+# This recipe ships runnable code: a dependency-free Node server and command
+# line that call the OpenAI Images API, archive every image, and serve a local
+# web page where the user picks the images they want. It needs Node 22 or newer
+# and an OpenAI API key of the subscriber's own. The manifest format has no
+# field for a runtime version, so that lives in the x- key below.
+formatVersion: 1
+
+namespace: tool-usage
+name: chatgpt-images
+version: 0.1.0
+
+description: >-
+  Image generation with the OpenAI Images API (the models behind ChatGPT's
+  image generation): the /create-image and /create-image-spread commands, a
+  local selection page for accepting, storing, rejecting, commenting on and
+  editing the results, and an archive of every image with a record of why it
+  was made and where it was used.
+
+x-requires-node: ">=22"
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*
+  - kind: memories
+    include:
+      - memories/*.md
+
+variables:
+  - name: openaiApiKey
+    env: OPENAI_API_KEY
+    type: string
+    secret: true
+    scope: local
+    required: true
+    prompt: What OpenAI API key should image generation use?
+    description: >-
+      An OpenAI API key with access to the Images API, created at
+      platform.openai.com. Every generated image is billed to the account that
+      owns this key. It is a secret, so it is stored only in the gitignored
+      .sous/.env.local file, where the image scripts read it when the
+      environment does not already carry OPENAI_API_KEY. There is no default:
+      without a key, no image can be generated.
+    example: sk-proj-AbCdEf0123456789
+    validate:
+      minLength: 20

@@ -25,6 +25,7 @@ and, in one recipe, JavaScript you can read before you run it.
 | `workflow/agent-memory` | Improving the agent's instructions as one of its primary jobs, with the `/harvest`, `/reflect` and `/mistake` commands. |
 | `workflow/github-projects` | The GitHub Issues and Projects v2 workflow, with skills for creating an issue, picking one to work on, and filing tech debt. |
 | `tool-usage/automated-browser-tasks` | Headless browser automation driven from your own Chrome session: the `ctx` API, the auth and cookie model, the scriptwriting conventions, and skills for writing, updating and running a browser task. Linux only, and it ships runnable code. |
+| `tool-usage/chatgpt-images` | Image generation with the OpenAI Images API: the `/create-image` and `/create-image-spread` commands, a local picker for accepting, storing, rejecting, commenting on and editing the results, and an archive of every image with a record of why it was made and where it was used. Needs Node 22 and your own OpenAI API key, and it ships runnable code. |
 | `cli/command-design` | Principles for designing command-line interfaces, with skills for creating a new command and updating an existing one. |
 | `engineering/design-tenets` | Always-loaded design tenets: start from the ideal experience and compromise only at named walls, one implementation per concern, the same input means the same thing everywhere, and accept every reasonable form of an intent while storing only the canonical one. |
 

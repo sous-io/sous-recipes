@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Picker</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="9" cy="9.5" r="2"/><path d="M21 16l-5.5-5.5L5 21"/></svg>
+      <span>Image Picker</span>
+    </div>
+    <div class="stats" id="stats"></div>
+    <label class="header-toggle"><input type="checkbox" id="close-accepted"><span>Close Accepted Images</span></label>
+    <label class="header-toggle" title="Keep the picker running after every set is closed"><input type="checkbox" id="keep-alive"><span>Keep Alive</span></label>
+    <div class="live" id="live"><span class="dot"></span><span class="label">Connecting</span></div>
+  </header>
+
+  <main>
+    <div id="empty" class="empty" hidden>
+      <div class="empty-art"></div>
+      <h2>No images yet</h2>
+      <p>New image sets appear here as the agent creates them.</p>
+    </div>
+    <div id="sets"></div>
+  </main>
+
+  <button id="new-below" class="pill" hidden>New set below</button>
+  <div id="toasts" class="toasts"></div>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <img alt="">
+    <div class="lightbox-caption"></div>
+  </div>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
