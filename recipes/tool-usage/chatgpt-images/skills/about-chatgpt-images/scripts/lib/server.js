@@ -244,11 +244,13 @@ export async function serve(opts) {
   }
 
   function createSet(input, extra = {}) {
-    const prompt = String(input.prompt ?? '').trim();
-    if (!prompt) throw httpError(400, 'A set needs a prompt');
     // Variants give each image its own prompt and a short note saying how it
-    // differs; without them every image uses the set's prompt.
+    // differs; without them every image uses the set's prompt. With them, the
+    // set's prompt is optional: it heads the set in the picker and is recorded
+    // as each image's base prompt, and the first variant stands in for it.
     const variants = Array.isArray(input.variants) && input.variants.length ? input.variants : null;
+    const prompt = String(input.prompt ?? variants?.[0]?.prompt ?? '').trim();
+    if (!prompt) throw httpError(400, 'A set needs a prompt');
     const count = variants ? Math.min(variants.length, 16) : clampInt(input.count ?? defaults.count, 1, 16);
     const references = (input.references ?? []).map((r) => path.resolve(r));
     if (references.length > 4) throw httpError(400, 'At most 4 reference images are allowed');

@@ -9,7 +9,7 @@ formatVersion: 1
 
 namespace: tool-usage
 name: chatgpt-images
-version: 0.1.0
+version: 0.2.0
 
 description: >-
   Image generation with the OpenAI Images API (the models behind ChatGPT's

@@ -20,15 +20,18 @@ What differs from a single image:
 - **The prompt asks for the grid.** It opens "A single image showing 8 distinct" alternatives of the
   subject, "arranged in a clean grid of 4 columns and 2 rows on a plain background", with "a small
   number from 1 to 8 beneath" each one. Constraints the user gave (no lettering, a palette) apply
-  to every alternative.
+  to every alternative. When the user rules out text, the prompt says "the numbers are the only
+  text in the image", because the required numbers otherwise pull against the constraint.
 - **The base prompt names no example ideas.** Ideas listed in the base prompt reappear in every
   grid. Instead, each image's variant gives that grid its own starting directions or palette, and
   its note says so.
 - **The set is a spread.** Add it with `--mode spread` and `--size 1536x1024`, the shape of a 4 by
   2 grid.
 - **Concepts are named by grid and number.** Tell the user that a comment such as "3.2 #5" picks out
-  one alternative. An edit request on one alternative becomes an ordinary set, square unless the
-  user said otherwise, asking for that alternative alone, with the grid attached as its reference.
+  one alternative. To use an alternative as it is, cut it out with
+  `imagegen crop --image <grid> --cell <n> --trim`, which costs nothing. An edit request on one
+  alternative becomes an ordinary set, square unless the user said otherwise, asking for that
+  alternative alone, with the grid (or the cropped alternative) attached as its reference.
 
 Example of the first reply:
 

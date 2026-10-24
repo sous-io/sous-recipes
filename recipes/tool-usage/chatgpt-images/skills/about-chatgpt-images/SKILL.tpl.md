@@ -51,20 +51,28 @@ The commands, in the order a session uses them:
   then keeps following. The agent runs it under a background watcher that turns each line into a
   notification (in Claude Code, the Monitor tool, with the longest timeout). When the watcher
   expires, the agent re-arms it with `--after` set to the last `seq` it saw, so no event is lost.
+- `imagegen wait --event <type> [--set <n>]` blocks until a matching event arrives, prints every
+  event it passed, and exits; `imagegen events --after <seq>` prints the events after `seq` and
+  exits. They replace `watch` where no watcher tool exists (see "Without a Watcher").
 - `imagegen add` queues a new set and returns its number. Its options are in
   [references/commands.md](references/commands.md).
-- `imagegen state` lists every set and image with its status.
+- `imagegen state` lists every set and image with its status. When no server is running it exits
+  with "No server has started in ...", which is how the agent tells that the picker is stopped,
+  not an error.
 - `imagegen stop` stops the server and discards the images waiting in the trash.
+- `imagegen find <words>` searches the archive's records and prints each match's verdict, title
+  and file. `imagegen crop --image <file> --cell <n> --trim` cuts one alternative out of a spread's
+  grid at full resolution, for free; `--transparent` also clears its background.
 - `imagegen record-use --image <file> --where <path or URL> --how <text>` records a use of an
-  archived image, and `imagegen note --image <file> --text <text>` adds a note. Both work without
-  the server.
+  archived image, and `imagegen note --image <file> --text <text>` adds a note. These, `find` and
+  `crop` all work without the server.
 
 ## The Flow
 
 The orchestrator (the main session) runs every step, because each one either talks to the user or
 reacts to the user's clicks.
 
-1. **Look in the archive first.** The archive is described by the generated-images memory. If a
+1. **Look in the archive first** with `imagegen find`, using a few words from the request. If a
    stored image already fits, offer it before generating anything.
 2. **Draft the prompt.** Keep it loose: a prompt that specifies every detail makes every image in a
    set nearly identical. Carry over style choices the user settled earlier in the conversation.
@@ -81,7 +89,9 @@ reacts to the user's clicks.
    wording, every image uses it unchanged.
 6. **Start the picker** if it is not running (`imagegen state` fails when it is not): run `serve`
    in the background (with `--fresh` at the start of a new request), start the watcher, and give the
-   user the address it prints. The page updates live, so later sets need no new address.
+   user the address it prints. When the agent can drive a browser (such as through a browser
+   automation tool), it also opens the address in a new tab. The page updates live, so later sets
+   need no new address.
 7. **Add the set** with `imagegen add`, including `--request` (the user's words) and `--purpose`
    (why the image is wanted), so the archive records both.
 8. **React to events** as [references/events.md](references/events.md) describes. The agent looks
@@ -91,7 +101,24 @@ reacts to the user's clicks.
    with `serve`, without `--fresh`, whenever the user wants it back.
 10. **Use the accepted images** for the goal the user has described or soon will, and record every
     use with `record-use`. Stored images are kept for later and are not used now. An accepted
-    image whose comment says it is not for the current work is kept, not used.
+    image whose comment says it is not for the current work is kept, not used. When the user picks
+    one alternative out of a spread's grid for use as it is, `crop` cuts it out rather than paying
+    for a new generation; an edit request is only for changing it.
+
+## Without a Watcher
+
+Where no tool turns a running command's output into notifications, the agent tracks the last `seq`
+it has read and works this way instead:
+
+- After adding a set, it runs `imagegen wait --set <n> --event set-generated` in the background,
+  and tells the user about the images once that command finishes.
+- While the user reviews, it keeps one `imagegen wait --event any-user` running in the background,
+  and starts another each time one finishes, so each click still reaches the agent.
+- Whenever the user writes, it first reads `imagegen events --after <seq>`, so nothing done in the
+  picker in the meantime is missed.
+
+`--event` takes one or more event types, separated by commas, or a group: `any-verdict` (the
+verdicts and their undoing), `any-user` (everything the user can do in the picker) or `any`.
 
 Example of a proposal:
 
