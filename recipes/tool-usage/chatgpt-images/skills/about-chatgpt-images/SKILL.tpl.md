@@ -53,7 +53,8 @@ The commands, in the order a session uses them:
   expires, the agent re-arms it with `--after` set to the last `seq` it saw, so no event is lost.
 - `imagegen wait --event <type> [--set <n>]` blocks until a matching event arrives, prints every
   event it passed, and exits; `imagegen events --after <seq>` prints the events after `seq` and
-  exits. They replace `watch` where no watcher tool exists (see "Without a Watcher").
+  exits. They are a fallback, used ONLY when the session has no watcher tool (see "Without a
+  Watcher"); wherever a watcher exists, the agent MUST use `watch` under it.
 - `imagegen add` queues a new set and returns its number. Its options are in
   [references/commands.md](references/commands.md).
 - `imagegen state` lists every set and image with its status. When no server is running it exits
@@ -107,8 +108,10 @@ reacts to the user's clicks.
 
 ## Without a Watcher
 
-Where no tool turns a running command's output into notifications, the agent tracks the last `seq`
-it has read and works this way instead:
+The flow above, with `watch` under a watcher tool, is the default, and the agent MUST follow it
+whenever a watcher exists: it is the way that was tried with the user and worked. Only in a session
+with no tool that turns a running command's output into notifications does the agent fall back to
+this, tracking the last `seq` it has read:
 
 - After adding a set, it runs `imagegen wait --set <n> --event set-generated` in the background,
   and tells the user about the images once that command finishes.
