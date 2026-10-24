@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-10-21T00:51:16.872Z",
+  "generatedAt": "2026-10-24T01:08:05.297Z",
   "generator": "0.2.34",
   "name": "sous-recipes",
   "namespaces": {
@@ -736,6 +736,37 @@
               "type": "string",
               "validate": {
                 "minLength": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    "tool-usage/chatgpt-images": {
+      "description": "Image generation with the OpenAI Images API (the models behind ChatGPT's image generation): the /create-image and /create-image-spread commands, a local selection page for accepting, storing, rejecting, commenting on and editing the results, and an archive of every image with a record of why it was made and where it was used.",
+      "path": "recipes/tool-usage/chatgpt-images",
+      "versions": {
+        "0.1.0": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-f56b2de44d9ed47372d9a83786e14b67262975964bf7968e36fa610bee7512ac",
+          "prerelease": false,
+          "releasedAt": "2026-10-24T01:08:05.297Z",
+          "subscribes": [],
+          "tag": "tool-usage/chatgpt-images@0.1.0",
+          "variables": [
+            {
+              "description": "An OpenAI API key with access to the Images API, created at platform.openai.com. Every generated image is billed to the account that owns this key. It is a secret, so it is stored only in the gitignored .sous/.env.local file, where the image scripts read it when the environment does not already carry OPENAI_API_KEY. There is no default: without a key, no image can be generated.",
+              "env": "OPENAI_API_KEY",
+              "example": "sk-proj-AbCdEf0123456789",
+              "name": "openaiApiKey",
+              "prompt": "What OpenAI API key should image generation use?",
+              "required": true,
+              "scope": "local",
+              "secret": true,
+              "type": "string",
+              "validate": {
+                "minLength": 20
               }
             }
           ]
