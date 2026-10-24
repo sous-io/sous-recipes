@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-10-24T01:29:50.732Z",
+  "generatedAt": "2026-10-24T05:43:51.068Z",
   "generator": "0.2.34",
   "name": "sous-recipes",
   "namespaces": {
@@ -187,6 +187,16 @@
           "releasedAt": "2026-10-21T00:51:16.872Z",
           "subscribes": [],
           "tag": "communication/plain-speech@1.0.1",
+          "variables": []
+        },
+        "1.0.2": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-5f6d6f347c47fa23484189b17609af0ffa51dc32fbbd5366994d7850e174e361",
+          "prerelease": false,
+          "releasedAt": "2026-10-24T05:43:51.068Z",
+          "subscribes": [],
+          "tag": "communication/plain-speech@1.0.2",
           "variables": []
         }
       }
