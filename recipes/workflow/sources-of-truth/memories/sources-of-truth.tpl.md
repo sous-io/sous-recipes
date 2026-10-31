@@ -5,8 +5,9 @@ Three kinds of artifact record how this project works, and each answers exactly 
 - **The docs** (`{{ docsDir }}`) answer "how does it work right now?". They are the living record:
   updated whenever behavior changes, and they never carry history.
 - **Decision records** (`{{ adrDir }}`) answer "what did we decide, and why?". An accepted record is
-  never amended; a later record references it and overrides it. A draft may be edited in place. The
-  first record for a system holds its full initial design; each later one holds only the change.
+  never amended; a later record references it and overrides it. A draft may be edited in place. A
+  record states an important decision and its rationale, may name the alternatives and why they were
+  not chosen, and is short. It is not source documentation: how a thing works belongs in the docs.
 - **Issues** ({{ issueTracker }}) answer "what work happened, and how did we get there?". An issue is
   the process record, including design changes made along the way.
 
