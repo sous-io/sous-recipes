@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-11-03T06:20:25.052Z",
+  "generatedAt": "2026-11-03T06:24:06.786Z",
   "generator": "1.0.2",
   "name": "sous-recipes",
   "namespaces": {
@@ -1180,6 +1180,82 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T11:04:32.785Z",
           "tag": "workflow/sources-of-truth@1.0.0"
+        },
+        "1.0.1": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "declared": "communication/agent-conduct@^1.0.0",
+              "kind": "depends",
+              "version": "1.2.1"
+            },
+            "communication/control-flow": {
+              "declared": "communication/control-flow@^1.1.0",
+              "kind": "depends",
+              "version": "1.2.1"
+            },
+            "workflow/sub-agent-delegation": {
+              "declared": "workflow/sub-agent-delegation@^1.1.0",
+              "kind": "depends",
+              "version": "1.1.2"
+            }
+          },
+          "depends": [
+            "communication/agent-conduct@^1.0.0",
+            "communication/control-flow@^1.1.0",
+            "workflow/sub-agent-delegation@^1.1.0"
+          ],
+          "hash": "sha256-fd114e9e36c553154815330d39a66dce2f35a224535d03519ccb751d9e36c355",
+          "prerelease": false,
+          "releasedAt": "2026-11-03T06:24:06.786Z",
+          "subscribes": [],
+          "tag": "workflow/sources-of-truth@1.0.1",
+          "variables": [
+            {
+              "default": "docs",
+              "description": "The living documentation describes how the project works right now, and agents update it whenever behavior changes. The default is a docs directory at the project root. Any path works, either relative to the project root or absolute.",
+              "env": "DOCS_DIR",
+              "example": "docs/markdown",
+              "name": "docsDir",
+              "prompt": "Where is this project's living documentation kept?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "path",
+              "validate": {
+                "minLength": 1
+              }
+            },
+            {
+              "default": "docs/adrs",
+              "description": "Architecture decision records say what was decided and why, and are never rewritten once accepted. The default is an adrs directory inside the docs directory. Any path works, either relative to the project root or absolute.",
+              "env": "ADR_DIR",
+              "example": "docs/markdown/adrs",
+              "name": "adrDir",
+              "prompt": "Where are this project's architecture decision records kept?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "path",
+              "validate": {
+                "minLength": 1
+              }
+            },
+            {
+              "default": "the project's issue tracker",
+              "description": "The issues or tickets are the record of how work happened, including design changes made along the way. Describe where they live in a few words that an agent can act on, such as the repository whose issues you use or the name of your tracker project. The default names no particular tracker.",
+              "env": "ISSUE_TRACKER",
+              "example": "GitHub issues in acme/widget-api",
+              "name": "issueTracker",
+              "prompt": "Where are this project's issues or tickets tracked?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "minLength": 1
+              }
+            }
+          ]
         }
       }
     },
