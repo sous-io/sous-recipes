@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-10-31T03:01:00.595Z",
+  "generatedAt": "2026-11-03T06:20:25.052Z",
   "generator": "1.0.2",
   "name": "sous-recipes",
   "namespaces": {
@@ -960,6 +960,22 @@
               }
             }
           ]
+        }
+      }
+    },
+    "tool-usage/claude-code": {
+      "description": "A map of Claude Code's features for agents: how it works, how to extend it (skills, subagents, hooks, MCP, plugins and mods), parallel and background agents, configuration, surfaces, review and CI, administration and the Agent SDK, with a link to the official documentation page for each.",
+      "path": "recipes/tool-usage/claude-code",
+      "versions": {
+        "1.0.0": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-3285c09de454ebd9266db47fec501c2452130b3f898c639fa93e8ab914517ce9",
+          "prerelease": false,
+          "releasedAt": "2026-11-03T06:20:25.052Z",
+          "subscribes": [],
+          "tag": "tool-usage/claude-code@1.0.0",
+          "variables": []
         }
       }
     },
