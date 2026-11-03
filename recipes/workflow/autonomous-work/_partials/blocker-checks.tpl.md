@@ -16,6 +16,11 @@ permission request for the user, asked before the user leaves.
    (for example `gh run list`), and names the command the run would have executed, to be run by
    hand from a clean checkout if the run never starts. A code host can drop the event that starts a
    run.
+6. **Isolated test runs leave the user's credentials alone.** A separate config directory does not
+   isolate a command-line tool that keeps its token in the system keyring, so any login or logout
+   (`gh auth login`, `glab auth logout` and the like) runs only inside a container or a throwaway
+   user account, never on the host. The plan names how each tool is isolated, and the host login
+   reads the same before and after the run (for example `gh auth status`, `glab auth status`).
 
 This list grows. When autonomous work hits a blocker that no check here caught, add one check that
 would have caught it: one numbered line, phrased for any project, naming the command that tests it.
