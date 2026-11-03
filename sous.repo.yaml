@@ -68,6 +68,7 @@ recipes:
   - recipes/workflow/agent-memory
   - recipes/tool-usage/automated-browser-tasks
   - recipes/tool-usage/chatgpt-images
+  - recipes/tool-usage/claude-code
   - recipes/cli/command-design
   - recipes/reasoning/evidence-and-verification
   - recipes/engineering/design-tenets

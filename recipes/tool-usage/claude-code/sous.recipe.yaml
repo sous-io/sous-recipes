@@ -1,0 +1,24 @@
+# tool-usage/claude-code
+#
+# A knowledge skill that maps Claude Code's features so an agent can learn what
+# exists, and which documentation page covers it, without fetching the docs.
+# Claude Code changes almost daily, so the skill keeps the durable shape of each
+# feature and links to the official documentation for volatile detail. The
+# skill records the Claude Code version and date it was written against; raise
+# both whenever the skill is refreshed.
+formatVersion: 1
+
+namespace: tool-usage
+name: claude-code
+version: 1.0.0
+
+description: >-
+  A map of Claude Code's features for agents: how it works, how to extend it
+  (skills, subagents, hooks, MCP, plugins and mods), parallel and background
+  agents, configuration, surfaces, review and CI, administration and the Agent
+  SDK, with a link to the official documentation page for each.
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*
