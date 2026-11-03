@@ -13,7 +13,7 @@ formatVersion: 1
 
 namespace: workflow
 name: sources-of-truth
-version: 1.0.0
+version: 1.0.1
 
 description: >-
   Which artifact answers which question (docs for now, decision records for
