@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-11-03T23:42:37.965Z",
+  "generatedAt": "2026-11-04T02:16:42.963Z",
   "generator": "1.0.9",
   "name": "sous-recipes",
   "namespaces": {
@@ -1317,6 +1317,211 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T11:04:32.785Z",
           "tag": "workflow/github-projects@1.1.2"
+        },
+        "1.1.3": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "declared": "communication/agent-conduct@^1.0.0",
+              "kind": "depends",
+              "version": "1.2.1"
+            },
+            "workflow/sub-agent-delegation": {
+              "declared": "workflow/sub-agent-delegation@^1.0.0",
+              "kind": "depends",
+              "version": "1.1.2"
+            }
+          },
+          "depends": [
+            "workflow/sub-agent-delegation@^1.0.0",
+            "communication/agent-conduct@^1.0.0"
+          ],
+          "hash": "sha256-6c71d5d392f411e4df9319a0ebc3d6b9e5c3e6c45c37520125710af12e45e505",
+          "prerelease": false,
+          "releasedAt": "2026-11-04T02:16:42.963Z",
+          "subscribes": [],
+          "tag": "workflow/github-projects@1.1.3",
+          "variables": [
+            {
+              "description": "Every issue this recipe's skills read, create or close belongs to one repository, and this setting names it as the owner and repository joined by a slash, exactly as the `gh` command line accepts it. There is no default, because no other project's repository would be a safe guess. The owner may be an organization or a personal account, and the repository does not have to be the one this project's code lives in.",
+              "env": "GITHUB_REPO",
+              "example": "acme/widget-api",
+              "name": "githubRepo",
+              "prompt": "Which GitHub repository do this project's issues live in?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$"
+              }
+            },
+            {
+              "description": "Projects v2 boards hang off an organization or a personal account rather than off a repository, and this owner is what the `gh project` commands are given. There is no default. For an organization board this is the organization login; for a personal board it is your own GitHub login, which may differ from the owner half of the repository setting.",
+              "env": "GITHUB_PROJECT_OWNER",
+              "example": "acme",
+              "name": "githubProjectOwner",
+              "prompt": "Which organization or user owns the Projects v2 board?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[A-Za-z0-9-]+$"
+              }
+            },
+            {
+              "description": "Each board carries a small number that identifies it to the `gh project` commands, and it is the last segment of the board's URL, so board https://github.com/orgs/acme/projects/1 is number 1. There is no default. Any positive whole number is acceptable; it is the board's number, not its position in any list you see.",
+              "env": "GITHUB_PROJECT_NUMBER",
+              "example": 1,
+              "name": "githubProjectNumber",
+              "prompt": "What is the Projects v2 board's number?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "number",
+              "validate": {
+                "min": 1
+              }
+            },
+            {
+              "description": "Moving an issue between board columns goes through the GraphQL API, which addresses the board by an opaque node ID rather than by its number. Read it once with `gh project view <number> --owner <owner> --format json` and paste it here. There is no default, and the value is not something you can compose by hand; every board's ID begins with `PVT_`.",
+              "env": "GITHUB_PROJECT_ID",
+              "example": "PVT_kwDOABcDeF4AbCdE",
+              "name": "githubProjectId",
+              "prompt": "What is the Projects v2 board's GraphQL node ID?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^PVT_[A-Za-z0-9_-]+$"
+              }
+            },
+            {
+              "description": "The workflow in this recipe moves work by setting one single-select field, Status, and the GraphQL API addresses that field by its own node ID. Read it with `gh project field-list <number> --owner <owner>`. There is no default. If your board renames the column field, this is still the field that holds the workflow states; every such ID begins with `PVTSSF_`.",
+              "env": "GITHUB_STATUS_FIELD_ID",
+              "example": "PVTSSF_lADOABcDeF4AbCdEzgWxYz12",
+              "name": "githubStatusFieldId",
+              "prompt": "What is the node ID of the board's Status field?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^PVTSSF_[A-Za-z0-9_-]+$"
+              }
+            },
+            {
+              "description": "Each value of the Status field has its own option ID, and this one names the column where unstarted work waits. Read it with `gh project field-list <number> --owner <owner>`, which lists every option alongside its ID. There is no default. An option ID is eight hexadecimal characters, and it is tied to the column's identity rather than to its label, so it survives a rename.",
+              "env": "GITHUB_STATUS_BACKLOG_ID",
+              "example": "f75ad846",
+              "name": "githubStatusBacklogId",
+              "prompt": "What is the option ID of the Status value \"Backlog\"?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[0-9a-f]{8}$"
+              }
+            },
+            {
+              "description": "The option ID of the column holding work that is specified and ready to be picked up; agents move an issue here once it is well enough described to start. Read it with `gh project field-list <number> --owner <owner>`. There is no default, and the value is eight hexadecimal characters. Point it at whichever of your columns plays this part if yours carries another name.",
+              "env": "GITHUB_STATUS_READY_ID",
+              "example": "61e4505c",
+              "name": "githubStatusReadyId",
+              "prompt": "What is the option ID of the Status value \"Ready\"?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[0-9a-f]{8}$"
+              }
+            },
+            {
+              "description": "The option ID of the column an issue moves to when work on it actually begins. Read it with `gh project field-list <number> --owner <owner>`. There is no default, and the value is eight hexadecimal characters. Point it at whichever of your columns means active work if yours carries another name.",
+              "env": "GITHUB_STATUS_IN_PROGRESS_ID",
+              "example": "47fc9ee4",
+              "name": "githubStatusInProgressId",
+              "prompt": "What is the option ID of the Status value \"In Progress\"?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[0-9a-f]{8}$"
+              }
+            },
+            {
+              "description": "The option ID of the column an issue moves to once its change is open for review and the work is out of the author's hands. Read it with `gh project field-list <number> --owner <owner>`. There is no default, and the value is eight hexadecimal characters. Boards without a review column can point this at the column that best matches, and the workflow still reads correctly.",
+              "env": "GITHUB_STATUS_IN_REVIEW_ID",
+              "example": "df73e18b",
+              "name": "githubStatusInReviewId",
+              "prompt": "What is the option ID of the Status value \"In Review\"?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[0-9a-f]{8}$"
+              }
+            },
+            {
+              "description": "The option ID of the column that finished work lands in, which is where an issue goes as it is closed. Read it with `gh project field-list <number> --owner <owner>`. There is no default, and the value is eight hexadecimal characters. Point it at whichever column your board treats as the end of the line.",
+              "env": "GITHUB_STATUS_DONE_ID",
+              "example": "98236657",
+              "name": "githubStatusDoneId",
+              "prompt": "What is the option ID of the Status value \"Done\"?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[0-9a-f]{8}$"
+              }
+            },
+            {
+              "description": "Agents use this to assign issues to you and to filter the board down to your own work, so it is your login rather than anything about the project. There is no default, since no answer would be right for a second person on the team; for the same reason the answer is kept in the gitignored local env file, and each teammate answers it for themselves.",
+              "env": "GITHUB_USER_LOGIN",
+              "example": "octocat",
+              "name": "githubUserLogin",
+              "prompt": "What is your GitHub login?",
+              "required": true,
+              "scope": "local",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[A-Za-z0-9-]+$"
+              }
+            },
+            {
+              "description": "Your display name, written into the issues and board updates agents compose on your behalf, so that prose reads as though a person wrote it. There is no default. Any form you are happy to see in public issue text is acceptable; like the login above, it is personal, so it is kept in the gitignored local env file.",
+              "env": "USER_FULL_NAME",
+              "example": "Ada Lovelace",
+              "name": "userFullName",
+              "prompt": "What is your full name, as it should appear in issue text?",
+              "required": true,
+              "scope": "local",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "minLength": 1
+              }
+            },
+            {
+              "default": "gh-",
+              "description": "Agents join this prefix to a bare issue number to build a ticket ID, so issue 47 becomes gh-47 when the prefix is 'gh-'. Include any trailing separator, because nothing is inserted between the prefix and the number. The default suits GitHub issues, which is what this recipe tracks; any prefix is acceptable, and an empty answer means the bare number is used on its own. The task-files recipe asks the same question, so a single answer serves both.",
+              "env": "SOUS_VAR_TICKET_PREFIX",
+              "example": "PROJ-",
+              "name": "ticketPrefix",
+              "prompt": "What prefix goes in front of a ticket number when you compose a branch name?",
+              "required": false,
+              "scope": "shared",
+              "secret": false,
+              "type": "string"
+            }
+          ]
         }
       }
     },
