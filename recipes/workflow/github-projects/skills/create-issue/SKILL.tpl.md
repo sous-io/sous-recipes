@@ -53,9 +53,20 @@ Load the appropriate reference from `about-github-projects`:
 
 ### 5. Create and Board
 
-The orchestrator presents the draft and waits for the user's approval. An Opus sub-agent then:
+Whether the orchestrator waits for the user's approval follows the project's `createIssues`
+setting in the always-loaded "Outward Actions" memory:
 
-1. Creates the issue with the exact approved Markdown (heredoc pattern in
+- `on-request`, or no such memory loaded: present the draft and wait for approval.
+- `autonomous-modes-only`: file without asking only while the user is away (`/afk`, `/brb`);
+  otherwise present the draft and wait.
+- `always`: file the issue without asking, and show the draft in the report.
+
+A user's instruction in the session ("don't ask me, just file it") also counts as approval for
+the issues it covers.
+
+An Opus sub-agent then:
+
+1. Creates the issue with the exact Markdown of the draft (heredoc pattern in
    `about-github-projects`), passing `--blocking <goal numbers>` for any goal the user agreed
    it contributes to, and capturing the issue number from the printed URL
 2. Adds it to the board (`gh project item-add`)
