@@ -53,9 +53,19 @@ Load the appropriate reference from `about-github-projects`:
 
 ### 5. Create and Board
 
-The orchestrator presents the draft and waits for the user's approval. An Opus sub-agent then:
+{% if createIssues == "always" -%}
+The orchestrator files the issue without asking for approval, and shows the draft in its report.
+A second-tier sub-agent then:
+{%- elsif createIssues == "autonomous-modes-only" -%}
+While the user is away (`/afk` or `/brb`), the orchestrator files the issue without asking, and
+shows the draft in its report. At any other time it presents the draft and waits for the user's
+approval. A second-tier sub-agent then:
+{%- else -%}
+The orchestrator presents the draft and waits for the user's approval. A second-tier sub-agent
+then:
+{%- endif %}
 
-1. Creates the issue with the exact approved Markdown (heredoc pattern in
+1. Creates the issue with the exact Markdown of the draft (heredoc pattern in
    `about-github-projects`), passing `--blocking <goal numbers>` for any goal the user agreed
    it contributes to, and capturing the issue number from the printed URL
 2. Adds it to the board (`gh project item-add`)

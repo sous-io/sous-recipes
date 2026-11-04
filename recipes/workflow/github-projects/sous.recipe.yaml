@@ -11,7 +11,7 @@ formatVersion: 1
 
 namespace: workflow
 name: github-projects
-version: 1.1.2
+version: 1.1.3
 
 description: >-
   The GitHub Issues and Projects v2 workflow: how issues are written, picked up,
@@ -22,9 +22,12 @@ description: >-
 # The sub-agent delegation recipe is a build dependency, not a co-subscription:
 # it becomes addressable from this recipe's own files, and its memory file lands
 # in a project only when that project subscribes to it directly. The skills below
-# therefore name the pattern rather than pointing at a file path.
+# therefore name the pattern rather than pointing at a file path. The
+# agent-conduct recipe supplies the createIssues setting the create-issue skill
+# branches on.
 depends:
   - workflow/sub-agent-delegation@^1.0.0
+  - communication/agent-conduct@^1.0.0
 
 contents:
   - kind: skills
