@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-11-06T01:17:28.272Z",
+  "generatedAt": "2026-11-06T03:38:09.974Z",
   "generator": "1.0.18",
   "name": "sous-recipes",
   "namespaces": {
@@ -1028,7 +1028,7 @@
       }
     },
     "omakase/house": {
-      "description": "The standard set of recipes, chosen for you: the conduct, plain-speech and session-steering rules, evidence and verification, sub-agent delegation, per-branch task files, work while the user is away, sources of truth, improving the agent's own instructions, and the design tenets.",
+      "description": "The standard set of recipes, chosen for you: the conduct, plain-speech and session-steering rules, evidence and verification, sub-agent delegation, per-branch task files, work while the user is away, sources of truth, improving the agent's own instructions, the design tenets, and temporary public URLs to local ports.",
       "path": "recipes/omakase/house",
       "versions": {
         "1.0.0": {
@@ -1137,6 +1137,82 @@
             "engineering/design-tenets"
           ],
           "tag": "omakase/house@1.0.1",
+          "variables": []
+        },
+        "1.1.0": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "declared": "communication",
+              "kind": "subscribes",
+              "range": "^1.2.1"
+            },
+            "communication/control-flow": {
+              "declared": "communication",
+              "kind": "subscribes",
+              "range": "^1.2.1"
+            },
+            "communication/plain-speech": {
+              "declared": "communication",
+              "kind": "subscribes",
+              "range": "^1.0.2"
+            },
+            "engineering/design-tenets": {
+              "declared": "engineering/design-tenets",
+              "kind": "subscribes",
+              "range": "^1.0.0"
+            },
+            "reasoning/evidence-and-verification": {
+              "declared": "reasoning",
+              "kind": "subscribes",
+              "range": "^1.0.0"
+            },
+            "tool-usage/cloudflare-tunnels": {
+              "declared": "tool-usage/cloudflare-tunnels",
+              "kind": "subscribes",
+              "range": "^1.0.0"
+            },
+            "workflow/agent-memory": {
+              "declared": "workflow/agent-memory",
+              "kind": "subscribes",
+              "range": "^1.1.0"
+            },
+            "workflow/autonomous-work": {
+              "declared": "workflow/autonomous-work",
+              "kind": "subscribes",
+              "range": "^1.2.1"
+            },
+            "workflow/sources-of-truth": {
+              "declared": "workflow/sources-of-truth",
+              "kind": "subscribes",
+              "range": "^1.0.1"
+            },
+            "workflow/sub-agent-delegation": {
+              "declared": "workflow/sub-agent-delegation",
+              "kind": "subscribes",
+              "range": "^1.1.2"
+            },
+            "workflow/task-files": {
+              "declared": "workflow/task-files",
+              "kind": "subscribes",
+              "range": "^1.1.0"
+            }
+          },
+          "depends": [],
+          "hash": "sha256-44f018e9b0b4058e1030c0604bf7774907fb62cb1a33d6a23527f5ed1688d274",
+          "prerelease": false,
+          "releasedAt": "2026-11-06T03:38:09.974Z",
+          "subscribes": [
+            "communication",
+            "reasoning",
+            "workflow/agent-memory",
+            "workflow/autonomous-work",
+            "workflow/sources-of-truth",
+            "workflow/sub-agent-delegation",
+            "workflow/task-files",
+            "engineering/design-tenets",
+            "tool-usage/cloudflare-tunnels"
+          ],
+          "tag": "omakase/house@1.1.0",
           "variables": []
         }
       }
@@ -1339,6 +1415,22 @@
           "releasedAt": "2026-11-03T06:20:25.052Z",
           "subscribes": [],
           "tag": "tool-usage/claude-code@1.0.0",
+          "variables": []
+        }
+      }
+    },
+    "tool-usage/cloudflare-tunnels": {
+      "description": "Temporary public URLs to local ports with Cloudflare quick tunnels, which need no account: the /create-temporary-cloudflare-tunnel command, a script that downloads cloudflared when needed and lists and stops tunnels across sessions, an optional email login in front of a tunnel, and the fix for each dev server that refuses the tunnel's host name.",
+      "path": "recipes/tool-usage/cloudflare-tunnels",
+      "versions": {
+        "1.0.0": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-1a604d3b7e9c30618af217412c1092c0541509b4eed7f675710b91d4554343bc",
+          "prerelease": false,
+          "releasedAt": "2026-11-06T03:38:09.974Z",
+          "subscribes": [],
+          "tag": "tool-usage/cloudflare-tunnels@1.0.0",
           "variables": []
         }
       }
