@@ -1,0 +1,28 @@
+# tool-usage/cloudflare-tunnels
+#
+# This recipe ships runnable code: a dependency-free Node script that opens,
+# lists and stops Cloudflare quick tunnels, downloading cloudflared on first
+# use when it is not installed. Quick tunnels need no Cloudflare account, so
+# the recipe asks no questions. It ships no memory on purpose: a memory loads
+# in every session, and the skill descriptions are enough for an agent to find
+# it. The manifest format has no field for a runtime version, so that lives in
+# the x- key below.
+formatVersion: 1
+
+namespace: tool-usage
+name: cloudflare-tunnels
+version: 1.0.0
+
+description: >-
+  Temporary public URLs to local ports with Cloudflare quick tunnels, which
+  need no account: the /create-temporary-cloudflare-tunnel command, a script
+  that downloads cloudflared when needed and lists and stops tunnels across
+  sessions, an optional email login in front of a tunnel, and the fix for each
+  dev server that refuses the tunnel's host name.
+
+x-requires-node: ">=18"
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*
