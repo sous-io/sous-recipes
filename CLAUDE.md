@@ -53,8 +53,11 @@ they land.
   tag exists on the remote.
 - **An unreleased recipe cannot be subscribed to,** even from a project that links this checkout,
   because `sous subscription add` looks recipes up in the published index. To check that its
-  templates render before the release, render them with the Liquid engine from the sous package
-  (`createLiquidEngine` in `dist/templating/init-liquid-engine.js`), passing the variables they use.
+  templates render before the release, render them with LiquidJS (the `liquidjs` package from npm,
+  installed in a scratch folder, with `strictVariables: true`), passing the variables they use. The
+  sous package is a single bundled file and exports no Liquid engine, so sous's own tags and filters
+  are not available this way; a template that uses them is checked by subscribing a scratch project
+  once the recipe is released.
 - **Templates:** `sousHome` (the user-level sous folder) is in scope in every template, and
   `getFiles` on a folder that does not exist yields an empty list, so a memory can count files
   that may not exist yet. No variable names a skill's compiled output folder, so a skill locates
