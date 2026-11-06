@@ -125,7 +125,11 @@ async function cloudflared() {
   if (fs.existsSync(cached)) return cached;
   const fresh = await download();
   const version = spawnSync(fresh, ['--version'], { encoding: 'utf8' });
-  if (version.status !== 0) fail(`The downloaded ${fresh} does not run: ${version.stderr || version.error}`);
+  if (version.status !== 0) {
+    // Remove it, so the next run downloads again instead of reusing a broken file.
+    fs.rmSync(fresh, { force: true });
+    fail(`The downloaded ${fresh} does not run, so it was removed: ${version.stderr || version.error}`);
+  }
   console.log(`Installed ${version.stdout.trim()}`);
   return fresh;
 }
