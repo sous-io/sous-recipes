@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-11-06T03:38:09.974Z",
+  "generatedAt": "2026-11-06T03:41:50.433Z",
   "generator": "1.0.18",
   "name": "sous-recipes",
   "namespaces": {
@@ -1431,6 +1431,16 @@
           "releasedAt": "2026-11-06T03:38:09.974Z",
           "subscribes": [],
           "tag": "tool-usage/cloudflare-tunnels@1.0.0",
+          "variables": []
+        },
+        "1.0.1": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-4a66368ba6a14ca899ebda6dbe86c133eaa87d35fbabceaa783aec2a40696946",
+          "prerelease": false,
+          "releasedAt": "2026-11-06T03:41:50.433Z",
+          "subscribes": [],
+          "tag": "tool-usage/cloudflare-tunnels@1.0.1",
           "variables": []
         }
       }
