@@ -11,7 +11,8 @@
 # subscribes to workflow/sub-agent-delegation directly.
 #
 # The memory names model tiers ("top tier", "second tier"), never a model or a
-# provider. The "Delegation Brief" partial (_partials/delegation-brief.tpl.md)
+# provider, except in one dated footnote saying which models fill the tiers
+# today. The "Delegation Brief" partial (_partials/delegation-brief.tpl.md)
 # condenses the rules for commands that delegate; a recipe that includes it
 # declares workflow/sub-agent-delegation@^1.1.0 under 'depends'. Partials sit
 # outside 'contents', so they never reach a subscriber's output on their own.
@@ -19,7 +20,7 @@ formatVersion: 1
 
 namespace: workflow
 name: sub-agent-delegation
-version: 1.1.2
+version: 1.1.3
 
 description: >-
   The orchestrator-and-sub-agent working pattern that the other recipes cite: the
