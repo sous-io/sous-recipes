@@ -40,13 +40,13 @@
       "version": "1.0.2"
     },
     "core/sous-skills": {
-      "hash": "sha256-c795f81cab7bbef5a6f7a6630a74fde66c1c25ca90a1b1a4b78130df65d88884",
+      "hash": "sha256-79a7f597d02ead81fa813ca3888e9b21350e9611eeac3411622e1f0e6f6a7dc6",
       "kind": "subscribes",
       "repo": "sous-recipes",
       "requestedBy": [
         "project"
       ],
-      "version": "1.0.18"
+      "version": "1.0.19"
     },
     "engineering/design-tenets": {
       "hash": "sha256-6c08cc8f33ae0d20ee7ee767a11015fd29e7a4014448a3ab80bb6964b6df160d",
@@ -138,7 +138,7 @@
   "repos": {
     "sous-recipes": {
       "identity": "github.com/sous-io/sous-recipes",
-      "indexHash": "sha256-c0e7f1337bb3308c38fab588a91d31228f822a39dfcba9461d9928cd24d3a88e",
+      "indexHash": "sha256-86a2c4f2a86e52444a032140e3bdf7ca43753ae2c4a2fedb4e9b014b292a5cbb",
       "url": "https://github.com/sous-io/sous-recipes"
     }
   }
