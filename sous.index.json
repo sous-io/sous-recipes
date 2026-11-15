@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-11-15T16:41:22.138Z",
+  "generatedAt": "2026-11-15T16:42:50.601Z",
   "generator": "1.0.19",
   "name": "sous-recipes",
   "namespaces": {
@@ -48,6 +48,16 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T11:04:32.785Z",
           "tag": "cli/command-design@1.0.1"
+        },
+        "1.1.0": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-3bccf689c7805cc6fc7d119b223280a21cb34e28bd84d6942c3b12f57ece071c",
+          "prerelease": false,
+          "releasedAt": "2026-11-15T16:42:50.601Z",
+          "subscribes": [],
+          "tag": "cli/command-design@1.1.0",
+          "variables": []
         }
       }
     },
