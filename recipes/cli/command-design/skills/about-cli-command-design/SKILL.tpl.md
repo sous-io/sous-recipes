@@ -124,6 +124,10 @@ The essentials:
 - **Same concept, same name, across every command.** Different concepts get different names,
   even when the words feel close: "fetch the latest upstream state before acting" and "move to
   a newer released version" are two different flags, because one reads and the other changes.
+- **Names read like speech.** Strip the punctuation from a command or flag and it should sound
+  like something a person would say: `--move-includes`, never `--included-files leave`.
+- **A small fixed set of choices gets one switch per choice**, with the default named in the
+  help (`--move-includes`, `--copy-includes`, `--leave-includes`), never an enum-valued flag.
 - **A flag either requires a value or is a boolean.** A flag whose value is optional makes
   parsing ambiguous (`--branch foo` could be a value or a positional argument). Split it:
   `--create-branch <name>` for a named branch, `--generate-branch` for a generated one.

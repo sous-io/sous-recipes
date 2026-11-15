@@ -153,8 +153,9 @@ to go back to published versions.
 ## Contributing
 
 Improvements are welcome, including new recipes. Contribution instructions in this repository are
-written for agents: `CONTRIBUTING.md` says why, and `CLAUDE.md` is where an agent without the sous
-core skills starts.
+written for agents: `CONTRIBUTING.md` says why. This repository is also a sous project, so run
+`sous build` after cloning: it compiles the agent instructions (`CLAUDE.md`, `AGENTS.md`) and
+skills from the sources in `.sous/`.
 
 ## License
 

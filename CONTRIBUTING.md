@@ -8,4 +8,5 @@ Any agent working in this repository is assumed to have, at minimum, the sous co
 everything an agent needs to know to contribute: how a recipe is written, how its version is raised,
 and how a change is checked, proposed and released.
 
-An agent without those skills starts at `CLAUDE.md`, at the root of this repository.
+This repository is also a sous project. Run `sous build` after cloning: it installs those skills
+and compiles `CLAUDE.md` and `AGENTS.md` from the sources in `.sous/`.
