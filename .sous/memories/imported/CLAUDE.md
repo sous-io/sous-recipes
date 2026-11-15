@@ -17,14 +17,9 @@ This file does not repeat them. The agent MUST read these before changing anythi
   contents, its dependencies and its partials.
 - `about-agent-skills`: how a skill is written, including the rules every new skill follows.
 
-An agent in a project that uses sous already has these skills. An agent that cannot install sous or
-use it reads them directly, as plain markdown files. They are in this checkout:
-
-- `recipes/core/sous-skills/skills/`
-
-and online, at their latest published version:
-
-- https://github.com/sous-io/sous-recipes/tree/main/recipes/core/sous-skills/skills
+This repository is also a sous project: `CLAUDE.md`, `AGENTS.md` and `.claude/skills/` are build
+output, compiled from the sources in `.sous/`, so `sous build` is required after cloning. Edit those
+sources, never the compiled copies. This file is `.sous/memories/imported/CLAUDE.md`.
 
 Never write `$` followed by a digit in a skill or anything a skill includes: Claude Code replaces
 `$0`, `$1` and so on with the command's arguments.
@@ -73,6 +68,7 @@ they land.
 ## This Repository Is the Model for Every Recipe Repository
 
 `sous repo init` creates a new recipe repository, and this repository is the model it follows: a new
-repository should be as complete as this one, minus the recipes. An improvement to a root-level file
-here SHOULD also reach `sous repo init` in `sous-io/sous`, and an improvement to what `sous repo init`
-writes SHOULD come back here.
+repository should be as complete as this one, minus the recipes and the Omakase/House subscription,
+which is this repository's own choice. An improvement to a root-level file or to `.sous/` here SHOULD
+also reach `sous repo init` in `sous-io/sous`, and an improvement to what `sous repo init` writes
+SHOULD come back here.

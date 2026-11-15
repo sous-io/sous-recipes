@@ -43,6 +43,37 @@ Words that feel close often name different operations. Keep them apart:
 Using one flag for two of these (for example `--update` meaning both "refresh" and "upgrade")
 forces users to guess which one a given command means.
 
+## Names Read Like Speech
+
+Strip the dashes, brackets and other punctuation from a command or a flag, and what is left should
+sound like something one person would say to another. A name that fails this test makes the user
+translate it back into words every time they read it.
+
+```
+mytool init --move-includes        # "move includes": a person would say that
+mytool init --included-files leave # "included files leave": nobody talks like that
+```
+
+A convention sometimes forces an exception (a `--no-` form of a boolean, for example), but the
+natural phrasing is always the aim.
+
+## One Switch per Choice
+
+When a flag would take one of a few fixed values, give each value a switch of its own instead,
+and say in the help which one is the default. The switches are then mutually exclusive (see
+below).
+
+```
+mytool init --move-includes      # Move the included files into the project (the default).
+mytool init --copy-includes      # Copy them, keeping the originals.
+mytool init --leave-includes     # Leave them where they are.
+
+mytool init --included-files <move|copy|leave>   # wrong: an enum the user has to look up
+```
+
+A value is still right when the set is open (a name, a path, a number) or long enough that a
+switch per value would crowd the help.
+
 ## A Flag Requires a Value, or It Is a Boolean
 
 Optional-value flags are ambiguous: in `mytool start --branch feature`, is `feature` the

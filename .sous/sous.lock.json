@@ -1,0 +1,145 @@
+{
+  "formatVersion": 1,
+  "recipes": {
+    "communication/agent-conduct": {
+      "hash": "sha256-cd509610b6277b260c8ea6646bf3ac2cd1396702c3bff0db6488704c326f0905",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "communication/control-flow",
+        "omakase/house",
+        "workflow/agent-memory",
+        "workflow/autonomous-work",
+        "workflow/sources-of-truth",
+        "workflow/task-files"
+      ],
+      "version": "1.2.1"
+    },
+    "communication/control-flow": {
+      "hash": "sha256-9c9053cb30a0f285ba1e0ef3ae36c0aad89e560b288c4d3bc30c8b0f52010550",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "omakase/house",
+        "workflow/agent-memory",
+        "workflow/autonomous-work",
+        "workflow/sources-of-truth",
+        "workflow/task-files"
+      ],
+      "version": "1.2.1"
+    },
+    "communication/plain-speech": {
+      "hash": "sha256-5f6d6f347c47fa23484189b17609af0ffa51dc32fbbd5366994d7850e174e361",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "communication/agent-conduct",
+        "communication/control-flow",
+        "omakase/house"
+      ],
+      "version": "1.0.2"
+    },
+    "core/sous-skills": {
+      "hash": "sha256-c795f81cab7bbef5a6f7a6630a74fde66c1c25ca90a1b1a4b78130df65d88884",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "project"
+      ],
+      "version": "1.0.18"
+    },
+    "engineering/design-tenets": {
+      "hash": "sha256-6c08cc8f33ae0d20ee7ee767a11015fd29e7a4014448a3ab80bb6964b6df160d",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "omakase/house"
+      ],
+      "version": "1.0.0"
+    },
+    "omakase/house": {
+      "hash": "sha256-44f018e9b0b4058e1030c0604bf7774907fb62cb1a33d6a23527f5ed1688d274",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "project"
+      ],
+      "version": "1.1.0"
+    },
+    "reasoning/evidence-and-verification": {
+      "hash": "sha256-9634aedf36d0eb9a3e89e7041560320a95640bde48faa7e4d62a16082a1d2eac",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "omakase/house"
+      ],
+      "version": "1.0.0"
+    },
+    "tool-usage/cloudflare-tunnels": {
+      "hash": "sha256-4a66368ba6a14ca899ebda6dbe86c133eaa87d35fbabceaa783aec2a40696946",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "omakase/house"
+      ],
+      "version": "1.0.1"
+    },
+    "workflow/agent-memory": {
+      "hash": "sha256-c07c702c5b6e67db2c9d7d84f3b78e347e4bda68f4a10440b33ad9c2c52d89be",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "omakase/house"
+      ],
+      "version": "1.1.0"
+    },
+    "workflow/autonomous-work": {
+      "hash": "sha256-189dfe9969c5a04d379444f23f0a2759172f1d84cd520c7faff257c937bfa084",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "omakase/house"
+      ],
+      "version": "1.2.1"
+    },
+    "workflow/sources-of-truth": {
+      "hash": "sha256-fd114e9e36c553154815330d39a66dce2f35a224535d03519ccb751d9e36c355",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "omakase/house"
+      ],
+      "version": "1.0.1"
+    },
+    "workflow/sub-agent-delegation": {
+      "hash": "sha256-604ef41015332b559450026d7abeda1b70fd0d89e0f2933e1d2d769aa2288284",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "communication/control-flow",
+        "omakase/house",
+        "workflow/agent-memory",
+        "workflow/autonomous-work",
+        "workflow/sources-of-truth",
+        "workflow/task-files"
+      ],
+      "version": "1.1.3"
+    },
+    "workflow/task-files": {
+      "hash": "sha256-5fee65861429bc0d358730fff6f02278346eb5d48fb770b9779aba6e923bc26c",
+      "kind": "subscribes",
+      "repo": "sous-recipes",
+      "requestedBy": [
+        "omakase/house"
+      ],
+      "version": "1.1.0"
+    }
+  },
+  "repos": {
+    "sous-recipes": {
+      "identity": "github.com/sous-io/sous-recipes",
+      "indexHash": "sha256-c0e7f1337bb3308c38fab588a91d31228f822a39dfcba9461d9928cd24d3a88e",
+      "url": "https://github.com/sous-io/sous-recipes"
+    }
+  }
+}
