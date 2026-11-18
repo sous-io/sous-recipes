@@ -1,0 +1,28 @@
+# quality/build-and-check-speed
+#
+# Making developer iteration faster: checks (lint, format, typecheck, tests),
+# the local dev loop, builds (container images included), and CI on pull
+# requests and merges, up to the hand-off to deployment. Two skills: a quiet
+# topic skill holding the knowledge (a general file per area, then one file
+# per tool, plus a worked example of a warm per-file check command), and the
+# /speed-up-iteration command, which is what tells an agent to measure,
+# propose and act. It ships no memory: the "match the check to the moment"
+# rule lives in communication/agent-conduct, and a project's own check
+# commands belong in that project's instructions. No variables.
+formatVersion: 1
+
+namespace: quality
+name: build-and-check-speed
+version: 1.0.0
+
+description: >-
+  Faster developer iteration: how to measure and cut the time spent waiting on
+  lint, typechecks, tests, builds, the dev loop and CI, with general guidance
+  for any tool, specific files for common tools, how to build a per-file check
+  command (with a complete example), and the /speed-up-iteration command, which
+  measures a project, proposes fixes and carries out the approved ones.
+
+contents:
+  - kind: skills
+    include:
+      - skills/**/*
