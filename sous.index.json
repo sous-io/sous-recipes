@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-11-15T16:42:50.601Z",
+  "generatedAt": "2026-11-18T21:25:01.140Z",
   "generator": "1.0.19",
   "name": "sous-recipes",
   "namespaces": {
@@ -21,6 +21,9 @@
     },
     "omakase": {
       "description": "Preset sets of recipes, chosen for you and subscribed together."
+    },
+    "quality": {
+      "description": "Confidence in what was built, and how fast it is checked: tests, linting, typechecks, builds and CI, and the standards they uphold."
     },
     "reasoning": {
       "description": "How an agent thinks through a problem: weighing evidence, self-checking, decomposition, and knowing when it is stuck."
@@ -108,6 +111,184 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T23:18:51.420Z",
           "tag": "communication/agent-conduct@1.2.1"
+        },
+        "1.3.0": {
+          "dependencies": {
+            "communication/plain-speech": {
+              "declared": "communication/plain-speech@^1.0.0",
+              "kind": "depends",
+              "range": "^1.0.0"
+            }
+          },
+          "depends": [
+            "communication/plain-speech@^1.0.0"
+          ],
+          "hash": "sha256-9c57de016b45c1a30af852d2ba57ef0e1b6bcc89903e26c7bfc6c8f869e496ad",
+          "prerelease": false,
+          "releasedAt": "2026-11-18T21:25:01.140Z",
+          "subscribes": [],
+          "tag": "communication/agent-conduct@1.3.0",
+          "variables": [
+            {
+              "default": ".sous/memories",
+              "description": "Durable rules, preferences and project knowledge belong in a directory that is committed with the project, so they travel to every machine and every colleague instead of living in one machine's private memory store. This setting names that directory, and the conduct rules point agents at it. The default is the directory sous init creates for the fragments a build composes into the agent's instruction file. Any path works, either relative to the project root or absolute.",
+              "env": "MEMORY_ROOT",
+              "example": ".sous/prompts/memories",
+              "name": "memoryRoot",
+              "prompt": "Where are this project's tracked memory fragments kept?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "path",
+              "validate": {
+                "minLength": 1
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs pushing a branch that only the agent's own work uses to a shared remote, such as a feature branch created for the task. With the default, on-request, the agent commits locally and leaves the push for the user to approve, or pushes when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "pushOwnBranches",
+              "prompt": "When may the agent push a branch that nobody else works on?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs opening a draft pull request or merge request, which marks the change as not ready for review. With the default, on-request, the agent writes the title and description, shows them to the user and opens the draft only after the user approves, or opens it when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "openDraftPullRequests",
+              "prompt": "When may the agent open a draft pull request?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs opening a pull request or merge request that is ready for review, or marking a draft as ready, which usually notifies reviewers. With the default, on-request, the agent writes the title and description, shows them to the user and opens the pull request only after the user approves, or opens it when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "openPullRequests",
+              "prompt": "When may the agent open a pull request that is ready for review?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs merging a pull request or merge request into its target branch. With the default, on-request, the agent never merges without the user's approval for that pull request, or merges when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "mergePullRequests",
+              "prompt": "When may the agent merge a pull request?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs anything that releases or publishes the project: cutting a release, pushing a release tag, publishing a package or deploying. With the default, on-request, the agent prepares the release and waits for the user's approval, or releases when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "releaseOrPublish",
+              "prompt": "When may the agent release or publish?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs creating an issue, ticket or card in the project's tracker. With the default, on-request, the agent drafts the issue in chat and files it only after the user approves that draft, or files it when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "createIssues",
+              "prompt": "When may the agent create an issue?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs posting or editing a comment on an issue, a ticket, a pull request or a code review. With the default, on-request, the agent drafts the comment in chat and posts it only after the user approves that draft, or posts it when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "commentOnIssuesAndPullRequests",
+              "prompt": "When may the agent comment on an issue or pull request?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs sending a chat message or an email, or posting in a chat channel, to anyone. With the default, on-request, the agent drafts the message in chat and sends it only after the user approves that draft, or sends it when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "sendMessages",
+              "prompt": "When may the agent send a chat or email message?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            }
+          ]
         }
       }
     },
@@ -1249,6 +1430,22 @@
             "tool-usage/cloudflare-tunnels"
           ],
           "tag": "omakase/house@1.1.0",
+          "variables": []
+        }
+      }
+    },
+    "quality/build-and-check-speed": {
+      "description": "Faster developer iteration: how to measure and cut the time spent waiting on lint, typechecks, tests, builds, the dev loop and CI, with general guidance for any tool, specific files for common tools, how to build a per-file check command (with a complete example), and the /speed-up-iteration command, which measures a project, proposes fixes and carries out the approved ones.",
+      "path": "recipes/quality/build-and-check-speed",
+      "versions": {
+        "1.0.0": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-628066eccb5a77e1e5ccceca5cec697723498b865d908a4892464004b8c971bb",
+          "prerelease": false,
+          "releasedAt": "2026-11-18T21:25:01.140Z",
+          "subscribes": [],
+          "tag": "quality/build-and-check-speed@1.0.0",
           "variables": []
         }
       }
