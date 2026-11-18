@@ -208,7 +208,7 @@ function main() {
   }
   // No lowered priority (nice): test forks inherit it, and at nice 19 on a busy machine time-bound tests (for example
   // Testing Library's 1-second `waitFor`) fail where `vitest run` passes.
-  process.title = "check-file-server";
+  process.title = "check-file-srv";
   if (existsSync(SOCKET_PATH)) {
     unlinkSync(SOCKET_PATH);
   }

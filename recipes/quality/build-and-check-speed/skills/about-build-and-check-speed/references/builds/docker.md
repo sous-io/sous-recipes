@@ -44,16 +44,23 @@ move with it:
 
 ```dockerfile
 FROM node:20 AS deps
+WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-RUN npm install -g pnpm@10 && pnpm install --frozen-lockfile
+COPY prisma/schema.prisma prisma/schema.prisma
+RUN npm install -g pnpm@10 && pnpm install --frozen-lockfile && pnpm exec prisma generate
 
 FROM deps AS prod-deps
-RUN pnpm install --frozen-lockfile --ignore-scripts --production && npx prisma generate
+RUN pnpm prune --prod --ignore-scripts
 
 FROM deps AS build
 COPY . .
 RUN pnpm build
 ```
+
+The client is generated in the `deps` stage, after a full install, because only a full install has the `prisma` CLI
+and the schema copied in. The `prod-deps` stage then removes the development dependencies and keeps the generated
+client. (Assumption: `pnpm prune --prod` keeps the generated client; confirm with the project's package manager before
+copying.)
 
 **Two images that differed only in base.** The same build stage ran twice. The API ran on the musl base, and the
 worker on the glibc slim base because a native module could not load on musl, which had once crash-looped the API.
@@ -73,7 +80,8 @@ whether a build's image runs at all. The base image has to be the one the native
 
 **A cold build is not the steady state.** The first release after adding a registry cache always misses, because the
 cache tag does not exist yet, and it pays the cache export on top. A failed release leaves no cache tag either, so
-the release that recovers from one is cold again. See the lessons below.
+the release that recovers from one is cold again. The first build that can show the warm number is the one after
+that.
 
 ## Combined Estimate, First Pass
 
@@ -93,28 +101,25 @@ also included the deployment rollout, which is out of scope here and is left out
    2 min 31 s, of which 54 s was exporting the cache at `mode=max`; the worker target then took 6 s with 15 of its
    steps cached. The consolidated image on the glibc slim base ran all 70 database migrations with the Debian
    OpenSSL engine, which is what showed that the musl engine target could go.
-2. The first release after adding a registry cache always misses; the cache tag does not exist yet. A failed release
-   leaves no cache tag either, so the recovery release is cold again. The first build that can show the warm number
-   is the one after that. A cold build should not be read as the steady state.
-3. Writing the registry cache from one target only works: `cache-to` with `mode=max` on the first build, and
+2. Writing the registry cache from one target only works: `cache-to` with `mode=max` on the first build, and
    `cache-from` alone on the second. Both targets share the build stage, so the second reads what the first wrote.
-4. A registry cache keyed on the lockfile misses whenever the dependencies change, so the first release after a
+3. A registry cache keyed on the lockfile misses whenever the dependencies change, so the first release after a
    dependency bump rebuilds the dependency stage and hides the warm number. Only a code-only release shows it. On
    the second release with a changed lockfile, the API build took 2 min 27 s against 2 min 31 s cold, and the
    second target took 3 s.
-5. A build argument the workflow passed was never declared by any `ARG` line, so the commit hash had never reached a
+4. A build argument the workflow passed was never declared by any `ARG` line, so the commit hash had never reached a
    build at all. Declaring it is safe; exporting it as an `ENV` is not automatically safe, because on that project
    the tracing code renamed the tracer whenever the variable was set. Declare first, read every consumer, then
    decide about exporting.
-6. Setting `provenance: false` on the build-and-push action drops the default attestation manifest. On that project
+5. Setting `provenance: false` on the build-and-push action drops the default attestation manifest. On that project
    nothing in the deploy path used it.
-7. A comment in one Dockerfile described copying an assets directory that does not exist in the repository. A
+6. A comment in one Dockerfile described copying an assets directory that does not exist in the repository. A
    comment is not evidence; check the path.
-8. Moving the ORM client generation into the dependency stage needs the schema file copied into that stage. See
+7. Moving the ORM client generation into the dependency stage needs the schema file copied into that stage. See
    [prisma.md](../dev-loop/prisma.md) for why a timestamp check misfires there.
-9. The slim runtime image has no `wget` and no `curl`, so a check that has to talk HTTP from inside the container
+8. The slim runtime image has no `wget` and no `curl`, so a check that has to talk HTTP from inside the container
    needs `node -e`.
-10. When a release consolidates images or changes the base image, keeping the previous image tags published for that
+9. When a release consolidates images or changes the base image, keeping the previous image tags published for that
     release leaves a rollback target. They can be dropped the release after.
 
 Related: [general.md](general.md) for build-wide rules, [github-actions.md](../ci/github-actions.md) for the

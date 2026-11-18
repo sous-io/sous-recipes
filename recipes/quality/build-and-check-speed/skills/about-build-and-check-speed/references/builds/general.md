@@ -32,10 +32,11 @@ What makes a build slow, and when a build should run at all. Tool files: [docker
 ## Caching Builds
 
 A cached build is only as correct as the list of its inputs. A build-cache config (Turborepo, Nx, Bazel and similar)
-MUST name everything a build reads: files outside the package, and every build-time environment variable. A strict
-environment mode, where a task sees only the variables listed for it, makes a build that starts reading an unlisted
-variable fail visibly instead of being restored stale. Keep one job that builds with no cache, so something always
-proves the clean build. See [turborepo.md](turborepo.md).
+MUST name everything a build reads: files outside the package, and every build-time environment variable. Listing
+every variable is what makes the cache key correct. A strict environment mode, where a task sees only the variables
+listed for it, makes an unlisted variable undefined inside the task instead of silently read; the build fails
+visibly only if it rejects a missing value, and otherwise it builds without it. Keep one job that builds with no cache, so
+something always proves the clean build. See [turborepo.md](turborepo.md).
 
 ## Memory
 

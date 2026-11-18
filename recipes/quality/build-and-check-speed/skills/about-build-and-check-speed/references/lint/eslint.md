@@ -83,6 +83,7 @@ fixer first and the formatter second, or the next check fails on formatting inst
 1. Turning on `consistent-type-imports` produced 728 errors in one pass. The autofix is mechanical but enormous;
    it reads best as its own commit, so a reviewer can skip that diff, and the lint and combined check scripts stay
    red until it lands.
-1. On that service the first-pass totals were: local lint, warm, 28 s to 2 s; CI lint job, 59 s to about 20 s.
+1. On that service the first-pass totals were: local lint, warm, 28 s to 2 s; CI lint job, about 58 s (readings of
+   59 s and 57 s) to about 20 s.
 1. One-file lint on a large monorepo is dominated by startup work (the program build and the directories walked),
    not by the file. Measuring one file against the whole tree shows which kind of cost is present.

@@ -3,6 +3,9 @@
 Load when the repository has a `vitest.config.*` file or `vitest` in its dependencies. Covers worker start-up,
 monorepo concurrency, per-file runs, and Vite's config loader in long-lived processes.
 
+Versions measured: Vitest 2.1. Pool option names differ between major versions; read the installed version's
+documentation before copying a setting.
+
 ## What to Measure
 
 | Command | Note |
@@ -25,6 +28,9 @@ machine where several agents run tests, that is dozens of idle worker processes.
 // Start one fork and add more only as test files queue up; the default starts nproc - 1 forks up front.
 poolOptions: { forks: { minForks: 1 } },
 ```
+
+`poolOptions.forks.minForks` and `minWorkers` are Vitest 2 and 3 options. Vitest 4 reworked the pool options and, as
+far as the Vitest 4 migration notes show, removed them, so check the installed version's options first.
 
 **Packages' suites in parallel.** One monorepo's root `test` script runs packages one at a time with pnpm's
 `--workspace-concurrency=1`, because running six packages' suites at once made an existing worker IPC flake more

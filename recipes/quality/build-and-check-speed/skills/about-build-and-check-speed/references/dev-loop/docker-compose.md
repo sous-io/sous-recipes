@@ -1,6 +1,7 @@
 # Docker Compose
 
-Load when `docker-compose.yaml` or `compose.yaml` exists for local development. Covers local dev services, health
+Load when `docker-compose.yml`, `docker-compose.yaml`, `compose.yml` or `compose.yaml` exists for local
+development. Covers local dev services, health
 checks and boot ordering.
 
 ## What to Measure

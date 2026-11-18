@@ -3,7 +3,7 @@ name: about-build-and-check-speed
 description: >
   YOU MUST load this skill when the work is making a project's checks, builds, CI or local dev loop faster:
   diagnosing why lint, a typecheck, a test suite, a build, an image build or a CI pipeline is slow; building,
-  changing or repairing a per-file check command (such as `check:file`); measuring wait times; and when
+  changing or repairing a per-file check command (such as `check:file`); measuring how long checks, builds or CI take; and when
   /speed-up-iteration runs.
 user-invocable: false
 ---
@@ -69,7 +69,7 @@ fixes, example numbers and traps. Load only what the work needs; [references/met
 table of which tool file each repository signal calls for.
 
 - [references/method.md](references/method.md): the full speed-up pass (baseline, consolidate, walk, implement,
-  re-measure), the rules for measuring agents, and the tool-file table.
+  re-measure), the rules for measuring agents, and the tool-file table. It runs only on request.
 - [references/agents-and-checks.md](references/agents-and-checks.md): check scope by moment, per-file checks while
   working, the full checks at the end, delegated prompts, failures the agent did not cause.
 - [references/per-file-checks/](references/per-file-checks/overview.md): per-file check commands.
@@ -89,9 +89,9 @@ table of which tool file each repository signal calls for.
 ## Improving This Skill
 
 Every tool file here is what one project learned. When the agent learns something that would help any project (a slow
-spot not described, a number that proved wrong, a tool with no file), it drafts the addition and offers it to the user
-as an upstream improvement; it proposes nothing without the user's approval, and strips every private detail first.
-[references/contributing.md](references/contributing.md) says how.
+spot not described, a number that proved wrong, a tool with no file), outside `/speed-up-iteration` it notes the lesson and mentions it once, at the end of its report, and drafts it
+only when the user says yes; during `/speed-up-iteration` it drafts as
+[references/contributing.md](references/contributing.md) describes. It proposes nothing upstream without the user's approval, and strips every private detail first.
 
 ## Source for this Skill
 

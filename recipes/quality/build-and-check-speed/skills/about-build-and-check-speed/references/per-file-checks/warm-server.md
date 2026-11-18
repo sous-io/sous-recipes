@@ -2,8 +2,8 @@
 
 This file describes one working implementation of the per-file check command (see [overview.md](overview.md)): a
 background server that keeps ESLint, Prettier, TypeScript and Vitest loaded, built for a pnpm monorepo. Its complete
-source is in [example/](example/), about 1,200 lines of dependency-free Node ES modules that import only `eslint`,
-`prettier`, `typescript` and `vitest`.
+source is in [example/](example/), about 1,200 lines of Node ES modules with no dependencies beyond the four tools (`eslint`,
+`prettier`, `typescript`, `vitest`).
 
 It is a worked example for one stack, not a drop-in tool. Versions it was written against: Node 22, ESLint 9,
 Prettier 3, TypeScript 5.8, Vitest 2.1. Copying it means adapting it: the paths in `paths.mjs`, the skipped
@@ -11,7 +11,7 @@ directories, the file extensions, the test runner, and the Vitest calls (see "Ve
 
 ## Why a Background Server
 
-Each of the three tools is slow to start and fast once loaded. A cold `tsc` parses the whole program, a cold Vitest
+Each of these tools is slow to start and fast once loaded. A cold `tsc` parses the whole program, a cold Vitest
 starts Vite and transforms the import graph, and a cold ESLint loads its config and plugins. The server pays that once
 and keeps the parsed programs, the transform cache and the lint cache in memory, so the second and later checks cost
 only what changed.
@@ -86,8 +86,9 @@ The `package.json` scripts:
 - **Everything lives in `node_modules/.cache/check-file/`**: socket, pid file, log, ESLint cache. That directory is
   already gitignored, is removed with `node_modules`, and is separate in each git worktree, so each worktree has its
   own server.
-- **`process.title = "check-file-server"`**, so the process can be found and stopped by exact name
-  (`pkill -x check-file-server`).
+- **`process.title = "check-file-srv"`**, so the process can be found and stopped by exact name
+  (`pkill -x check-file-srv`). A title used with `pkill -x` or `pgrep -x` MUST be at most 15 characters, because Linux
+  truncates a process name to 15 characters and a longer name never matches.
 - Stops cleanly on `SIGTERM` and `SIGINT`, closing the Vitest instances first.
 
 ## Lint
@@ -100,7 +101,7 @@ The `package.json` scripts:
 - Prettier respects `.prettierignore` and the resolved config (`editorconfig: true`). Without `--fix` an unformatted
   file fails with "not prettier-formatted (rerun with --fix to format)"; with `--fix` it is written and reported as
   formatted.
-- Errors fail the check; warnings are shown (the first 10) and do not.
+- Errors fail the check; warnings are shown (the first 10) and do not (see "What It Does Not Do").
 
 ## Typecheck
 
@@ -173,6 +174,8 @@ Four gotchas, each found the hard way and fixed in the source:
   (Assumption: neither tool reloads its config inside a live instance; not tested.)
 - **Spec discovery is a text match** on import specifiers. It does not follow re-exports or transitive imports, and an
   alias import ending in the same file name can match a different file.
+- **Warnings pass.** `lint.mjs` treats warnings as passing. A project whose lint script fails on warnings
+  (`--max-warnings 0`) MUST make the per-file check fail on warnings too, or it disagrees with the full run.
 - **Linux and macOS only**: a unix socket and `/proc` for CPU time. Windows needs a named pipe.
 - **One server per worktree.** Ten worktrees in use means ten servers, each holding parsed programs in memory until its
   idle exit. `--status` prints each server's memory.

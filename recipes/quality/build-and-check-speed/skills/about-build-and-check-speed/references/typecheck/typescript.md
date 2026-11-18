@@ -36,9 +36,12 @@ The build went from 17 s to 2 to 4 s, of which swc itself was about 300 ms for 4
 so a typecheck script stays as the gate; releases may stay on tsc. Two traps came with it:
 - `paths` without `baseUrl` makes the framework's swc builder exit in about a second with no output and no error,
   which looks like success. Adding `baseUrl` fixes it.
-- swc does not emit the constructor parameter metadata that a bare property injection relies on, so every such
-  injection fails at boot. See [../dev-loop/nestjs.md](../dev-loop/nestjs.md). On that service it was 63 sites in
-  36 files, one shape, mechanical, with no forward references.
+- Under that project's swc configuration, the parameter-type metadata that a bare property injection relies on was
+  not emitted, so every such injection failed at boot. swc emits that metadata when `jsc.transform.decoratorMetadata`
+  is enabled (together with `jsc.transform.legacyDecorator`), so check both in `.swcrc` before rewriting any
+  injection site. See [../dev-loop/nestjs.md](../dev-loop/nestjs.md). On that service it was 63 property injections
+  of the shape `@Inject() private readonly fooService: FooService` in 36 files, mechanical, with no forward
+  references.
 
 **`declaration: true` on an application.** It was 8 of 14 build seconds, producing declaration files nothing
 consumed. An application does not need them; a library does.
@@ -46,9 +49,6 @@ consumed. An application does not need them; a library does.
 **Whole-workspace typecheck in a monorepo.** `pnpm run -r --parallel --aggregate-output typecheck` runs each
 package's `typecheck` script at once and prints each package's output as one block. Types read from a workspace
 package's built `dist/` need that package rebuilt first (`pnpm --filter <package> build`, not the whole repo).
-
-**A duplicate typecheck job in CI.** A job that repeats the first `tsc` step of the build can be worth its cost,
-because a type error is then reported by a job with that name instead of inside the build job.
 
 ## Per-File Typechecks
 
@@ -74,8 +74,7 @@ Then run `tsc --noEmit -p <temporary tsconfig>` from the package directory, so r
 do for the project. A per-file typecheck reports errors inside the checked file only. A caller elsewhere that the
 edit broke is caught by the full typecheck at the end.
 
-A test that only asserts a type error can call the typecheck function directly, instead of running a whole check
-command.
+For a duplicate typecheck job in CI and for testing a type error, see [general.md](general.md).
 
 ## Untested Ideas
 
@@ -101,5 +100,5 @@ problem, and the package did not exist on the registry. Every named package is w
 
 1. A warm number belongs with its load conditions. The incremental typecheck was 7.4 s idle and 9 to 13 s on the
    same machine with other work running; see [../machine-load.md](../machine-load.md).
-1. A read-only pass predicted 64 injection sites in 37 files with 12 circular cases. The real change was 63 in 36
+2. A read-only pass predicted 64 injection sites in 37 files with 12 circular cases. The real change was 63 in 36
    with none. Estimates from reading ran slightly high; doing one site first verifies the estimate.

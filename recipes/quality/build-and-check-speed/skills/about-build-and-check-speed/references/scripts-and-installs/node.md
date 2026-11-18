@@ -35,7 +35,7 @@ service were:
 | Script         | Does                                                | Expected warm time         |
 | -------------- | --------------------------------------------------- | -------------------------- |
 | `typecheck`    | Whole project, incremental                          | 7 s idle, 9 to 13 s loaded |
-| `test:changed` | Specs touched by the branch (idea)                  | depends on the diff        |
+| `test:changed` | Specs related to files changed since the branch point (idea)                  | depends on the diff        |
 | `check`        | Lint, format, typecheck, changed tests, in parallel (idea) | about 20 s          |
 
 `test:changed` and `check` are ideas that were estimated, not measured as a finished script. Agents follow listed
@@ -70,8 +70,8 @@ and every command fails with `tsx: not found`. On one machine it looked like a p
 command talks to. A reinstall relinked it in 2 s. Checking the wrapper comes before blaming what it calls.
 
 **A committed `node_modules` symlink.** One checkout carried `node_modules` as a committed symlink pointing at
-another machine's home directory, so the CLI did not run at all on a fresh clone. This is worth fixing before
-measuring anything.
+another machine's home directory, so the CLI did not run at all on a fresh clone. It is reported first, as its
+own finding; nothing else can be measured until it is fixed.
 
 **An unfinished allow-list placeholder in the workspace file.** It warns on every install.
 

@@ -3,7 +3,10 @@
 A full pass over everything a project's developers and agents wait on: measure it all first, rank the findings, walk
 them with the user, implement the approved ones in a few grouped changes, re-measure, and record what was learned. On
 one TypeScript service it took a pull request's CI from 21 minutes to under 2. Almost every wait came from a missing
-cache or one config line, not from slow code; expect the same elsewhere.
+cache or one config line, not from slow code.
+
+This file describes the pass. The agent runs it only when `/speed-up-iteration` runs or the user asks for a pass;
+loaded for any other reason, it is reference.
 
 The steps, in order:
 
@@ -48,14 +51,14 @@ only when its signal is in the repository:
 | A Jest config, or `jest` in dependencies | [tests/jest.md](tests/jest.md) |
 | A Vitest config, or `vitest` in dependencies | [tests/vitest.md](tests/vitest.md) |
 | A Vite config, or `vite` in dependencies | [builds/vite.md](builds/vite.md) |
-| `turbo.json` | [builds/turborepo.md](builds/turborepo.md) |
+| `turbo.json`, or `turbo` in dependencies | [builds/turborepo.md](builds/turborepo.md) |
 | Any `Dockerfile*` | [builds/docker.md](builds/docker.md) |
 | `.github/workflows/` | [ci/github-actions.md](ci/github-actions.md) |
 | `.gitlab-ci.yml` | [ci/gitlab-ci.md](ci/gitlab-ci.md) |
 | `@nestjs/core` in dependencies, or `nest-cli.json` | [dev-loop/nestjs.md](dev-loop/nestjs.md) |
 | `prisma/schema.prisma`, or `@prisma/client` in dependencies | [dev-loop/prisma.md](dev-loop/prisma.md) |
 | `@opentelemetry/*` in dependencies | [dev-loop/opentelemetry.md](dev-loop/opentelemetry.md) |
-| `docker-compose.yaml` or `compose.yaml` | [dev-loop/docker-compose.md](dev-loop/docker-compose.md) |
+| `docker-compose.yml`, `docker-compose.yaml`, `compose.yml` or `compose.yaml` | [dev-loop/docker-compose.md](dev-loop/docker-compose.md) |
 
 A tool with no file is still measured under its folder's `general.md`. What was learned about it is worth a new file;
 see [contributing.md](contributing.md).
@@ -102,8 +105,8 @@ One ranked list, in three tiers:
   unnecessary. On one pass, one config line in the test transformer made sharding, a bigger runner and a faster
   transformer all moot.
 
-When two measurements disagree, say so and mark the item "re-measure after the cheap fix". The measurement taken
-after the cheap fix has been right so far.
+When two measurements disagree, say so and mark the item "re-measure after the cheap fix". On each pass so far, the
+measurement taken after the cheap fix was the right one.
 
 ## 3. Walk the Findings
 
@@ -127,7 +130,7 @@ the cache file is restored between runs, keyed on the lockfile and the ESLint co
 | What gets faster      | Now  | After |
 | --------------------- | ---- | ----- |
 | Local lint, warm      | 28 s | 2 s   |
-| CI lint job           | 59 s | 20 s  |
+| CI lint job           | 58 s | 20 s  |
 
 The CI lint job is not on the critical path, so the CI half saves runner time, not anyone's wait.
 ```
@@ -147,7 +150,8 @@ local image build is what catches most of that first. A failed release is fixed 
 review path, never by patching what was deployed by hand. Keep a running list of problems and lessons while
 implementing.
 
-Commit with explicit paths when other agents share the branch: `git commit -m "message" -- <paths>`.
+When other agents share the branch, commit with explicit paths as
+[machine-load.md](machine-load.md), "Concurrent Agents in One Checkout", describes.
 
 ## 5. Re-Measure and Record
 
@@ -162,9 +166,6 @@ warm, which run). Then record what was learned, in two places:
 
 ## Rules That Held
 
-- **Rank by minutes per day.** A 5-second saving that happens 100 times a day beats a 2-minute saving once a week.
-- **Prefer the config line over the rewrite**, and re-measure before every expensive item.
-- **A run beats a grep.** Verify a claim by running it.
 - **Count causes, not symptoms.** Nine affected specs and 1,708 error lines had one cause. A mechanical rewrite
   predicted at 64 sites in 37 files with 12 special cases was 63 in 36 with none. Estimates from reading run high; do
   one instance and re-count.

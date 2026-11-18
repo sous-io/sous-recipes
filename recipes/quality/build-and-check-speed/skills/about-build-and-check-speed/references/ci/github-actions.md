@@ -6,11 +6,9 @@ is out of scope; the jobs leading up to it are in scope.
 
 ## What to Measure
 
-The provider's API gives better numbers than the workflow files do. The last 30 completed runs per workflow give a
-median and a p90 wall time; per-job and per-step durations for about eight representative runs each show where the
-time goes. Runs that ended in seconds with no steps are billing or runner failures and are excluded. The step logs
-show the cache hit and miss lines. Then the job graph for each trigger (pull request, push to the default branch,
-tag) with the critical path marked.
+Measure from the provider's API, not the workflow files; the method, the critical path and the growth trend are in
+[general.md](general.md), "Measure From the Provider, Not the Files". For GitHub Actions, runs billed as blocked end
+in about two seconds with no steps and are excluded, and the step logs show the cache hit and miss lines.
 
 | Item                                    | Note                                                                    |
 | --------------------------------------- | ----------------------------------------------------------------------- |
@@ -20,17 +18,11 @@ tag) with the critical path marked.
 | Longest job over many weeks             | A trend shows growth that a single run hides                            |
 | What the workflows actually call        | Shared workflows or actions versus inline commands                      |
 
-Plotting the longest job over ten weeks on one service showed it had grown from 5.7 to 21.6 minutes, about ten
-seconds per calendar day, and would have passed 30 minutes six weeks later.
-
-Checking what the workflows actually call matters too: on one repository a shared build workflow maintained by the
-organisation was assumed to cover it, but the repository used two small shared actions and ran its own
-`docker build` inline.
-
 ## Known Slow Spots
 
-**One job was the whole critical path.** On one service lint took 59 s, build 61 s, end-to-end 246 s and unit tests
-1194 s (median). The fix was in the test transformer, not in CI; see [jest.md](../tests/jest.md).
+**One job was the whole critical path.** On one service lint took about 58 s (readings of 59 s and 57 s before the
+change), build 61 s, end-to-end 246 s and unit tests 1194 s (the median wall time read from the provider's API). The
+fix was in the test transformer, not in CI; see [jest.md](../tests/jest.md).
 
 **No concurrency group.** Pushing a second commit left the first commit's run going to the end. In 100 runs, eight
 pairs were superseded, about 61 runner minutes. A concurrency group keyed on the branch, with in-progress runs
@@ -77,10 +69,10 @@ On one service, after the first pass:
 | Wait                    | Before             | After                                   |
 | ----------------------- | ------------------ | --------------------------------------- |
 | A pull request run      | 21 to 22 min       | 1 min 59 s, on two runs                 |
-| Unit test job           | 1194 s             | 114 s                                   |
+| Unit test job           | 1194 s (median)    | 114 s, a cold cache, two-core runner    |
 | End-to-end job          | 246 s, after build | 103 s, in parallel with the unit job    |
 | Build job               | 61 s               | 62 to 88 s                              |
-| Lint job                | 57 s               | 82 s on its first run, with cold caches |
+| Lint job                | about 58 s         | 82 s on its first run, with cold caches |
 
 ## Lessons From Implementation
 
@@ -97,7 +89,7 @@ On one service, after the first pass:
    to the registry cache. The recovery release is cold twice over: no image layers and no cache tag. The gap in the
    version sequence is expected.
 4. A check job can get slower on the run that lands the change and still be the right change. One lint job went
-   from 57 s to 82 s on its first run because it now also ran the formatter and the typecheck, all with cold
+   from about 58 s to 82 s on its first run because it now also ran the formatter and the typecheck, all with cold
    caches. A check job is judged on its second run, not on the one that populates its caches.
 5. The build job no longer uploaded a build artifact on that service. The one job that consumed it ran its build
    check inside the build job instead, which is also what let both test jobs drop their dependency on it.

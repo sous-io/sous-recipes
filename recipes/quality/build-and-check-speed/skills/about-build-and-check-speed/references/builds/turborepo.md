@@ -1,6 +1,6 @@
 # Turborepo
 
-Load when the repository has a `turbo.json` or `turbo` in its dependencies. Covers build caching across runs, the
+Load when the repository has a `turbo.json`, or `turbo` in dependencies. Covers build caching across runs, the
 inputs list, and keeping the cache in CI.
 
 ## What to Measure
@@ -39,8 +39,10 @@ same change. Its config:
 }
 ```
 
-`envMode: "strict"` is the safety: a task sees only the listed variables, so a build that starts reading an unlisted
-one fails visibly instead of being restored stale.
+Listing every build-time variable is what makes the cache key correct: a changed listed variable changes the hash,
+so a stale output is not restored for it. `envMode: "strict"` makes an unlisted variable undefined inside the task,
+instead of silently read. The build fails visibly only if it rejects a missing value; otherwise it builds without the
+variable and nothing reports it.
 
 ## Keeping the Cache in CI
 

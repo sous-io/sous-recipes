@@ -66,8 +66,8 @@ They are generally worth it where they shorten a real wait, and each one is weig
   cache on the lockfile as well covers it. ESLint's default cache strategy uses modification times, which a fresh
   checkout resets, so CI needs `--cache-strategy content`. Each tool file says what its cache misses.
 
-Judge a check job on its second run, not on the run that populates its caches: one lint job went from 57 s to 82 s on
-the run that added its caches and new steps, and dropped after.
+Judge a check job on its second run, not on the run that populates its caches: one lint job went from about 58 s to
+82 s on the run that added its caches and new steps, and dropped after.
 
 A tool cache is different from the **dependency cache** (the package manager's store, so installs do not download
 everything) and a **build cache** (a whole task's output restored by a tool such as Turborepo, see

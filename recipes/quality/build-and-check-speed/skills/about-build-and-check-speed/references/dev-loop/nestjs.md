@@ -43,8 +43,10 @@ out of the graph removes it. Counting causes before counting symptom sites matte
 affected, and one fix covered them.
 
 **Bare `@Inject()` under swc.** On one service, 63 property injections in 36 files of the shape
-`@Inject() private readonly fooService: FooService` relied on tsc's parameter-type metadata. swc does not emit it,
-so the app died at boot with "can't resolve dependencies". Each becomes `@Inject(FooService)`. None needed
+`@Inject() private readonly fooService: FooService` relied on tsc's parameter-type metadata. Under that service's swc
+configuration the metadata was not emitted, so the app died at boot with "can't resolve dependencies". swc emits it
+when `jsc.transform.decoratorMetadata` is enabled (with `jsc.transform.legacyDecorator`), so check both in `.swcrc`
+before rewriting any site. If the metadata cannot be enabled, each becomes `@Inject(FooService)`. None needed
 `forwardRef`; one is added only where the boot actually names a circular dependency. A wrong token fails loudly at
 boot and tsc still validates, so the risk is low, and the change is mechanical. An expected plugin that would
 handle this does not exist for the version in question.

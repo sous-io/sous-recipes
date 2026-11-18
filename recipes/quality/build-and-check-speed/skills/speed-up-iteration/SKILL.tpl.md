@@ -22,18 +22,18 @@ agent digs in, researches, proposes and, once the user approves, implements.
 1. **Read the project.** Find the stack, the areas that apply, and the tool files whose signals are present (the table
    in `references/method.md`). Read the project's agent instructions for check commands, rulings and anything already
    decided about checks, builds or CI. Say which areas and tool files apply, and which areas the project does not have.
-2. **Track the pass.** If the project keeps task files or tickets, open one for this pass before measuring, with the
-   target, the stack and the areas in scope.
+2. **Track the pass.** If the project keeps task files, open one for this pass before measuring; open a ticket only
+   where the project's rules allow creating one.
 3. **Baseline.** Measure every area in scope, by background agents in parallel when the agent can delegate, each
    given the rules for measuring agents and the tool files for its area. Measure what agents actually run while
-   working, too: whether the project has per-file check commands, and whether its instructions name them.
+   working, too: whether the project has per-file check commands, and whether its instructions name them. A tool with
+   no file in the skill is investigated under its area's `general.md` anyway.
 4. **Consolidate** the reports into one ranked list in three tiers, with disagreements marked "re-measure after the
    cheap fix".
 5. **Propose.** Every finding goes on the list, including ones the skill describes as optional. In particular:
    - **No per-file check command:** propose adding one, at the lowest level that is fast enough (see
      `references/per-file-checks/overview.md`), and propose the instruction that tells agents to use it.
    - **A per-file check command that agents are not told about:** propose the instruction.
-   - **A tool with no file in the skill:** investigate it under its area's `general.md` anyway.
 6. **Walk the findings with the user**, one per message, in the form `references/method.md` shows. Record each decision
    in the user's words in the task file or ticket, if there is one.
 7. **Implement** the approved items in the grouped changes the method describes. Take outward actions (pushes, pull

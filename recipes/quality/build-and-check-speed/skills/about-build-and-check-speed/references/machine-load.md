@@ -26,7 +26,9 @@ of unrelated tests timed out on each run. Rerun the file once with fewer workers
 - **Every long-lived helper needs an idle exit.** The per-file check server exits after 15 idle minutes. Leaked
   TypeScript language-server processes, started by an editor integration that no session used, once loaded the
   machine until they were found and the integration was removed. A helper nobody uses still costs CPU and memory.
-- **Give a helper a fixed process title** so it can be found and stopped by exact name.
+- **Give a helper a fixed process title** (`check-file-srv`, for example) so it can be found and stopped by exact name.
+  A title used with `pkill -x` or `pgrep -x` MUST be at most 15 characters, because Linux truncates a process name to
+  15 characters and a longer name never matches.
 - **Kill by exact name.** `pkill -f <pattern>` also matches the shell running the command when the pattern appears in
   its command line. Use `pkill -x <name>`, or a bracketed pattern (`pkill -f '[c]heck-file'`).
 
@@ -48,4 +50,5 @@ agents queue instead of colliding.
 One agent's build deletes the output directory under another agent's test run; one agent's install moves package paths
 under a running suite. Both look like real failures. Rerun before believing a failure, and say when the machine was
 loaded. When several agents commit on one branch, each commits only its own paths
-(`git commit -m "message" -- <paths>`), never a bare `git commit`, which takes whatever the others staged.
+(`git add <paths> && git commit -m "message" -- <paths>`; the `git add` is needed because a commit limited to paths
+fails on a new untracked file), never a bare `git commit`, which takes whatever the others staged.

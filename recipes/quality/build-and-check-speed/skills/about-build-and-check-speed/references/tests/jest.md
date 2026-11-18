@@ -24,6 +24,9 @@ of the unit suite's cold time. `isolatedModules: true` in the transform took the
 cold and from 61 s to 22 s warm, and the end-to-end suite from 112 s to 35 s cold. Every suite stayed green.
 `diagnostics: false` saved nothing, because the cost is building the program, not reporting errors. The type
 errors are still caught by the typecheck script (see [../typecheck/typescript.md](../typecheck/typescript.md)).
+Version note: putting `isolatedModules` in the ts-jest transform config is deprecated in recent ts-jest 29 releases
+in favor of `isolatedModules` in the tsconfig; check the installed ts-jest version and set it where that version
+expects it.
 On that service this one line made sharding, a bigger runner and swc-for-jest unnecessary, so it is the change
 to measure before any of those.
 
@@ -50,7 +53,7 @@ unit job waited on the build job. Moving the spec, or making it build what it ne
 load, the most expensive test in the repository. Making the ceiling injectable and asserting at fifty rows took
 it from 11.5 s to 33 ms.
 
-**No changed-specs script.** `--changedSince=<default branch>` runs only the specs a branch touched. See
+**No changed-specs script.** `--changedSince=<default branch>` runs only the tests related to files changed since that branch. See
 [../scripts-and-installs/node.md](../scripts-and-installs/node.md) for where such a script fits.
 
 **The cache directory unset in CI.** The transform cache lived in a shared temp directory locally and nowhere in
@@ -58,20 +61,10 @@ CI. After the transformer fix it stopped mattering on that service; measuring co
 
 ## The Test Graph: What a Spec Imports
 
-A spec that imports a root module pulls in everything that module registers. On one service, registering a queue
-module (BullMQ) builds a real `Worker`, and the worker dials the cache server at boot.
-- Nine unit specs looked like they pulled a queue module into their graph. Locally, with a password on the
-  compose cache and none in the test env, this produced about 1,700 authentication-error lines per run. The tests
-  still passed, because nothing awaited the connection.
-- In CI the workers connected for real, so the unit job silently depended on the cache service container.
-- Replacing the root-module import with explicit providers in the two specs that had one removed the queue
-  modules along with everything else. No queue mocking was needed; all 1,708 error lines came from those two
-  specs, and the unit suite stayed green even with a wrong cache password.
-- Fixing the test env password makes the local noise disappear but does not remove the dependency; the workers
-  then connect successfully instead. Only a smaller graph (or mocking) removes it.
-
-Counting the causes before counting the symptom sites matters here: nine specs looked affected, and one fix
-covered them. The cost was mostly noise plus a hidden dependency on a service.
+A spec that imports a root module pulls in everything that module registers, including queue workers that connect
+to a real service at boot, so the unit job can silently depend on a service container. Replacing the root-module
+import with explicit providers removes all of it; the full account is in
+[../dev-loop/nestjs.md](../dev-loop/nestjs.md), "Specs that import the root module".
 
 ## Traps
 
@@ -90,14 +83,19 @@ paths under the running tests. See [../machine-load.md](../machine-load.md).
 ## Fixes That Turned Out Unnecessary
 
 Both were planned and set aside after re-measuring, which is the lesson:
-- **Sharding the unit job.** It would have taken CI from 16 minutes to 6 before the transformer fix. After the
-  fix the job was 26 s.
+- **Sharding the unit job.** It would have taken CI from about 16 minutes to 6 before the transformer fix (the
+  sources do not say how the 16 minutes was measured; the API median for the same job was 1194 s, see
+  [../ci/github-actions.md](../ci/github-actions.md)). After the fix the job was 26 s.
 - **swc for the transform.** Two investigators disagreed about its value. After the transformer fix the transform
   was no longer the cost.
 
 ## Expected Effect, First Pass
 
-On the service above, estimated step by step:
+On the service above, estimated step by step. The "Before" figure for the CI unit job, 205 s, is the starting point
+of that estimate, and the sources do not say how it was measured. It is not the 1194 s median that the CI provider's
+API gave for the same job (see [../ci/github-actions.md](../ci/github-actions.md)), so the two numbers describe
+different measurements, not one number that changed. The last row is a measured run, on a cold cache and a two-core
+runner.
 
 | Step                                    | CI unit job | CI end-to-end job | Local warm unit |
 | --------------------------------------- | ----------- | ----------------- | --------------- |

@@ -37,6 +37,6 @@ hitting.
    command of a project CLI fail with "not found", which looked like a problem with the service the command talks to.
    A reinstall fixed it in 2 s.
 2. **A committed symlink to another machine's directory** (a dependency directory pointing into someone's home) made a
-   CLI fail on every fresh clone. Fix that first, in its own commit, before measuring anything.
+   CLI fail on every fresh clone. It is reported first, as its own finding; nothing else can be measured until it is fixed.
 3. **`--help` is the worst case for a CLI's start-up**, because it loads every command. Time a real command, and
    subtract whatever it shells out to.

@@ -140,7 +140,9 @@ its place when it is not.
 The best form is one command at the repository root that works on any file in any package, with nothing configured
 per package. Everything can be discovered from the file's path:
 
-- the lint config: the root config (ESLint 9 reads only the root `eslint.config.js`);
+- the lint config: the root config (ESLint 9 by default uses the one `eslint.config.js` found from the working
+  directory, the root; ESLint 10 looks the config up from each file's directory, so a per-file command on ESLint 10 SHOULD NOT assume one
+  root config);
 - the type-checker config: the nearest `tsconfig.json` above the file, or the one of its project references that
   includes the file;
 - the test project: the nearest test-runner config above the file;
@@ -203,7 +205,7 @@ The parts that matter:
 4. A check that does not apply prints `skip` and a reason.
 5. Exit codes 0, 1 and 2 as above.
 6. Output: one status line per check with its time, findings as `path:line:column`, capped, no test console noise.
-7. Uses the same configs, ignore rules, environment variables and working directory as the full run.
+7. Uses the same configs, ignore rules, warning strictness, environment variables and working directory as the full run.
 8. Warns when a dependency read through its build output is stale, and prints the one command that fixes it.
 9. If it keeps a background process: one instance, one request at a time, an idle exit, a restart when the tool's own
    source changes, `--status` and `--stop`, a log file, state under a gitignored cache directory, normal priority.
