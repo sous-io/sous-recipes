@@ -12,9 +12,17 @@
 - **Replace placeholders once the real thing exists.** When a ticket, issue or card is created that
   a document, task file or comment referred to as "to be created", replace each placeholder with the
   real ID and link.
-- **Keep a live review loop fast.** While the user reviews changes on a hot-reloading server, make the
-  edits and check only the changed files; hold commits, pushes and full test suites until the user
-  signs off, then run them once.
+- **Match the check to the moment.**
+  - While the user iterates live (watching a hot-reloading server and steering each edit), run
+    nothing, builds included: make the edit and report. Hold commits while iterating on one
+    concept, and commit a finished concept locally when the work moves to the next one.
+  - When the user is not steering each edit (the agent, or a sub-agent, working on its own), at a
+    natural stopping point, check only the files just changed: with the project's per-file check
+    command(s) if it has any, otherwise with the narrowest commands that take paths. Never sweep a
+    directory or a whole package while working.
+  - When the work is finished (before the final commit, a push or a pull request, and when several
+    agents' work comes together), run the full checks once, after every agent has returned.
+  - Every delegated prompt states this check scope.
 
 One step at a time, while guiding the user through a manual setup:
 

@@ -46,6 +46,10 @@ namespaces:
       decomposition, and knowing when it is stuck.
   engineering:
     description: How to design software people enjoy using.
+  quality:
+    description: >-
+      Confidence in what was built, and how fast it is checked: tests, linting,
+      typechecks, builds and CI, and the standards they uphold.
   omakase:
     description: >-
       Preset sets of recipes, chosen for you and subscribed together.
@@ -73,5 +77,6 @@ recipes:
   - recipes/cli/command-design
   - recipes/reasoning/evidence-and-verification
   - recipes/engineering/design-tenets
+  - recipes/quality/build-and-check-speed
   - recipes/omakase/house
   - recipes/experimental/batch-inference

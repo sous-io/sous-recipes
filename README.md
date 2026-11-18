@@ -30,6 +30,7 @@ and, in one recipe, JavaScript you can read before you run it.
 | `tool-usage/claude-code` | A map of Claude Code's features for agents: how it works, how to extend it (skills, subagents, hooks, MCP, plugins and mods), parallel and background agents, configuration, surfaces, review and CI, administration and the Agent SDK, with a link to the official documentation page for each. |
 | `cli/command-design` | Principles for designing command-line interfaces, with skills for creating a new command and updating an existing one. |
 | `engineering/design-tenets` | Always-loaded design tenets: start from the ideal experience and compromise only at named walls, one implementation per concern, the same input means the same thing everywhere, and accept every reasonable form of an intent while storing only the canonical one. |
+| `quality/build-and-check-speed` | Faster developer iteration: measuring and cutting the time spent waiting on lint, typechecks, tests, builds, the dev loop and CI, with general guidance for any tool, specific files for common tools, how to build a per-file check command (with a complete example), and the `/speed-up-iteration` command, which measures a project, proposes fixes and carries out the approved ones. |
 
 ## Using it
 
