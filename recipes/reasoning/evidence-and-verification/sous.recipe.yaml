@@ -9,7 +9,7 @@ formatVersion: 1
 
 namespace: reasoning
 name: evidence-and-verification
-version: 1.0.0
+version: 1.0.1
 
 description: >-
   State assumptions and verify the ones that matter; verify before asserting,

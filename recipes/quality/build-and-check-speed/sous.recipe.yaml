@@ -13,7 +13,7 @@ formatVersion: 1
 
 namespace: quality
 name: build-and-check-speed
-version: 1.0.0
+version: 1.0.1
 
 description: >-
   Faster developer iteration: how to measure and cut the time spent waiting on
