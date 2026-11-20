@@ -162,6 +162,7 @@ cat <<'MD' | gh issue edit 47 --repo {{ githubRepo }} --body-file -
 New body.
 MD
 ```
+When editing a body fetched with `-q .body`, drop the one trailing newline `gh` adds (`head -c -1`) before writing it back, or the body gains a blank line.
 
 **Assign:**
 ```bash
