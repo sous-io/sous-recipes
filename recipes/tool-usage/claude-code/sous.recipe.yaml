@@ -10,7 +10,7 @@ formatVersion: 1
 
 namespace: tool-usage
 name: claude-code
-version: 1.0.0
+version: 1.0.1
 
 description: >-
   A map of Claude Code's features for agents: how it works, how to extend it

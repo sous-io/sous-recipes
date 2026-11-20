@@ -1,10 +1,6 @@
 # Sub-Agent Delegation
 
-Several shared skills say work is "delegated" and cite the sub-agent delegation pattern. This is
-that pattern. Subscribe a project to `workflow/sub-agent-delegation` to place this memory in that
-project's agent context, so the agent follows the pattern by default. A recipe that only needs to
-quote or include the text declares `workflow/sub-agent-delegation` under `depends` and writes
-`@~workflow/sub-agent-delegation/memories/sub-agent-delegation.md`.
+Shared skills cite this pattern when they say work is "delegated".
 
 The **main session** is the one the user talks to. It is the **orchestrator**: it does the
 reasoning, the decisions, and all interaction with the user, and it delegates execution to

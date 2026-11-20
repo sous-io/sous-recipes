@@ -32,7 +32,7 @@ take back. This project sets, for each kind, when the agent may take it without 
   force push, or an edit to a shared document.
 - **Asking for approval shows exactly what would happen:** the full text of anything written, drafted
   as the "Drafting and Outward-Facing Actions" memory says, or the branch, pull request or version
-  for anything else. A draft the user asked for is never sent on its own, whatever the setting.
+  for anything else.
 
 For example, with pushes set to `autonomous-modes-only` and comments to `on-request`: during a
 normal session the agent finishes a fix, commits it, and asks before pushing. During `/afk` it pushes

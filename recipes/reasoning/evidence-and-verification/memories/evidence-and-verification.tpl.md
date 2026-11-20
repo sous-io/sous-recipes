@@ -64,7 +64,7 @@ background check is searching for direct calls now; I'm carrying on with the cha
 - **Sub-agent output is a lead**, to confirm before relaying it as fact.
 - **Run read-only checks directly.** When a fact can be settled by a read (a tracker query, a git log,
   a test or type-check run, a file), settle it and report the result; NEVER hand it back to the user
-  as "needs checking". Ask the user only for what lives in their head.
+  as "needs checking".
 - **Absence needs proof.** Static search does not prove code is unused: it misses runtime dispatch,
   reflection, serialization and callers in places nobody looked. Say "I found no callers", not "this
   is dead", and propose an empirical test before removal. A search that skips hidden directories

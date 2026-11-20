@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-11-20T10:46:56.535Z",
+  "generatedAt": "2026-11-20T17:26:22.487Z",
   "generator": "1.1.2",
   "name": "sous-recipes",
   "namespaces": {
@@ -289,6 +289,184 @@
               }
             }
           ]
+        },
+        "1.3.1": {
+          "dependencies": {
+            "communication/plain-speech": {
+              "declared": "communication/plain-speech@^1.0.0",
+              "kind": "depends",
+              "range": "^1.0.0"
+            }
+          },
+          "depends": [
+            "communication/plain-speech@^1.0.0"
+          ],
+          "hash": "sha256-4b886108cfa16a42dc0bc51230cf0c0b2a9ca018a946356791cf8b1ffb08aef1",
+          "prerelease": false,
+          "releasedAt": "2026-11-20T17:26:22.487Z",
+          "subscribes": [],
+          "tag": "communication/agent-conduct@1.3.1",
+          "variables": [
+            {
+              "default": ".sous/memories",
+              "description": "Durable rules, preferences and project knowledge belong in a directory that is committed with the project, so they travel to every machine and every colleague instead of living in one machine's private memory store. This setting names that directory, and the conduct rules point agents at it. The default is the directory sous init creates for the fragments a build composes into the agent's instruction file. Any path works, either relative to the project root or absolute.",
+              "env": "MEMORY_ROOT",
+              "example": ".sous/prompts/memories",
+              "name": "memoryRoot",
+              "prompt": "Where are this project's tracked memory fragments kept?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "path",
+              "validate": {
+                "minLength": 1
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs pushing a branch that only the agent's own work uses to a shared remote, such as a feature branch created for the task. With the default, on-request, the agent commits locally and leaves the push for the user to approve, or pushes when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "pushOwnBranches",
+              "prompt": "When may the agent push a branch that nobody else works on?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs opening a draft pull request or merge request, which marks the change as not ready for review. With the default, on-request, the agent writes the title and description, shows them to the user and opens the draft only after the user approves, or opens it when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "openDraftPullRequests",
+              "prompt": "When may the agent open a draft pull request?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs opening a pull request or merge request that is ready for review, or marking a draft as ready, which usually notifies reviewers. With the default, on-request, the agent writes the title and description, shows them to the user and opens the pull request only after the user approves, or opens it when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "openPullRequests",
+              "prompt": "When may the agent open a pull request that is ready for review?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs merging a pull request or merge request into its target branch. With the default, on-request, the agent never merges without the user's approval for that pull request, or merges when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "mergePullRequests",
+              "prompt": "When may the agent merge a pull request?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs anything that releases or publishes the project: cutting a release, pushing a release tag, publishing a package or deploying. With the default, on-request, the agent prepares the release and waits for the user's approval, or releases when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "releaseOrPublish",
+              "prompt": "When may the agent release or publish?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs creating an issue, ticket or card in the project's tracker. With the default, on-request, the agent drafts the issue in chat and files it only after the user approves that draft, or files it when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "createIssues",
+              "prompt": "When may the agent create an issue?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs posting or editing a comment on an issue, a ticket, a pull request or a code review. With the default, on-request, the agent drafts the comment in chat and posts it only after the user approves that draft, or posts it when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "commentOnIssuesAndPullRequests",
+              "prompt": "When may the agent comment on an issue or pull request?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            },
+            {
+              "default": "on-request",
+              "description": "This setting governs sending a chat message or an email, or posting in a chat channel, to anyone. With the default, on-request, the agent drafts the message in chat and sends it only after the user approves that draft, or sends it when the user asks for it in the moment. With autonomous-modes-only, the agent also does it on its own, but only while the user is away and has started autonomous work with /afk or /brb. With always, the agent does it on its own whenever the work calls for it. Anything the user approves up front, in /plan-auto or in the quick check that /afk and /brb run before the user leaves, is allowed whatever this setting says.",
+              "example": "autonomous-modes-only",
+              "name": "sendMessages",
+              "prompt": "When may the agent send a chat or email message?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "enum",
+              "validate": {
+                "enum": [
+                  "on-request",
+                  "autonomous-modes-only",
+                  "always"
+                ]
+              }
+            }
+          ]
         }
       }
     },
@@ -388,6 +566,16 @@
           "releasedAt": "2026-10-24T05:43:51.068Z",
           "subscribes": [],
           "tag": "communication/plain-speech@1.0.2",
+          "variables": []
+        },
+        "1.0.3": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-6f5a286762b4cb6070a6b2e0fb2ae84dd15fe8e92ded4ac8f46573dddef0e073",
+          "prerelease": false,
+          "releasedAt": "2026-11-20T17:26:22.487Z",
+          "subscribes": [],
+          "tag": "communication/plain-speech@1.0.3",
           "variables": []
         }
       }
@@ -1525,6 +1713,16 @@
           "subscribes": [],
           "tag": "quality/build-and-check-speed@1.0.0",
           "variables": []
+        },
+        "1.0.1": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-5263d8a278c16aea0a9b2bfc643391963cbe7144c5a38347702c27ff2514147a",
+          "prerelease": false,
+          "releasedAt": "2026-11-20T17:26:22.487Z",
+          "subscribes": [],
+          "tag": "quality/build-and-check-speed@1.0.1",
+          "variables": []
         }
       }
     },
@@ -1537,6 +1735,16 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T11:04:32.785Z",
           "tag": "reasoning/evidence-and-verification@1.0.0"
+        },
+        "1.0.1": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-f7598cbcff74ccc6824cb515274a97f04e9ae57a8ab512fcdcb7f31fb08b5562",
+          "prerelease": false,
+          "releasedAt": "2026-11-20T17:26:22.487Z",
+          "subscribes": [],
+          "tag": "reasoning/evidence-and-verification@1.0.1",
+          "variables": []
         }
       }
     },
@@ -1599,6 +1807,54 @@
           "releasedAt": "2026-10-02T07:44:47.390Z",
           "subscribes": [],
           "tag": "tool-usage/automated-browser-tasks@1.0.4",
+          "variables": [
+            {
+              "description": "An absolute path. The runner reads task scripts from here, and the task manifest memory lists every script it finds there. The path is specific to one machine, so it is stored in the gitignored local env file. There is no default; any directory you can write to is acceptable, and a project that keeps its scripts inside the repository still names them absolutely here.",
+              "env": "BROWSER_AUTOMATION_SCRIPTS_DIR",
+              "example": "/home/ada/projects/widget-api/browser-tasks",
+              "name": "browserAutomationScriptsDir",
+              "prompt": "Which directory holds this project's browser task scripts?",
+              "required": true,
+              "scope": "local",
+              "secret": false,
+              "type": "path",
+              "validate": {
+                "minLength": 1
+              }
+            },
+            {
+              "default": "Default",
+              "description": "The profile directory name as Chrome writes it, such as 'Default' or 'Profile 1'. The default is the profile Chrome creates for a new installation, which is the right answer for most people; change it only if you keep the session these tasks need in a secondary profile.",
+              "env": "CHROME_PROFILE",
+              "example": "Profile 1",
+              "name": "chromeProfile",
+              "prompt": "Which Chrome profile should browser tasks use?",
+              "required": false,
+              "scope": "local",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "minLength": 1
+              }
+            }
+          ]
+        },
+        "1.0.5": {
+          "dependencies": {
+            "workflow/sub-agent-delegation": {
+              "declared": "workflow/sub-agent-delegation@^1.0.0",
+              "kind": "depends",
+              "range": "^1.0.0"
+            }
+          },
+          "depends": [
+            "workflow/sub-agent-delegation@^1.0.0"
+          ],
+          "hash": "sha256-81ed551dbdd90facd5132fe528451ea9966214ea19461cdc60c53c877f3d81b1",
+          "prerelease": false,
+          "releasedAt": "2026-11-20T17:26:22.487Z",
+          "subscribes": [],
+          "tag": "tool-usage/automated-browser-tasks@1.0.5",
           "variables": [
             {
               "description": "An absolute path. The runner reads task scripts from here, and the task manifest memory lists every script it finds there. The path is specific to one machine, so it is stored in the gitignored local env file. There is no default; any directory you can write to is acceptable, and a project that keeps its scripts inside the repository still names them absolutely here.",
@@ -1727,6 +1983,16 @@
           "subscribes": [],
           "tag": "tool-usage/claude-code@1.0.0",
           "variables": []
+        },
+        "1.0.1": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-b260699aac977a2ec17044023aef5e55ab12d28476074a25ca679202028973b6",
+          "prerelease": false,
+          "releasedAt": "2026-11-20T17:26:22.487Z",
+          "subscribes": [],
+          "tag": "tool-usage/claude-code@1.0.1",
+          "variables": []
         }
       }
     },
@@ -1793,6 +2059,67 @@
           "prerelease": false,
           "releasedAt": "2026-09-29T20:39:30.286Z",
           "tag": "workflow/agent-memory@1.1.0"
+        },
+        "1.1.1": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "declared": "communication/agent-conduct@^1.0.0",
+              "kind": "depends",
+              "range": "^1.0.0"
+            },
+            "communication/control-flow": {
+              "declared": "communication/control-flow@^1.1.0",
+              "kind": "depends",
+              "range": "^1.1.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "declared": "workflow/sub-agent-delegation@^1.1.0",
+              "kind": "depends",
+              "range": "^1.1.0"
+            }
+          },
+          "depends": [
+            "communication/agent-conduct@^1.0.0",
+            "communication/control-flow@^1.1.0",
+            "workflow/sub-agent-delegation@^1.1.0"
+          ],
+          "hash": "sha256-7700a443ae0e202e416c7279a32f48d766f041a2d08a62c1134ffebc052ffbea",
+          "prerelease": false,
+          "releasedAt": "2026-11-20T17:26:22.487Z",
+          "subscribes": [],
+          "tag": "workflow/agent-memory@1.1.1",
+          "variables": [
+            {
+              "default": ".sous/memories",
+              "description": "Memory fragments are the Markdown sources a build composes into the agent's always-loaded instruction file. This setting names the tracked directory that holds them; agents read and write memories there, never in a compiled instruction file. The default is the directory sous init creates for those fragments. Any path works, either relative to the project root or absolute. The communication/agent-conduct recipe asks the same question, so one answer serves both.",
+              "env": "MEMORY_ROOT",
+              "example": ".sous/prompts/memories",
+              "name": "memoryRoot",
+              "prompt": "Where are this project's tracked memory fragments kept?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "path",
+              "validate": {
+                "minLength": 1
+              }
+            },
+            {
+              "default": ".sous/memories/conventions",
+              "description": "When the user asks for a coding convention, style or preference that no instruction records yet, the agent records it as a memory fragment, and this setting names the tracked source directory it writes to; never point it at a compiled output. The default is a conventions directory inside the default memory directory. Any path works, either relative to the project root or absolute, and it is usually inside the memory directory so a build picks the conventions up.",
+              "env": "CONVENTIONS_SOURCE_DIR",
+              "example": ".sous/prompts/memories/conventions",
+              "name": "conventionsSourceDir",
+              "prompt": "Where should newly recorded coding conventions be written?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "path",
+              "validate": {
+                "minLength": 1
+              }
+            }
+          ]
         }
       }
     },
@@ -2169,6 +2496,211 @@
               "type": "string"
             }
           ]
+        },
+        "1.1.4": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "declared": "communication/agent-conduct@^1.0.0",
+              "kind": "depends",
+              "range": "^1.0.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "declared": "workflow/sub-agent-delegation@^1.0.0",
+              "kind": "depends",
+              "range": "^1.0.0"
+            }
+          },
+          "depends": [
+            "workflow/sub-agent-delegation@^1.0.0",
+            "communication/agent-conduct@^1.0.0"
+          ],
+          "hash": "sha256-dfda04cca130a66f2ab8359fd92e506613b5c3b5e511ab66d1800634f7a00332",
+          "prerelease": false,
+          "releasedAt": "2026-11-20T17:26:22.487Z",
+          "subscribes": [],
+          "tag": "workflow/github-projects@1.1.4",
+          "variables": [
+            {
+              "description": "Every issue this recipe's skills read, create or close belongs to one repository, and this setting names it as the owner and repository joined by a slash, exactly as the `gh` command line accepts it. There is no default, because no other project's repository would be a safe guess. The owner may be an organization or a personal account, and the repository does not have to be the one this project's code lives in.",
+              "env": "GITHUB_REPO",
+              "example": "acme/widget-api",
+              "name": "githubRepo",
+              "prompt": "Which GitHub repository do this project's issues live in?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$"
+              }
+            },
+            {
+              "description": "Projects v2 boards hang off an organization or a personal account rather than off a repository, and this owner is what the `gh project` commands are given. There is no default. For an organization board this is the organization login; for a personal board it is your own GitHub login, which may differ from the owner half of the repository setting.",
+              "env": "GITHUB_PROJECT_OWNER",
+              "example": "acme",
+              "name": "githubProjectOwner",
+              "prompt": "Which organization or user owns the Projects v2 board?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[A-Za-z0-9-]+$"
+              }
+            },
+            {
+              "description": "Each board carries a small number that identifies it to the `gh project` commands, and it is the last segment of the board's URL, so board https://github.com/orgs/acme/projects/1 is number 1. There is no default. Any positive whole number is acceptable; it is the board's number, not its position in any list you see.",
+              "env": "GITHUB_PROJECT_NUMBER",
+              "example": 1,
+              "name": "githubProjectNumber",
+              "prompt": "What is the Projects v2 board's number?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "number",
+              "validate": {
+                "min": 1
+              }
+            },
+            {
+              "description": "Moving an issue between board columns goes through the GraphQL API, which addresses the board by an opaque node ID rather than by its number. Read it once with `gh project view <number> --owner <owner> --format json` and paste it here. There is no default, and the value is not something you can compose by hand; every board's ID begins with `PVT_`.",
+              "env": "GITHUB_PROJECT_ID",
+              "example": "PVT_kwDOABcDeF4AbCdE",
+              "name": "githubProjectId",
+              "prompt": "What is the Projects v2 board's GraphQL node ID?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^PVT_[A-Za-z0-9_-]+$"
+              }
+            },
+            {
+              "description": "The workflow in this recipe moves work by setting one single-select field, Status, and the GraphQL API addresses that field by its own node ID. Read it with `gh project field-list <number> --owner <owner>`. There is no default. If your board renames the column field, this is still the field that holds the workflow states; every such ID begins with `PVTSSF_`.",
+              "env": "GITHUB_STATUS_FIELD_ID",
+              "example": "PVTSSF_lADOABcDeF4AbCdEzgWxYz12",
+              "name": "githubStatusFieldId",
+              "prompt": "What is the node ID of the board's Status field?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^PVTSSF_[A-Za-z0-9_-]+$"
+              }
+            },
+            {
+              "description": "Each value of the Status field has its own option ID, and this one names the column where unstarted work waits. Read it with `gh project field-list <number> --owner <owner>`, which lists every option alongside its ID. There is no default. An option ID is eight hexadecimal characters, and it is tied to the column's identity rather than to its label, so it survives a rename.",
+              "env": "GITHUB_STATUS_BACKLOG_ID",
+              "example": "f75ad846",
+              "name": "githubStatusBacklogId",
+              "prompt": "What is the option ID of the Status value \"Backlog\"?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[0-9a-f]{8}$"
+              }
+            },
+            {
+              "description": "The option ID of the column holding work that is specified and ready to be picked up; agents move an issue here once it is well enough described to start. Read it with `gh project field-list <number> --owner <owner>`. There is no default, and the value is eight hexadecimal characters. Point it at whichever of your columns plays this part if yours carries another name.",
+              "env": "GITHUB_STATUS_READY_ID",
+              "example": "61e4505c",
+              "name": "githubStatusReadyId",
+              "prompt": "What is the option ID of the Status value \"Ready\"?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[0-9a-f]{8}$"
+              }
+            },
+            {
+              "description": "The option ID of the column an issue moves to when work on it actually begins. Read it with `gh project field-list <number> --owner <owner>`. There is no default, and the value is eight hexadecimal characters. Point it at whichever of your columns means active work if yours carries another name.",
+              "env": "GITHUB_STATUS_IN_PROGRESS_ID",
+              "example": "47fc9ee4",
+              "name": "githubStatusInProgressId",
+              "prompt": "What is the option ID of the Status value \"In Progress\"?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[0-9a-f]{8}$"
+              }
+            },
+            {
+              "description": "The option ID of the column an issue moves to once its change is open for review and the work is out of the author's hands. Read it with `gh project field-list <number> --owner <owner>`. There is no default, and the value is eight hexadecimal characters. Boards without a review column can point this at the column that best matches, and the workflow still reads correctly.",
+              "env": "GITHUB_STATUS_IN_REVIEW_ID",
+              "example": "df73e18b",
+              "name": "githubStatusInReviewId",
+              "prompt": "What is the option ID of the Status value \"In Review\"?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[0-9a-f]{8}$"
+              }
+            },
+            {
+              "description": "The option ID of the column that finished work lands in, which is where an issue goes as it is closed. Read it with `gh project field-list <number> --owner <owner>`. There is no default, and the value is eight hexadecimal characters. Point it at whichever column your board treats as the end of the line.",
+              "env": "GITHUB_STATUS_DONE_ID",
+              "example": "98236657",
+              "name": "githubStatusDoneId",
+              "prompt": "What is the option ID of the Status value \"Done\"?",
+              "required": true,
+              "scope": "shared",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[0-9a-f]{8}$"
+              }
+            },
+            {
+              "description": "Agents use this to assign issues to you and to filter the board down to your own work, so it is your login rather than anything about the project. There is no default, since no answer would be right for a second person on the team; for the same reason the answer is kept in the gitignored local env file, and each teammate answers it for themselves.",
+              "env": "GITHUB_USER_LOGIN",
+              "example": "octocat",
+              "name": "githubUserLogin",
+              "prompt": "What is your GitHub login?",
+              "required": true,
+              "scope": "local",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "pattern": "^[A-Za-z0-9-]+$"
+              }
+            },
+            {
+              "description": "Your display name, written into the issues and board updates agents compose on your behalf, so that prose reads as though a person wrote it. There is no default. Any form you are happy to see in public issue text is acceptable; like the login above, it is personal, so it is kept in the gitignored local env file.",
+              "env": "USER_FULL_NAME",
+              "example": "Ada Lovelace",
+              "name": "userFullName",
+              "prompt": "What is your full name, as it should appear in issue text?",
+              "required": true,
+              "scope": "local",
+              "secret": false,
+              "type": "string",
+              "validate": {
+                "minLength": 1
+              }
+            },
+            {
+              "default": "gh-",
+              "description": "Agents join this prefix to a bare issue number to build a ticket ID, so issue 47 becomes gh-47 when the prefix is 'gh-'. Include any trailing separator, because nothing is inserted between the prefix and the number. The default suits GitHub issues, which is what this recipe tracks; any prefix is acceptable, and an empty answer means the bare number is used on its own. The task-files recipe asks the same question, so a single answer serves both.",
+              "env": "SOUS_VAR_TICKET_PREFIX",
+              "example": "PROJ-",
+              "name": "ticketPrefix",
+              "prompt": "What prefix goes in front of a ticket number when you compose a branch name?",
+              "required": false,
+              "scope": "shared",
+              "secret": false,
+              "type": "string"
+            }
+          ]
         }
       }
     },
@@ -2311,6 +2843,16 @@
           "releasedAt": "2026-11-06T03:59:13.249Z",
           "subscribes": [],
           "tag": "workflow/sub-agent-delegation@1.1.3",
+          "variables": []
+        },
+        "1.1.4": {
+          "dependencies": {},
+          "depends": [],
+          "hash": "sha256-252bc7c9db1d55e0e5d98212fa8c2a27f2e27ad848348e505b5311e0dc229d58",
+          "prerelease": false,
+          "releasedAt": "2026-11-20T17:26:22.487Z",
+          "subscribes": [],
+          "tag": "workflow/sub-agent-delegation@1.1.4",
           "variables": []
         }
       }

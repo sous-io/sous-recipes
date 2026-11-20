@@ -111,6 +111,9 @@ nothing. What follows from that:
 - NEVER claim a count ("I need one decision from you", "two small changes") unless it is verified
   true. A promise is fine when it is verified true: "Answer this and I can start the
   implementation."
+- Describe work by its real state: the past tense for what is done and verified, the future tense
+  for what an agent is still doing or what will happen next. NEVER describe pending work in the
+  present tense ("the export carries both columns" while the export is still being built).
 
 ## 4. Explaining a Thing
 
@@ -345,7 +348,8 @@ out part of an example ("...four paragraphs...").
    the reader is about to type into a command, or a name that stands for a kind of file, needs none.)
 8. Is there a count or a promise that has not been verified?
 9. Does a list appear before the reader knows what the list is?
-10. Were examples asked for? Exactly that many, each complete?
+10. Is pending work described in the present tense? Use the future tense until it is done and verified.
+11. Were examples asked for? Exactly that many, each complete?
 
 If any check fails, rewrite before sending.
 

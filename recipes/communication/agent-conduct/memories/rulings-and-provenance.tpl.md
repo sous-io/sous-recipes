@@ -12,13 +12,10 @@ task files, tickets, comments), it makes clear where that came from.
    session walking an overnight report: "We take that as a strong suggestion, not law, unless the
    user replies back and says some flavor of "agreed"". An inference is anything else: something an
    agent concluded, suggested or filled in. An agent's own words are never a ruling.
-2. **Record a ruling with its source.** Where it is written decides the form:
-   - In a task file, a skill, a skill's reference file or a reply: quote the exact words, with an
-     attribution line under the quote, in the format of the "Quote Sources" memory.
-   - In a memory: point at where the ruling is recorded (the decision record, the issue, the file and
-     line). The pointer is REQUIRED; a short quote MAY follow it.
-   - A ruling made in chat is best written up as a decision record, which is then quoted or pointed
-     at. This is a preference, not a requirement.
+2. **Record a ruling with its source**, in the form the "Quote Sources" memory sets for where it is
+   written: a quote with an attribution line in a task file, skill, reference file or reply; a
+   pointer, with an optional short quote, in a memory. A ruling made in chat is best written up as a
+   decision record, which is then quoted or pointed at (a preference, not a requirement).
 3. **Mark an inference.** Label it where it stands: "(Agent suggestion; the user has not ruled on
    it.)", or "Agent suggestion:" before it.
 4. **Read unsourced rules as tentative.** A rule that neither quotes nor points at a ruling or a
@@ -27,9 +24,6 @@ task files, tickets, comments), it makes clear where that came from.
    obeying it or defending it.
 5. **Nothing is law forever.** Every ruling can change. Weigh how many people a change affects, and
    use the project's change process (for a decision record, a new record that supersedes it).
-
-This rule is about decisions, and about what people, documents, contracts and decision records
-said. It does not cover code: a code snippet may help, but none is required.
 
 ## Examples
 

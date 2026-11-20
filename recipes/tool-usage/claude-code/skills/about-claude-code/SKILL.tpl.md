@@ -3,8 +3,8 @@ name: about-claude-code
 description: >
   YOU MUST load this skill when the work involves Claude Code itself: choosing or using a Claude
   Code feature (skills, subagents, hooks, MCP, plugins, mods, background sessions, agent teams,
-  workflows, scheduled tasks, headless runs, the Agent SDK), configuring its settings, permissions
-  or models, or answering what Claude Code can do. It maps every feature to its documentation page.
+  workflows, scheduled tasks, headless runs, the Agent SDK), configuring settings, permissions or
+  models, or answering what Claude Code can do.
 user-invocable: false
 ---
 

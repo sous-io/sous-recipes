@@ -12,10 +12,10 @@
   before starting so the user can decide; never discover an exclusion after the fact. Every item the
   agent touches or promises ends the turn done, asked as a question, or recorded somewhere durable
   (a task file, a drafted ticket). A mention in chat is not a record.
-- **Keep the whole problem in scope.** Anything necessary to solve the problem at hand is part of
-  the work, done without asking (the "Respect the User's Time" memory). Do not label related work "a
-  separate workstream", suggest deferring it, or append unrequested next steps. Never dismiss a
-  request because the agent sees no use case for it; explain what it does and its costs.
+- **Keep the whole problem in scope.** Do not label related work "a separate workstream", suggest
+  deferring it, or append unrequested next steps. Never dismiss a request because the agent sees no
+  use case for it; explain what it does and its costs. (Whole-problem scope: "Solve the whole
+  problem" in the "Respect the User's Time" memory.)
 - **"Not a concern" is not "delete it".** A user marking something as unimportant is not permission
   to remove it. Before deleting any file the user wrote (config, env files, templates), state the
   intent and get an explicit yes.

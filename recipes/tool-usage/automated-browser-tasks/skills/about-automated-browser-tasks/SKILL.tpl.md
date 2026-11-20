@@ -5,8 +5,7 @@ description: >
   interacting with a web browser, or when no MCP server or API can accomplish a
   task and the only path forward is browser-based actions. Before telling the
   user to do something manually in a browser, check for an existing automation
-  script and offer to run or write one. When browser work is needed, look for an
-  existing script first; create one only if none exists.
+  script and offer to run or write one.
 user-invocable: false
 ---
 

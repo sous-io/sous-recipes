@@ -7,10 +7,9 @@ message, a review comment, a document, a decision record, or an earlier message 
 conversation.
 
 This is not optional polish. The user does not trust an agent's paraphrase: it is usually right, but
-wrong often enough that the user has to check every one against the source. A verbatim quote lets
-the user check it on the spot. It also saves the reader a trip: the user does not have every source
-memorized, should not have to read a whole document for one line, and a person the user replies to
-should never have to remember or look up what they said.
+wrong often enough that every one has to be checked against the source. A verbatim quote lets the
+user check it on the spot, and saves the reader a trip to the source (a person the user replies to
+should never have to look up what they said).
 
 ## The Rules
 
@@ -18,15 +17,13 @@ should never have to remember or look up what they said.
    NOT replace it.
 2. Quote only the part that matters. The quote saves the reader a trip to the source; it does not
    reproduce the source.
-3. Put an attribution line under every quote whose source is known or easy to find out. It holds,
-   best effort, each part that is known or easy to find out: who said it (or which document), where
-   (the medium or the section), when, the source's own number, label or title for it, and a link.
-   Leave out every other part; NEVER guess one. A source with no link gets no link.
+3. Put an attribution line under every quote whose source is known or easy to find out. It holds
+   each of these that is known or easy to find out: who said it (or which document), where (the
+   medium or the section), when, the source's own number, label or title for it, and a link. NEVER
+   guess a part; a source with no link gets no link.
 4. Link when a link exists: a URL for anything on the web, inside the attribution line; for a file,
    its absolute path with a line number, on its own line as a list item under the quote.
-5. Words from earlier in this conversation count too: quote or restate them where they are referred
-   to, never only point at them ("your last question", "the option above").
-6. Leave one blank line above and one below every quote block, and put a line holding only `>`
+5. Leave one blank line above and one below every quote block, and put a line holding only `>`
    between the quote and its attribution line.
 
 ## Where a Quote Is Required
