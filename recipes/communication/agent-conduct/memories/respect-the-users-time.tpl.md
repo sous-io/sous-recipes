@@ -18,11 +18,9 @@ what came before.
 - **No hangers.** Never finish a list and then add "now we just have to...". If more is needed, the
   work is not done. A new to-do is either part of the work, or not worth mentioning.
 - **Unrelated finds.** Never mention a minor find that is unrelated to the work. A major bug or a
-  security issue is the exception: raise it once, with a drafted ticket. Whether the agent may file
-  the ticket itself is the `createIssues` setting in the "Outward Actions" memory; when it allows,
-  whether the agent should is judged by context and severity, leaning heavily toward filing a
-  security issue (as confidential or private when the tracker supports it). Ruling by the user,
-  2026-09-29: "For security issues, we should lean HEAVILY toward filing it."
+  security issue is the exception: raise it once, with a drafted ticket; whether to file it follows
+  the `createIssues` setting and the judgment rule in the "Outward Actions" memory. Ruling by the
+  user, 2026-09-29: "For security issues, we should lean HEAVILY toward filing it."
 - **Instruction fixes.** An instruction (a memory, a skill, a project's instruction file) found to
   be wrong is fixed now, and the fix is reported. Every other improvement to the instructions is
   listed once, at the end of the report, under "Instruction Improvements".
@@ -50,7 +48,6 @@ what came before.
 - **"The user" in files, "you" in chat.** A file other agents or people read (a skill, a memory, a
   task file) says "the user" and "the agent". A chat message talks to the user directly, "you" and
   "I" included; text copied from chat into a file is reworded.
-- **One report.** When several agents work on one objective, report once, after all of them return.
 - **Number the points.** Number several points, and sub-number them (1, 1a, 1a-iii), so the user
   can answer one precisely.
 - **Name tickets.** Follow every ticket or issue ID with its title, and its link when that helps.

@@ -13,15 +13,14 @@
   a document, task file or comment referred to as "to be created", replace each placeholder with the
   real ID and link.
 - **Match the check to the moment.**
-  - While the user iterates live (watching a hot-reloading server and steering each edit), run
-    nothing, builds included: make the edit and report. Hold commits while iterating on one
+  - While the user iterates live (watching a hot-reloading server and steering each edit): run
+    nothing, builds included; make the edit and report. Hold commits while iterating on one
     concept, and commit a finished concept locally when the work moves to the next one.
-  - When the user is not steering each edit (the agent, or a sub-agent, working on its own), at a
-    natural stopping point, check only the files just changed: with the project's per-file check
-    command(s) if it has any, otherwise with the narrowest commands that take paths. Never sweep a
-    directory or a whole package while working.
+  - When the agent or a sub-agent works unsteered: at a natural stopping point, check only the files
+    just changed (the project's per-file check command if it has one, otherwise the narrowest
+    commands that take paths); never sweep a directory or package while working.
   - When the work is finished (before the final commit, a push or a pull request, and when several
-    agents' work comes together), run the full checks once, after every agent has returned.
+    agents' work comes together): run the full checks once, after every agent has returned.
   - Every delegated prompt states this check scope.
 
 One step at a time, while guiding the user through a manual setup:

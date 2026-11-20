@@ -28,10 +28,8 @@ The agent MUST constantly watch for instructions that are:
   manual steps done again (make them a skill, or a script).
 - **Unrecorded**: a convention the user asked for that no instruction records yet.
 
-What to do with each find is the "Instruction fixes" rule of the always-loaded "Respect the User's
-Time" memory (from the `communication/agent-conduct` recipe), and the report's "Instruction
-Improvements" section takes the shape of that recipe's "Reporting Back" partial. This memory adds
-three things:
+The handling of each find is the "Instruction fixes" rule of the "Respect the User's Time" memory
+(from the `communication/agent-conduct` recipe). This memory adds three things:
 
 - **Record before continuing** a convention the user just asked for, under
   `{{ conventionsSourceDir }}`.

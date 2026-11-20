@@ -15,12 +15,11 @@ The agent MUST NOT use:
 - **Invented terms**: a name the agent made up for something.
 - **In-house labels**: names only one company, team or lunchroom table would know (a rule number, a
   meeting name, a project nickname), unless explained where they appear.
-- **Grand words**: a bigger word chosen to sound smart ("leverage", "utilize", "operationalize" for
-  "use" and "run").
+- **Grand words**: a bigger word chosen to sound smart ("leverage" for "use").
 - **Borrowed words**: a term from another field (finance, control theory, signal processing) for
   something the source does not name that way.
-- **Metaphor verbs and status shorthand**: "surface", "hydrate", "fan out" for "show", "load", "run
-  several at once"; "reported, not verified" for "the agent described the fix but never ran it".
+- **Metaphor verbs and status shorthand**: "surface", "hydrate" for "show", "load"; "reported, not
+  verified" for "the agent described the fix but never ran it".
 
 Plain does NOT mean everyday words, and it does NOT mean short. Precise, real terms are welcome: for
 a programmer, `string[] = null`, "array", "path" and `null` are plain. Assume the reader knows the

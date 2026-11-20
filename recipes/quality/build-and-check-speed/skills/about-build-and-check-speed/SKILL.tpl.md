@@ -1,10 +1,9 @@
 ---
 name: about-build-and-check-speed
 description: >
-  YOU MUST load this skill when the work is making a project's checks, builds, CI or local dev loop faster:
-  diagnosing why lint, a typecheck, a test suite, a build, an image build or a CI pipeline is slow; building,
-  changing or repairing a per-file check command (such as `check:file`); measuring how long checks, builds or CI take; and when
-  /speed-up-iteration runs.
+  YOU MUST load this skill when making a project's checks, builds, CI or dev loop faster: diagnosing
+  slow lint, typecheck, tests, builds or CI; building or repairing a per-file check command (such as
+  `check:file`); measuring check, build or CI time; and when /speed-up-iteration runs.
 user-invocable: false
 ---
 

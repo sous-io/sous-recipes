@@ -2,7 +2,7 @@
 name: about-github-projects
 description: >
   YOU MUST load this skill when working with GitHub Issues or the GitHub Project board; querying
-  issues, creating issues, changing an issue's status, or any project-management operation.
+  issues, changing an issue's status, or any project-management operation.
 user-invocable: false
 license: Apache-2.0
 compatibility:
