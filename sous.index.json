@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-11-27T09:37:17.074Z",
+  "generatedAt": "2026-11-27T20:16:24.214Z",
   "generator": "1.1.5",
   "name": "sous-recipes",
   "namespaces": {
@@ -2301,6 +2301,36 @@
           "releasedAt": "2026-11-03T23:42:37.965Z",
           "subscribes": [],
           "tag": "workflow/autonomous-work@1.2.1",
+          "variables": []
+        },
+        "1.2.2": {
+          "dependencies": {
+            "communication/agent-conduct": {
+              "declared": "communication/agent-conduct@^1.1.0",
+              "kind": "depends",
+              "range": "^1.1.0"
+            },
+            "communication/control-flow": {
+              "declared": "communication/control-flow@^1.1.0",
+              "kind": "depends",
+              "range": "^1.1.0"
+            },
+            "workflow/sub-agent-delegation": {
+              "declared": "workflow/sub-agent-delegation@^1.1.0",
+              "kind": "depends",
+              "range": "^1.1.0"
+            }
+          },
+          "depends": [
+            "communication/control-flow@^1.1.0",
+            "communication/agent-conduct@^1.1.0",
+            "workflow/sub-agent-delegation@^1.1.0"
+          ],
+          "hash": "sha256-fde84a6a3d41be168803371f6fa2cbb16a70293771199fd5522cac9aff7d4fab",
+          "prerelease": false,
+          "releasedAt": "2026-11-27T20:16:24.214Z",
+          "subscribes": [],
+          "tag": "workflow/autonomous-work@1.2.2",
           "variables": []
         }
       }
