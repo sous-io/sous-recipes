@@ -21,6 +21,10 @@ permission request for the user, asked before the user leaves.
    (`gh auth login`, `glab auth logout` and the like) runs only inside a container or a throwaway
    user account, never on the host. The plan names how each tool is isolated, and the host login
    reads the same before and after the run (for example `gh auth status`, `glab auth status`).
+7. **CI's cloud sign-in matches the role's trust.** When a CI run signs in to a cloud provider
+   through OIDC, the role's trusted subject matches the `sub` claim the code host actually sends,
+   whose format a repository can customize (for example `gh api
+   repos/<owner>/<repo>/actions/oidc/customization/sub`).
 
 This list grows. When autonomous work hits a blocker that no check here caught, add one check that
 would have caught it: one numbered line, phrased for any project, naming the command that tests it.

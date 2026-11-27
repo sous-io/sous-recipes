@@ -61,7 +61,9 @@ anything still unanswered when I reach it, I'll guess and list for you when you'
 - Keep going until every item is done or blocked. Do not stop to report progress.
 - **Every unexpected blocker becomes a check.** When a blocker was not caught by the blocker checks,
   write one check that would have caught it and add it as the Blocker Checks section above says.
-  Name it in the report, with a link to the changed file.
+  Name it in the report, with a link to the changed file. A check that could not be added (the
+  recipe repository is not linked) is a blocker that needs the user: list it there, with its full
+  text, and NEVER under "Checks added for next time".
 
 ## 3. Report
 
@@ -69,8 +71,9 @@ anything still unanswered when I reach it, I'll guess and list for you when you'
 
 Write one report, for the moment the user returns, numbered straight through, in this order: what
 was done, the guesses made (each with where to undo it), what is not done, the checks added for next
-time, and last, the blockers that need the user, each with exactly what to do and a link. The first
-line also says how many blockers need the user, so it is seen even if nothing else is read.
+time (only those actually written to the recipe), and last, the blockers that need the user, each
+with exactly what to do and a link. The first line also says how many blockers need the user, so it
+is seen even if nothing else is read.
 
 ````text
 While you were away (about 3 hours): 6 of 7 items done. One blocker needs you (item 7).
